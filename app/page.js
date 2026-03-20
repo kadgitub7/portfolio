@@ -1,3 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
+'use client';
+
+import { useEffect, useState } from 'react';
 import ContactForm from './components/ContactForm';
 
 const profile = {
@@ -114,18 +118,195 @@ const skills = [
   },
 ];
 
+const tabs = [
+  { id: 'home', label: 'Home' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
+];
+
 export default function Page() {
+  const [activeId, setActiveId] = useState('home');
+
+  useEffect(() => {
+    const validIds = tabs.map((t) => t.id);
+
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && validIds.includes(hash)) setActiveId(hash);
+      if (!hash) {
+        // Keep the URL stable for back/refresh while still starting on Home.
+        window.history.replaceState(null, '', '#home');
+      }
+    };
+
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
+
+  const activeSection = (() => {
+    switch (activeId) {
+      case 'projects':
+        return (
+          <section className="section" id="projects">
+            <div className="section-item">Selected Projects</div>
+            <div className="description">
+              A few polished builds inspired by real engineering workflows. Replace the
+              placeholders with your repo links, screenshots, and impact metrics.
+            </div>
+
+            <div className="projects-grid">
+              {projects.map((p) => (
+                <article key={p.title} className="project-card">
+                  <div className="project-title">{p.title}</div>
+                  <div className="project-meta">{p.meta}</div>
+                  <div className="pill-row" style={{ marginTop: 0 }}>
+                    {p.tags.slice(0, 4).map((t) => (
+                      <span key={t} className="pill">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="project-links" style={{ marginTop: '0.85rem' }}>
+                    {p.links.map((l) => (
+                      <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        );
+      case 'experience':
+        return (
+          <section className="section" id="experience">
+            <div className="section-item">Experience</div>
+
+            <div className="description">
+              Highlight outcomes and ownership: what you built, what improved, and what
+              you learned. Keep each bullet action-oriented.
+            </div>
+
+            <div className="experience-stack" style={{ marginTop: '1rem' }}>
+              {experience.map((e) => (
+                <div key={e.title} className="experience-item">
+                  <div className="experience-title">{e.title}</div>
+                  <div className="experience-date">{e.date}</div>
+                  <div className="description" style={{ marginTop: 0 }}>
+                    <ul className="experience-list" style={{ paddingLeft: '1.1rem' }}>
+                      {e.descriptionLines.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      case 'skills':
+        return (
+          <section className="section" id="skills">
+            <div className="section-item">Skills</div>
+            <div className="description">
+              Keep this scannable. Recruiters often skim for keywords and relevant stacks.
+            </div>
+
+            <div className="skills-grid">
+              {skills.map((g) => (
+                <div key={g.heading} className="skill-group">
+                  <h3>{g.heading}</h3>
+                  <div className="skills-list">
+                    {g.items.map((s) => (
+                      <span key={s} className="pill">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      case 'contact':
+        return (
+          <section className="section" id="contact">
+            <div className="section-item">Contact</div>
+            <div className="description">
+              Send a note and I’ll reply soon. (This form opens your email client via
+              `mailto:`.)
+            </div>
+
+            <div className="contact-grid">
+              <div className="contact-card">
+                <ContactForm />
+              </div>
+            </div>
+          </section>
+        );
+      case 'home':
+      default:
+        return (
+          <section className="section header" id="home">
+            <div className="header">
+              <h1>
+                {profile.name}{' '}
+                <span className="korean">(Your Tagline/Native Name)</span>
+              </h1>
+              <div className="subtitle">— {profile.subtitleLines[0]}</div>
+              <div className="subtitle">— {profile.subtitleLines[1]}</div>
+            </div>
+
+            <div className="header-divider" />
+
+            <div className="hero-card">
+              <div className="hero-grid">
+                <div className="hero-copy">{profile.about}</div>
+                <div className="cta-row">
+                  <a className="btn btn-primary" href="#projects">
+                    View projects →
+                  </a>
+                  <a className="btn" href="mailto:you@example.com">
+                    Download CV (link later)
+                  </a>
+                </div>
+
+                <div className="pill-row" aria-label="Technologies">
+                  {profile.pills.map((p) => (
+                    <span key={p} className="pill">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+    }
+  })();
+
   return (
     <div className="layout">
       <aside className="sidebar">
         <nav className="nav" aria-label="Primary">
-          <a href="#home" className="active">
-            Home
-          </a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
+          {tabs.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              className={t.id === activeId ? 'tab active' : 'tab'}
+              aria-selected={t.id === activeId}
+              onClick={() => {
+                setActiveId(t.id);
+                window.history.replaceState(null, '', `#${t.id}`);
+              }}
+            >
+              {t.label}
+            </button>
+          ))}
         </nav>
 
         <div className="sidebar-social">
@@ -149,134 +330,7 @@ export default function Page() {
       </aside>
 
       <main className="content">
-        <section className="header section" id="home">
-          <div className="header">
-            <h1>
-              {profile.name}{' '}
-              <span className="korean">(Your Tagline/Native Name)</span>
-            </h1>
-            <div className="subtitle">— {profile.subtitleLines[0]}</div>
-            <div className="subtitle">— {profile.subtitleLines[1]}</div>
-          </div>
-
-          <div className="header-divider" />
-
-          <div className="hero-card">
-            <div className="hero-grid">
-              <div className="hero-copy">{profile.about}</div>
-              <div className="cta-row">
-                <a className="btn btn-primary" href="#projects">
-                  View projects →
-                </a>
-                <a className="btn" href="mailto:you@example.com">
-                  Download CV (link later)
-                </a>
-              </div>
-
-              <div className="pill-row" aria-label="Technologies">
-                {profile.pills.map((p) => (
-                  <span key={p} className="pill">
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="projects">
-          <div className="section-item">Selected Projects</div>
-          <div className="description">
-            A few polished builds inspired by real engineering workflows. Replace the
-            placeholders with your repo links, screenshots, and impact metrics.
-          </div>
-
-          <div className="projects-grid">
-            {projects.map((p) => (
-              <article key={p.title} className="project-card">
-                <div className="project-title">{p.title}</div>
-                <div className="project-meta">{p.meta}</div>
-                <div className="pill-row" style={{ marginTop: 0 }}>
-                  {p.tags.slice(0, 4).map((t) => (
-                    <span key={t} className="pill">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="project-links" style={{ marginTop: '0.85rem' }}>
-                  {p.links.map((l) => (
-                    <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
-                      {l.label}
-                    </a>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="experience">
-          <div className="section-item">Experience</div>
-
-          <div className="description">
-            Highlight outcomes and ownership: what you built, what improved, and what
-            you learned. Keep each bullet action-oriented.
-          </div>
-
-          <div style={{ marginTop: '1rem' }}>
-            {experience.map((e) => (
-              <div key={e.title} className="experience-item">
-                <div className="experience-title">{e.title}</div>
-                <div className="experience-date">{e.date}</div>
-                <div className="description" style={{ marginTop: 0 }}>
-                  <ul style={{ paddingLeft: '1.1rem' }}>
-                    {e.descriptionLines.map((line) => (
-                      <li key={line} style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        {line}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="skills">
-          <div className="section-item">Skills</div>
-          <div className="description">
-            Keep this scannable. Recruiters often skim for keywords and relevant stacks.
-          </div>
-
-          <div className="skills-grid">
-            {skills.map((g) => (
-              <div key={g.heading} className="skill-group">
-                <h3>{g.heading}</h3>
-                <div className="skills-list">
-                  {g.items.map((s) => (
-                    <span key={s} className="pill">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="contact">
-          <div className="section-item">Contact</div>
-          <div className="description">
-            Send a note and I’ll reply soon. (This form opens your email client via
-            `mailto:`.)
-          </div>
-
-          <div className="contact-grid">
-            <div className="contact-card">
-              <ContactForm />
-            </div>
-          </div>
-        </section>
+        {activeSection}
       </main>
     </div>
   );
