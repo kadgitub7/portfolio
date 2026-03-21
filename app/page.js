@@ -5,75 +5,106 @@ import { useEffect, useState } from 'react';
 import ContactForm from './components/ContactForm';
 
 const profile = {
-  name: 'Your Name',
+  name: 'Kadhir Ponnambalam',
   subtitleLines: [
-    'Software Engineer',
-    'Healthcare & Transportation • Future-focused builds',
+    'Research Assistant at HADI Labs',
+    'Electrical & Computer Engineering • Big Data Research',
   ],
   about:
-    'I build sleek, reliable web experiences and full-stack systems. My goal is to turn real-world problems into polished products: fast UI, clean architecture, and thoughtful engineering tradeoffs.',
+    'Passionate researcher in Electrical & Computer Engineering and Big Data, with interests in science, innovation, soccer, and cutting-edge research. [Placeholder bio: Add more general information about yourself here. Known for contributions in science and innovation, active in soccer, and leading research projects.]',
   pills: ['React', 'Next.js', 'Java', 'PostgreSQL', 'Docker'],
+  photo: '/placeholder-photo.jpg', // Placeholder for photo
 };
 
-const projects = [
+const highlightedProjects = [
   {
-    title: 'Mern Memories',
-    meta: 'Next.js • Full-stack memories app',
+    title: 'Placeholder Highlighted Project 1',
+    meta: 'Next.js • Full-stack app',
     tags: ['React', 'Next.js', 'MongoDB'],
+    description: 'This is a detailed description of the highlighted project. It showcases innovative features and demonstrates expertise in modern web development.',
+    github: '#',
+    demoVideo: '#',
     links: [
       { label: 'Live', href: '#' },
       { label: 'Code', href: '#' },
     ],
   },
   {
-    title: 'Next Event',
-    meta: 'React • Event discovery experience',
+    title: 'Placeholder Highlighted Project 2',
+    meta: 'React • UI/UX focused',
     tags: ['React', 'UI/UX'],
+    description: 'An interactive application with a focus on user experience and design principles.',
+    github: '#',
+    demoVideo: '#',
     links: [
       { label: 'Live', href: '#' },
       { label: 'Code', href: '#' },
     ],
   },
   {
-    title: 'Devspace',
-    meta: 'Platform-style project hub',
+    title: 'Placeholder Highlighted Project 3',
+    meta: 'Platform-style hub',
     tags: ['Frontend', 'Design'],
+    description: 'A comprehensive platform that integrates multiple features for enhanced productivity.',
+    github: '#',
+    demoVideo: '#',
     links: [
       { label: 'Live', href: '#' },
       { label: 'Code', href: '#' },
     ],
   },
   {
-    title: 'Google Clone',
-    meta: 'React • Search UI study',
+    title: 'Placeholder Highlighted Project 4',
+    meta: 'Search UI study',
     tags: ['React', 'Accessibility'],
+    description: 'A study in creating accessible and efficient search interfaces.',
+    github: '#',
+    demoVideo: '#',
+    links: [{ label: 'Code', href: '#' }],
+  },
+];
+
+const schoolProjects = [
+  {
+    title: 'Placeholder Capstone Project 1',
+    meta: 'Course capstone • Advanced algorithms',
+    tags: ['Java', 'Algorithms'],
+    description: 'A capstone project demonstrating advanced algorithmic solutions developed during coursework.',
+    github: '#',
+    demoVideo: '#',
     links: [{ label: 'Code', href: '#' }],
   },
   {
-    title: 'Portfolio V1',
-    meta: 'Clean layout + sections',
-    tags: ['CSS', 'Content design'],
-    links: [{ label: 'Live', href: '#' }],
+    title: 'Placeholder Capstone Project 2',
+    meta: 'Systems design • Embedded systems',
+    tags: ['C++', 'Embedded'],
+    description: 'An embedded systems project focusing on real-time processing and hardware integration.',
+    github: '#',
+    demoVideo: '#',
+    links: [{ label: 'Code', href: '#' }],
   },
+];
+
+const personalProjects = [
   {
-    title: 'Dresscode',
-    meta: 'Next/React • Style + recommendations',
-    tags: ['React', 'Next.js'],
+    title: 'Placeholder Personal Project 1',
+    meta: 'Personal • Web app',
+    tags: ['React', 'Node.js'],
+    description: 'A personal project exploring new technologies and creative ideas.',
+    github: '#',
+    demoVideo: '#',
     links: [
       { label: 'Live', href: '#' },
       { label: 'Code', href: '#' },
     ],
   },
   {
-    title: 'Music App',
-    meta: 'React • Playback + library UI',
-    tags: ['React', 'Media UX'],
-    links: [{ label: 'Live', href: '#' }],
-  },
-  {
-    title: 'Artemis',
-    meta: 'Next • Product-style showcase',
-    tags: ['Architecture', 'UI polish'],
+    title: 'Placeholder Personal Project 2',
+    meta: 'Personal • Mobile app',
+    tags: ['React Native', 'Firebase'],
+    description: 'A mobile application developed for personal use and learning.',
+    github: '#',
+    demoVideo: '#',
     links: [{ label: 'Code', href: '#' }],
   },
 ];
@@ -118,16 +149,62 @@ const skills = [
   },
 ];
 
+const research = {
+  electricalEngineering: [
+    {
+      title: 'Placeholder Paper 1: Advanced Signal Processing in Embedded Systems',
+      authors: 'Kadhir Ponnambalam et al.',
+      journal: 'IEEE Transactions on Signal Processing',
+      year: 2023,
+      link: '#',
+      citation: 'Ponnambalam, K., et al. (2023). Advanced Signal Processing in Embedded Systems. IEEE Transactions on Signal Processing.',
+      blurb: 'This paper explores innovative signal processing techniques for embedded systems, demonstrating significant improvements in efficiency and performance. It presents novel algorithms that reduce computational overhead while maintaining high accuracy. The research contributes to the field of electrical engineering by enabling more sophisticated embedded applications.',
+    },
+    {
+      title: 'Placeholder Paper 2: IoT Security Frameworks for Smart Grids',
+      authors: 'Kadhir Ponnambalam et al.',
+      journal: 'Journal of Electrical Engineering',
+      year: 2024,
+      link: '#',
+      citation: 'Ponnambalam, K., et al. (2024). IoT Security Frameworks for Smart Grids. Journal of Electrical Engineering.',
+      blurb: 'Focusing on the security challenges in smart grid systems, this work develops comprehensive IoT security frameworks. It addresses vulnerabilities in interconnected devices and proposes mitigation strategies. The findings are crucial for ensuring reliable and secure energy distribution networks.',
+    },
+  ],
+  bigData: [
+    {
+      title: 'Placeholder Paper 3: Machine Learning for Predictive Analytics in Big Data',
+      authors: 'Kadhir Ponnambalam et al.',
+      journal: 'Big Data Research Journal',
+      year: 2023,
+      link: '#',
+      citation: 'Ponnambalam, K., et al. (2023). Machine Learning for Predictive Analytics in Big Data. Big Data Research Journal.',
+      blurb: 'This research applies machine learning techniques to large-scale datasets for predictive analytics. It introduces scalable algorithms that handle massive data volumes efficiently. The study demonstrates practical applications in various industries, enhancing decision-making processes.',
+    },
+    {
+      title: 'Placeholder Paper 4: Distributed Computing Architectures for Data Mining',
+      authors: 'Kadhir Ponnambalam et al.',
+      journal: 'International Journal of Big Data',
+      year: 2024,
+      link: '#',
+      citation: 'Ponnambalam, K., et al. (2024). Distributed Computing Architectures for Data Mining. International Journal of Big Data.',
+      blurb: 'Exploring distributed computing models for efficient data mining, this paper presents novel architectures that optimize performance. It compares different approaches and provides benchmarks for scalability. The work advances the capabilities of big data processing in distributed environments.',
+    },
+  ],
+};
+
 const tabs = [
   { id: 'home', label: 'Home' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
+  { id: 'research', label: 'Research' },
   { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ];
 
 export default function Page() {
   const [activeId, setActiveId] = useState('home');
+  const [projectTab, setProjectTab] = useState('highlighted');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const validIds = tabs.map((t) => t.id);
@@ -149,17 +226,23 @@ export default function Page() {
   const activeSection = (() => {
     switch (activeId) {
       case 'projects':
+        const currentProjects = projectTab === 'highlighted' ? highlightedProjects : projectTab === 'school' ? schoolProjects : personalProjects;
         return (
           <section className="section" id="projects">
-            <div className="section-item">Selected Projects</div>
+            <div className="section-item">Projects</div>
             <div className="description">
-              A few polished builds inspired by real engineering workflows. Replace the
-              placeholders with your repo links, screenshots, and impact metrics.
+              Explore my projects across different categories. Click on any project to see more details.
+            </div>
+
+            <div className="project-tabs">
+              <button className={projectTab === 'highlighted' ? 'tab active' : 'tab'} onClick={() => setProjectTab('highlighted')}>Highlighted</button>
+              <button className={projectTab === 'school' ? 'tab active' : 'tab'} onClick={() => setProjectTab('school')}>School</button>
+              <button className={projectTab === 'personal' ? 'tab active' : 'tab'} onClick={() => setProjectTab('personal')}>Personal</button>
             </div>
 
             <div className="projects-grid">
-              {projects.map((p) => (
-                <article key={p.title} className="project-card">
+              {currentProjects.map((p) => (
+                <article key={p.title} className="project-card" onClick={() => setSelectedProject(p)}>
                   <div className="project-title">{p.title}</div>
                   <div className="project-meta">{p.meta}</div>
                   <div className="pill-row" style={{ marginTop: 0 }}>
@@ -203,6 +286,37 @@ export default function Page() {
                       ))}
                     </ul>
                   </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      case 'research':
+        return (
+          <section className="section" id="research">
+            <div className="section-item">Research</div>
+            <div className="description">
+              My research work in Electrical & Computer Engineering and Big Data.
+            </div>
+
+            <div className="research-section">
+              <h3>Electrical & Computer Engineering</h3>
+              {research.electricalEngineering.map((paper) => (
+                <div key={paper.title} className="research-item">
+                  <h4><a href={paper.link} target="_blank" rel="noreferrer">{paper.title}</a></h4>
+                  <p className="citation">{paper.citation}</p>
+                  <p>{paper.blurb}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="research-section">
+              <h3>Big Data</h3>
+              {research.bigData.map((paper) => (
+                <div key={paper.title} className="research-item">
+                  <h4><a href={paper.link} target="_blank" rel="noreferrer">{paper.title}</a></h4>
+                  <p className="citation">{paper.citation}</p>
+                  <p>{paper.blurb}</p>
                 </div>
               ))}
             </div>
@@ -265,7 +379,10 @@ export default function Page() {
 
             <div className="hero-card">
               <div className="hero-grid">
-                <div className="hero-copy">{profile.about}</div>
+                <div className="hero-copy">
+                  <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
+                  {profile.about}
+                </div>
                 <div className="cta-row">
                   <a className="btn btn-primary" href="#projects">
                     View projects →
@@ -332,6 +449,20 @@ export default function Page() {
       <main className="content">
         {activeSection}
       </main>
+
+      {selectedProject && (
+        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedProject(null)}>×</button>
+            <h2>{selectedProject.title}</h2>
+            <p>{selectedProject.description}</p>
+            <div className="modal-links">
+              <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
+              {selectedProject.demoVideo && <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
