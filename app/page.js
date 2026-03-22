@@ -11,9 +11,8 @@ const profile = {
     'Research Assistant at HADI Labs',
     'Electrical & Computer Engineering • Big Data Research',
   ],
-  about:
-    'Research scientist specialized in ECE and big data analytics, with published work in novel sensor materials and machine learning for energy systems. Experienced in FPGA/Verilog design, computer architecture, and data science; active in academic research, startups, and community mentoring. Outside engineering, I enjoy soccer, innovation challenges, and translating technical research into practical applications.',
-  pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Big Data'],
+  about: `I am an Electrical and Computer Engineering student at McMaster University with experience spanning FPGA and Verilog design, embedded systems, data analytics, and applied research. My work has included research contributions in flexible sensor materials and signal-oriented engineering projects, alongside hands-on technical exploration in hardware and software systems.
+  Publicly available work tied to my name includes research authorship on nickel oxide/graphene temperature sensor publications, a Google Scholar profile affiliated with McMaster, and personal technical projects involving Verilog, anomaly detection systems, and data-focused development. I am especially interested in roles where I can contribute across hardware, systems, and practical engineering problem-solving while continuing to grow through internships and real-world product work.`,
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
 };
 
@@ -108,6 +107,7 @@ const experience = [
   {
     title: 'HADI Labs — Research Assistant',
     date: 'Sep 2024 - Present',
+    icon: '/imageAssets/HADI_Labs_Logo.png',
     descriptionLines: [
       'Develop and prototype novel nickel oxide/graphene composite temperature sensors for flexible electronics.',
       'Lead FPGA/Verilog design tasks for embedded signal conditioning and low-latency data acquisition.',
@@ -115,8 +115,9 @@ const experience = [
     ],
   },
   {
-    title: 'Graduate Researcher — Electrical & Computer Engineering',
+    title: 'Research Assistant — Electrical & Computer Engineering | Jamal Deen',
     date: 'Jan 2023 - Aug 2024',
+    icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
       'Built predictive analytics models linking housing/environment variables with quality-of-life metrics.',
       'Created spatial analysis tools for biodiversity correlation using Python, GIS, and large-scale datasets.',
@@ -124,8 +125,9 @@ const experience = [
     ],
   },
   {
-    title: 'Software Engineer Intern — System Design',
+    title: 'Research Assistant - Microfluidics Lab',
     date: 'Jun 2022 - Dec 2022',
+    icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
       'Designed and implemented embedded system modules using C/C++, Verilog, and Xilinx FPGAs.',
       'Improved module efficiency by 17% through architectural refinements and simulation-driven optimization.',
@@ -134,16 +136,26 @@ const experience = [
   },
 ];
 
-const skills = [
-  {
-    heading: 'Computer Architecture',
-    items: ['FPGA', 'Verilog', 'VHDL', 'Computer Architecture', 'SoC Design'],
-  },
-  {
-    heading: 'Research & Big Data',
-    items: ['Embedded Systems', 'Signal Processing', 'Big Data Analytics', 'Python', 'Data Visualization'],
-  },
-];
+const [selectedSkill, setSelectedSkill] = useState(null);
+
+const skills = {
+  S: [
+    { name: 'Verilog', blurb: 'Experience building and simulating digital hardware projects, with a focus on logic design, architecture concepts, and FPGA-oriented development.' },
+    { name: 'FPGA', blurb: 'Hands-on exposure to FPGA workflows, digital system implementation, and hardware-oriented prototyping.' },
+  ],
+  A: [
+    { name: 'Computer Architecture', blurb: 'Comfortable with processor/datapath concepts, ALUs, memory flow, and low-level hardware organization.' },
+    { name: 'Python', blurb: 'Used for analytics, scripting, data processing, and research-oriented technical work.' },
+  ],
+  B: [
+    { name: 'Embedded Systems', blurb: 'Familiar with embedded development concepts and hardware-software interaction in project settings.' },
+    { name: 'Data Visualization', blurb: 'Able to communicate technical findings through charts, plots, and structured presentation of results.' },
+  ],
+  C: [
+    { name: 'VHDL', blurb: 'Basic familiarity; less central than Verilog in current work.' },
+    { name: 'SoC Design', blurb: 'Early-stage exposure to system-level chip design concepts.' },
+  ],
+};
 
 const research = {
   electricalEngineering: [
@@ -194,6 +206,7 @@ const tabs = [
   { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
   { id: 'skills', label: 'Skills' },
+  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -222,7 +235,7 @@ export default function Page() {
   const activeSection = (() => {
     switch (activeId) {
       case 'projects':
-        const currentProjects = projectTab === 'highlighted' ? highlightedProjects : projectTab === 'school' ? schoolProjects : personalProjects;
+        const currentProjects = projectTab === 'school' ? schoolProjects : personalProjects;
         return (
           <section className="section" id="projects">
             <div className="section-item">Projects</div>
@@ -231,9 +244,12 @@ export default function Page() {
             </div>
 
             <div className="project-tabs">
-              <button className={projectTab === 'personal' ? 'tab active' : 'tab'} onClick={() => setProjectTab('personal')}>Personal</button>
-              <button className={projectTab === 'school' ? 'tab active' : 'tab'} onClick={() => setProjectTab('school')}>School</button>
-              <button className={projectTab === 'highlighted' ? 'tab active' : 'tab'} onClick={() => setProjectTab('highlighted')}>Highlighted</button>
+              <button className={projectTab === 'personal' ? 'tab active' : 'tab'} onClick={() => setProjectTab('personal')}>
+                Personal
+              </button>
+              <button className={projectTab === 'school' ? 'tab active' : 'tab'} onClick={() => setProjectTab('school')}>
+                Capstones
+              </button>
             </div>
 
             <div className="projects-grid">
@@ -273,7 +289,16 @@ export default function Page() {
             <div className="experience-stack" style={{ marginTop: '1rem' }}>
               {experience.map((e) => (
                 <div key={e.title} className="experience-item">
-                  <div className="experience-title">{e.title}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    {e.icon && (
+                      <img
+                        src={e.icon}
+                        alt=""
+                        style={{ width: '28px', height: '28px', objectFit: 'contain', borderRadius: '6px' }}
+                      />
+                    )}
+                    <div className="experience-title">{e.title}</div>
+                  </div>
                   <div className="experience-date">{e.date}</div>
                   <div className="description" style={{ marginTop: 0 }}>
                     <ul className="experience-list" style={{ paddingLeft: '1.1rem' }}>
@@ -337,22 +362,36 @@ export default function Page() {
           <section className="section" id="skills">
             <div className="section-item">Skills</div>
             <div className="description">
-              Keep this scannable. Recruiters often skim for keywords and relevant stacks.
+              A quick ranking of tools and domains based on current familiarity and project exposure.
             </div>
 
-            <div className="skills-grid">
-              {skills.map((g) => (
-                <div key={g.heading} className="skill-group">
-                  <h3>{g.heading}</h3>
+            <div className="skills-tier-list" style={{ marginTop: '1rem' }}>
+              {Object.entries(skills).map(([tier, items]) => (
+                <div key={tier} className="skill-tier">
+                  <div className="skill-tier-label">{tier}</div>
                   <div className="skills-list">
-                    {g.items.map((s) => (
-                      <span key={s} className="pill">
-                        {s}
-                      </span>
+                    {items.map((skill) => (
+                      <button
+                        key={skill.name}
+                        type="button"
+                        className="pill skill-button"
+                        onClick={() => setSelectedSkill(skill)}
+                      >
+                        {skill.name}
+                      </button>
                     ))}
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+        );
+      case 'blog':
+        return (
+          <section className="section" id="blog">
+            <div className="section-item">Blog</div>
+            <div className="description">
+              This section is intentionally left empty for now. Future posts will go here.
             </div>
           </section>
         );
@@ -378,7 +417,7 @@ export default function Page() {
           <section className="section header" id="home">
             <div className="header">
               <h1>
-                {profile.name} ({profile.nativeName})
+                {profile.name} <span className="native-name">({profile.nativeName})</span>
               </h1>
               <div className="subtitle">— {profile.subtitleLines[0]}</div>
               <div className="subtitle">— {profile.subtitleLines[1]}</div>
@@ -396,8 +435,8 @@ export default function Page() {
                   <a className="btn btn-primary" href="#projects">
                     View projects →
                   </a>
-                  <a className="btn" href="mailto:you@example.com">
-                    Download CV (link later)
+                  <a className="btn" href="/Kadhir_Ponnambalam_RESUME.pdf" download>
+                    Download Resume
                   </a>
                 </div>
 
@@ -414,6 +453,16 @@ export default function Page() {
         );
     }
   })();
+
+  {selectedSkill && (
+  <div className="modal-overlay" onClick={() => setSelectedSkill(null)}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <button className="modal-close" onClick={() => setSelectedSkill(null)}>×</button>
+      <h2>{selectedSkill.name}</h2>
+      <p>{selectedSkill.blurb}</p>
+    </div>
+  </div>
+  )}
 
   return (
     <div className="layout">
@@ -438,13 +487,13 @@ export default function Page() {
         <div className="sidebar-social">
           <div className="social-links">
             <a
-              href="https://www.linkedin.com/"
+              href="https://ca.linkedin.com/in/kadhir-ponnambalam-3211ab261"
               target="_blank"
               rel="noreferrer"
             >
               LinkedIn
             </a>
-            <a href="https://github.com/" target="_blank" rel="noreferrer">
+            <a href="https://github.com/kadgitub7" target="_blank" rel="noreferrer">
               GitHub
             </a>
             <a href="mailto:you@example.com">Email</a>

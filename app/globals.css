@@ -494,8 +494,9 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 2rem;
-  max-width: 700px;
-  width: min(95%, 700px);
+  width: min(66vw, 1000px);
+  max-width: 1000px;
+  min-height: 60vh;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -734,8 +735,12 @@ h1 {
   font-size: 2.35rem;
 }
 
-.korean {
-  opacity: 0.95;
+.native-name {
+  font-family: 'Noto Serif Tamil', 'Noto Serif KR', serif;
+  font-weight: 500;
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
 }
 
 .header {
@@ -874,5 +879,40 @@ textarea:focus {
   .section {
     padding: 1.7rem 1.15rem;
   }
+}
+
+.skills-tier-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill-tier {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1rem;
+  align-items: start;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(243, 244, 247, 0.85);
+}
+
+.skill-tier-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.6rem 0;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.12),
+    rgba(124, 58, 237, 0.1)
+  );
+}
+
+.skill-button {
+  cursor: pointer;
+  border: 1.25px solid var(--line);
 }
 
