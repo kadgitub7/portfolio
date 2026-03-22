@@ -11,8 +11,10 @@ const profile = {
     'Research Assistant at HADI Labs',
     'Electrical & Computer Engineering • Big Data Research',
   ],
-  about: `I am an Electrical and Computer Engineering student at McMaster University with experience spanning FPGA and Verilog design, embedded systems, data analytics, and applied research. My work has included research contributions in flexible sensor materials and signal-oriented engineering projects, alongside hands-on technical exploration in hardware and software systems.
-  Publicly available work tied to my name includes research authorship on nickel oxide/graphene temperature sensor publications, a Google Scholar profile affiliated with McMaster, and personal technical projects involving Verilog, anomaly detection systems, and data-focused development. I am especially interested in roles where I can contribute across hardware, systems, and practical engineering problem-solving while continuing to grow through internships and real-world product work.`,
+  about: `I am an Electrical and Computer Engineering student at McMaster University with experience spanning FPGA and Verilog design, embedded systems, data analytics, and applied research.
+
+Publicly available work tied to my name includes research authorship on nickel oxide/graphene temperature sensor publications, a Google Scholar profile affiliated with McMaster, and personal technical projects involving Verilog, anomaly detection systems, and data-focused development. I am especially interested in roles where I can contribute across hardware, systems, and practical engineering problem-solving while continuing to grow through internships and real-world product work.`,
+  pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
 };
 
@@ -136,7 +138,7 @@ const experience = [
   },
 ];
 
-const [selectedSkill, setSelectedSkill] = useState(null);
+
 
 const skills = {
   S: [
@@ -214,6 +216,7 @@ export default function Page() {
   const [activeId, setActiveId] = useState('home');
   const [projectTab, setProjectTab] = useState('personal');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   useEffect(() => {
     const validIds = tabs.map((t) => t.id);
@@ -454,16 +457,6 @@ export default function Page() {
     }
   })();
 
-  {selectedSkill && (
-  <div className="modal-overlay" onClick={() => setSelectedSkill(null)}>
-    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-      <button className="modal-close" onClick={() => setSelectedSkill(null)}>×</button>
-      <h2>{selectedSkill.name}</h2>
-      <p>{selectedSkill.blurb}</p>
-    </div>
-  </div>
-  )}
-
   return (
     <div className="layout">
       <aside className="sidebar">
@@ -515,6 +508,15 @@ export default function Page() {
               <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
               {selectedProject.demoVideo && <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>}
             </div>
+          </div>
+        </div>
+      )}
+      {selectedSkill && (
+        <div className="modal-overlay" onClick={() => setSelectedSkill(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedSkill(null)}>×</button>
+            <h2>{selectedSkill.name}</h2>
+            <p>{selectedSkill.blurb}</p>
           </div>
         </div>
       )}
