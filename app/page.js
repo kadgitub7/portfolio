@@ -161,7 +161,7 @@ const research = {
       authors: 'Taheri, M., Ponnambalam, K., Al Shboul, A. M., Ketabi, M., & Deen, M. J.',
       journal: 'Sensors and Actuators A: Physical',
       year: 2025,
-      link: 'https://www.sciencedirect.com/science/article/pii/S0924424725004996?casa_token=xwlIULLXxPgAAAAA:Bs_SpRAb6GKhHFSS-yZ3F8vpi0l9AEiEk2-Jl0CKItYiWED3f64R41DgNxqmfoVQL8SoSL7S',
+      link: 'https://drive.google.com/file/d/1zjfUUe13-bpC9f2m3UUUzINuQFDeqF05/view?usp=sharing',
       citation: 'Taheri, M., Ponnambalam, K., Al Shboul, A. M., Ketabi, M., & Deen, M. J. (2025). Nickel oxide/graphene-based temperature sensor: Flexible design with low processing temperatures and high stability. Sensors and Actuators A: Physical, 116693.',
       blurb: 'The paper presents a robust temperature sensor with flexible design and low thermal budget fabrication. It highlights improvements in long-term stability and sensitivity suitable for smart wearable devices.',
     },
