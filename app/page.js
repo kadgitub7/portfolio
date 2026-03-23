@@ -11,54 +11,15 @@ const profile = {
     'Research Assistant at HADI Labs',
     'Electrical & Computer Engineering • Big Data Research',
   ],
-  about: `I am an Electrical and Computer Engineering student at McMaster University with experience spanning FPGA and Verilog design, embedded systems, data analytics, and applied research.
-
-Publicly available work tied to my name includes research authorship on nickel oxide/graphene temperature sensor publications, a Google Scholar profile affiliated with McMaster, and personal technical projects involving Verilog, anomaly detection systems, and data-focused development. I am especially interested in roles where I can contribute across hardware, systems, and practical engineering problem-solving while continuing to grow through internships and real-world product work.`,
+  aboutLines: [
+    'I am an Electrical and Computer Engineering student at McMaster University.',
+    'My work spans FPGA and Verilog design, embedded systems, applied research, and technical analysis.',
+    'I have contributed to research in flexible temperature sensing and data-driven investigations tied to large real-world datasets.',
+    'I am looking for internship opportunities where I can contribute across hardware, systems, and practical engineering development.',
+  ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
 };
-
-const highlightedProjects = [
-  {
-    title: 'Placeholder Personal Project 1',
-    meta: 'Personal • Web app',
-    tags: ['React', 'Node.js'],
-    description: 'A personal project exploring new technologies and creative ideas.',
-    github: '#',
-    demoVideo: '#',
-    links: [
-      { label: 'Live', href: '#' },
-      { label: 'Code', href: '#' },
-    ],
-  },
-  {
-    title: 'Placeholder Personal Project 2',
-    meta: 'Personal • Mobile app',
-    tags: ['React Native', 'Firebase'],
-    description: 'A mobile application developed for personal use and learning.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
-  },
-  {
-    title: 'Placeholder Capstone Project 1',
-    meta: 'Course capstone • Advanced algorithms',
-    tags: ['Java', 'Algorithms'],
-    description: 'A capstone project demonstrating advanced algorithmic solutions developed during coursework.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
-  },
-  {
-    title: 'Placeholder Capstone Project 2',
-    meta: 'Systems design • Embedded systems',
-    tags: ['C++', 'Embedded'],
-    description: 'An embedded systems project focusing on real-time processing and hardware integration.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
-  },
-];
 
 const schoolProjects = [
   {
@@ -202,12 +163,20 @@ const research = {
   ],
 };
 
+const highlights = [
+  'Canada Wide Science Fair',
+  'McMaster Scholarship Student — $3,500',
+  'CAIS Soccer Silver Medalist (Division 2)',
+  'Piano',
+];
+
 const tabs = [
   { id: 'home', label: 'Home' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
   { id: 'skills', label: 'Skills' },
+  { id: 'highlights', label: 'Honours & Activities' },
   { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -320,7 +289,7 @@ export default function Page() {
           <section className="section" id="research">
             <div className="section-item">Research/Journal Papers</div>
             <div className="description">
-              My research work in Electrical & Computer Engineering and Big Data.
+              Research and technical experience across engineering labs, data analysis, and applied experimentation.
             </div>
 
             <div className="research-section">
@@ -365,7 +334,7 @@ export default function Page() {
           <section className="section" id="skills">
             <div className="section-item">Skills</div>
             <div className="description">
-              A quick ranking of tools and domains based on current familiarity and project exposure.
+              Tools and technical areas based on current use, project exposure, and research experience.
             </div>
 
             <div className="skills-tier-list" style={{ marginTop: '1rem' }}>
@@ -389,6 +358,25 @@ export default function Page() {
             </div>
           </section>
         );
+
+      case 'highlights':
+        return (
+          <section className="section" id="highlights">
+            <div className="section-item">Honours & Activities</div>
+            <div className="description">
+              Additional distinctions, extracurricular involvement, and personal interests.
+            </div>
+
+            <div className="pill-row" style={{ marginTop: '1rem' }}>
+              {highlights.map((item) => (
+                <span key={item} className="pill">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </section>
+        );
+      
       case 'blog':
         return (
           <section className="section" id="blog">
@@ -414,6 +402,7 @@ export default function Page() {
             </div>
           </section>
         );
+
       case 'home':
       default:
         return (
@@ -438,7 +427,7 @@ export default function Page() {
                   <a className="btn btn-primary" href="#projects">
                     View projects →
                   </a>
-                  <a className="btn" href="/KadhirPonnambalamRESUME.pdf" download>
+                  <a className="btn" href="/ImageAssets/KadhirPonnambalamRESUME.pdf" download>
                     Download Resume
                   </a>
                 </div>

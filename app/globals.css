@@ -190,15 +190,34 @@ h1 {
 
 .experience-title {
   color: var(--text);
-  margin-bottom: 0.25rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.03rem;
+  font-weight: 600;
+}
+
+.experience-description,
+.experience-list li {
+  font-size: 1rem;
+}
+
+.experience-list {
+  padding-left: 1.2rem;
+  margin-top: 0.45rem;
 }
 
 .experience-date {
   color: var(--muted);
   font-size: 1rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
   font-style: italic;
+}
+
+.experience-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .experience-item {
@@ -227,6 +246,13 @@ h1 {
   margin-top: 0.5rem;
 }
 
+.hero-copy.hero-wrap {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  display: block;
+}
+
 .hero-card {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
   border: 1px solid var(--line);
@@ -248,11 +274,12 @@ h1 {
 }
 
 .profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  border-radius: 24px;
   object-fit: cover;
-  margin-bottom: 1rem;
+  float: left;
+  margin: 0 1.4rem 0.9rem 0;
   border: 2px solid var(--line);
 }
 
@@ -261,6 +288,11 @@ h1 {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.bio-line {
+  margin-bottom: 0.7rem;
+  color: var(--text);
 }
 
 .btn {
@@ -857,6 +889,12 @@ textarea:focus {
   border-color: rgba(37, 99, 235, 0.55);
 }
 
+.experience-header-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
 .experience-list li {
   color: rgba(15, 23, 42, 0.86);
 }
@@ -869,6 +907,13 @@ textarea:focus {
   }
   .layout {
     gap: 0;
+  }
+  .profile-photo {
+    float: none;
+    display: block;
+    width: 220px;
+    height: 220px;
+    margin: 0 0 1rem 0;
   }
 }
 
