@@ -318,7 +318,7 @@ export default function Page() {
       case 'research':
         return (
           <section className="section" id="research">
-            <div className="section-item">Research</div>
+            <div className="section-item">Research/Journal Papers</div>
             <div className="description">
               My research work in Electrical & Computer Engineering and Big Data.
             </div>
