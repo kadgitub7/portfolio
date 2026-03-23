@@ -438,7 +438,7 @@ export default function Page() {
                   <a className="btn btn-primary" href="#projects">
                     View projects →
                   </a>
-                  <a className="btn" href="/Kadhir_Ponnambalam_RESUME.pdf" download>
+                  <a className="btn" href="/KadhirPonnambalamRESUME.pdf" download>
                     Download Resume
                   </a>
                 </div>
