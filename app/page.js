@@ -238,7 +238,13 @@ export default function Page() {
                   </div>
                   <div className="project-links" style={{ marginTop: '0.85rem' }}>
                     {p.links.map((l) => (
-                      <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
+                      <a
+                        key={l.label}
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {l.label}
                       </a>
                     ))}
@@ -421,13 +427,17 @@ export default function Page() {
               <div className="hero-grid">
                 <div className="hero-copy">
                   <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
-                  {profile.about}
+                  {profile.aboutLines.map((line) => (
+                    <p key={line} className="bio-line">
+                      {line}
+                    </p>
+                  ))}
                 </div>
                 <div className="cta-row">
                   <a className="btn btn-primary" href="#projects">
                     View projects →
                   </a>
-                  <a className="btn" href="/ImageAssets/KadhirPonnambalamRESUME.pdf" download>
+                  <a className="btn" href="/imageAssets/KadhirPonnambalamRESUME.pdf" download>
                     Download Resume
                   </a>
                 </div>
@@ -478,7 +488,7 @@ export default function Page() {
             <a href="https://github.com/kadgitub7" target="_blank" rel="noreferrer">
               GitHub
             </a>
-            <a href="mailto:you@example.com">Email</a>
+            <a href="mailto:kadhir.ponnambalam@gmail.com">Email</a>
           </div>
         </div>
       </aside>
