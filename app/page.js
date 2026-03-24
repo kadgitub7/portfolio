@@ -12,10 +12,10 @@ const profile = {
     'Electrical & Computer Engineering • Big Data Research',
   ],
   aboutLines: [
-    'I am an Electrical and Computer Engineering student at McMaster University.',
-    'My work spans FPGA and Verilog design, embedded systems, applied research, and technical analysis.',
-    'I have contributed to research in flexible temperature sensing and data-driven investigations tied to large real-world datasets.',
-    'I am looking for internship opportunities where I can contribute across hardware, systems, and practical engineering development.',
+  'I am an Engineering student at McMaster University with research experience across electrical, computer, and data-driven engineering work.',
+  'My experience includes experimental lab work with microcontrollers and electronic components, as well as technical evaluation on constrained Linux systems.',
+  'I have contributed to published research in flexible temperature sensing and have worked on documenting system performance, bottlenecks, and engineering trade-offs.',
+  'I am interested in hardware, embedded systems, and practical engineering development roles where I can build strong technical depth through hands-on work.',
   ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
@@ -23,22 +23,14 @@ const profile = {
 
 const schoolProjects = [
   {
-    title: 'Placeholder Capstone Project 1',
-    meta: 'Course capstone • Advanced algorithms',
-    tags: ['Java', 'Algorithms'],
-    description: 'A capstone project demonstrating advanced algorithmic solutions developed during coursework.',
+    title: 'Electronically Controlled Mountable Storage System',
+    meta: 'Capstone project • hardware systems',
+    tags: ['Embedded Systems', 'Electronics', 'Hardware Design'],
+    description:
+      'Capstone project placeholder for an electronically controlled mountable storage system. Expand this later with the control architecture, sensing/actuation choices, embedded logic, mounting constraints, and validation results.',
     github: '#',
     demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
-  },
-  {
-    title: 'Placeholder Capstone Project 2',
-    meta: 'Systems design • Embedded systems',
-    tags: ['C++', 'Embedded'],
-    description: 'An embedded systems project focusing on real-time processing and hardware integration.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
+    links: [{ label: 'Details coming soon', href: '#' }],
   },
 ];
 
@@ -164,10 +156,64 @@ const research = {
 };
 
 const highlights = [
-  'Canada Wide Science Fair',
-  'McMaster Scholarship Student — $3,500',
-  'CAIS Soccer Silver Medalist (Division 2)',
-  'Piano',
+  {
+    year: '2025',
+    title: 'McMaster University Entrance Scholarship',
+    detail: 'Awarded a $3,500 entrance scholarship upon entering Engineering 1 at McMaster University.',
+  },
+  {
+    year: '2025',
+    title: 'Bachelor of Engineering Co-op — Engineering 1',
+    detail: 'Started first year in Engineering 1 at McMaster University with a 12.0 GPA listed on resume.',
+  },
+  {
+    year: '2025',
+    title: 'Co-author on peer-reviewed publications',
+    detail: 'Credited as co-author on research publications related to nickel oxide/graphene flexible temperature sensing.',
+  },
+  {
+    year: '2023',
+    title: 'Research Assistant — Electrical and Computer Engineering Lab',
+    detail: 'Worked in a McMaster engineering research lab on experimental and sensor-based work with microcontrollers and electronics.',
+  },
+  {
+    year: 'Past',
+    title: 'Canada-Wide Science Fair',
+    detail: 'Participated in a major national-level science fair setting.',
+  },
+  {
+    year: 'Past',
+    title: 'CAIS Soccer Silver Medalist — Division 2',
+    detail: 'Earned silver medal placement in competitive school athletics.',
+  },
+  {
+    year: 'Past',
+    title: 'Piano',
+    detail: 'Long-term extracurricular involvement in piano.',
+  },
+];
+
+const [openBlog, setOpenBlog] = useState(null);
+
+const blogPosts = [
+  {
+    date: 'March 2026',
+    topic: 'Placeholder — FPGA design reflections',
+    content:
+      'Placeholder for a future post on FPGA development, design iteration, debugging workflow, and lessons learned from implementation work.',
+  },
+  {
+    date: 'February 2026',
+    topic: 'Placeholder — Research and engineering workflow',
+    content:
+      'Placeholder for a future post on research execution, documenting experiments, balancing accuracy with constraints, and turning technical work into clear outcomes.',
+  },
+  {
+    date: 'January 2026',
+    topic: 'Placeholder — Hardware project notes',
+    content:
+      'Placeholder for a future post on embedded systems, electronics prototyping, and practical engineering trade-offs.',
+  },
 ];
 
 const tabs = [
@@ -225,32 +271,38 @@ export default function Page() {
             </div>
 
             <div className="projects-grid">
-              {currentProjects.map((p) => (
-                <article key={p.title} className="project-card" onClick={() => setSelectedProject(p)}>
-                  <div className="project-title">{p.title}</div>
-                  <div className="project-meta">{p.meta}</div>
-                  <div className="pill-row" style={{ marginTop: 0 }}>
-                    {p.tags.slice(0, 4).map((t) => (
-                      <span key={t} className="pill">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="project-links" style={{ marginTop: '0.85rem' }}>
-                    {p.links.map((l) => (
-                      <a
-                        key={l.label}
-                        href={l.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {l.label}
-                      </a>
-                    ))}
-                  </div>
-                </article>
-              ))}
+              {currentProjects.length > 0 ? (
+                currentProjects.map((p) => (
+                  <article key={p.title} className="project-card" onClick={() => setSelectedProject(p)}>
+                    <div className="project-title">{p.title}</div>
+                    <div className="project-meta">{p.meta}</div>
+                    <div className="pill-row" style={{ marginTop: 0 }}>
+                      {p.tags.slice(0, 4).map((t) => (
+                        <span key={t} className="pill">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="project-links" style={{ marginTop: '0.85rem' }}>
+                      {p.links.map((l) => (
+                        <a
+                          key={l.label}
+                          href={l.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {l.label}
+                        </a>
+                      ))}
+                    </div>
+                  </article>
+                ))
+              ) : (
+                <div className="empty-state">
+                  Personal hardware-focused projects can be added here later.
+                </div>
+              )}
             </div>
           </section>
         );
@@ -260,19 +312,18 @@ export default function Page() {
             <div className="section-item">Experience</div>
 
             <div className="description">
-              Highlight outcomes and ownership: what you built, what improved, and what
-              you learned. Keep each bullet action-oriented.
+              Research experience focused on engineering experimentation, system evaluation, technical documentation, and applied hardware-adjacent work.
             </div>
 
             <div className="experience-stack" style={{ marginTop: '1rem' }}>
               {experience.map((e) => (
                 <div key={e.title} className="experience-item">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <div className="experience-header-row">
                     {e.icon && (
                       <img
                         src={e.icon}
                         alt=""
-                        style={{ width: '28px', height: '28px', objectFit: 'contain', borderRadius: '6px' }}
+                        className="experience-icon"
                       />
                     )}
                     <div className="experience-title">{e.title}</div>
@@ -370,14 +421,19 @@ export default function Page() {
           <section className="section" id="highlights">
             <div className="section-item">Honours & Activities</div>
             <div className="description">
-              Additional distinctions, extracurricular involvement, and personal interests.
+              A chronological view of awards, research milestones, academic progress, and extracurricular involvement.
             </div>
 
-            <div className="pill-row" style={{ marginTop: '1rem' }}>
-              {highlights.map((item) => (
-                <span key={item} className="pill">
-                  {item}
-                </span>
+            <div className="timeline" style={{ marginTop: '1.2rem' }}>
+              {highlights.map((item, index) => (
+                <div key={`${item.year}-${item.title}-${index}`} className="timeline-item">
+                  <div className="timeline-marker" />
+                  <div className="timeline-content">
+                    <div className="timeline-year">{item.year}</div>
+                    <div className="timeline-title">{item.title}</div>
+                    <div className="timeline-detail">{item.detail}</div>
+                  </div>
+                </div>
               ))}
             </div>
           </section>
@@ -388,10 +444,35 @@ export default function Page() {
           <section className="section" id="blog">
             <div className="section-item">Blog</div>
             <div className="description">
-              This section is intentionally left empty for now. Future posts will go here.
+              Placeholder entries for future technical writing, project reflections, and engineering notes.
+            </div>
+
+            <div className="blog-list" style={{ marginTop: '1rem' }}>
+              {blogPosts.map((post, index) => {
+                const isOpen = openBlog === index;
+                return (
+                  <button
+                    key={`${post.date}-${post.topic}`}
+                    type="button"
+                    className={isOpen ? 'blog-tab open' : 'blog-tab'}
+                    onClick={() => setOpenBlog(isOpen ? null : index)}
+                  >
+                    <div className="blog-tab-header">
+                      <div>
+                        <div className="blog-date">{post.date}</div>
+                        <div className="blog-topic">{post.topic}</div>
+                      </div>
+                      <div className="blog-toggle">{isOpen ? '−' : '+'}</div>
+                    </div>
+
+                    {isOpen && <div className="blog-content">{post.content}</div>}
+                  </button>
+                );
+              })}
             </div>
           </section>
         );
+
       case 'contact':
         return (
           <section className="section" id="contact">
