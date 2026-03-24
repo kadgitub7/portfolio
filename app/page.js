@@ -193,7 +193,7 @@ const highlights = [
   },
 ];
 
-const [openBlog, setOpenBlog] = useState(null);
+
 
 const blogPosts = [
   {
@@ -232,6 +232,7 @@ export default function Page() {
   const [projectTab, setProjectTab] = useState('personal');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [openBlog, setOpenBlog] = useState(null);
 
   useEffect(() => {
     const validIds = tabs.map((t) => t.id);
