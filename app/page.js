@@ -23,14 +23,22 @@ const profile = {
 
 const schoolProjects = [
   {
-    title: 'Electronically Controlled Mountable Storage System',
-    meta: 'Capstone project • hardware systems',
-    tags: ['Embedded Systems', 'Electronics', 'Hardware Design'],
+    title: 'AccessoBox — Electronically Controlled Mountable Storage System',
+    meta: 'Capstone project • Embedded Systems • 4 months',
+    tags: ['Arduino', 'Circuit Design', 'CAD / 3D Printing', 'C Programming'],
     description:
-      'Capstone project placeholder for an electronically controlled mountable storage system. Expand this later with the control architecture, sensing/actuation choices, embedded logic, mounting constraints, and validation results.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Details coming soon', href: '#' }],
+      'Designed and built AccessoBox, a servo-driven storage unit that mounts to a wheelchair armrest and opens/closes with a single low-force button press — designed for a client with severe mobility limitations whose existing Velcro-based storage was flimsy and inaccessible.\n\n' +
+      'The system centers on an Arduino Uno reading a large-surface button pad (custom CAD-printed cap to minimize required force), checking lid state in firmware, and rotating a servo motor between 0° and 90° with a <1 s response time. A 2-second software debounce buffer prevents accidental double-triggers. The full unit weighs under 500 g and was built within a $100 budget.\n\n' +
+      'My contributions spanned the full stack: circuit design and simulation in TinkerCAD, breadboard-to-PCB wiring with servo motor and battery pack integration, Arduino C firmware for state-based lid control, and CAD design of the button lid cap. I also provided geometric feedback on box tolerances to maximise the servo\'s rotation arc and reduce wasted material across print iterations.\n\n' +
+      'The team iterated through three physical prototypes — starting with cardboard mockups and LED stand-ins while servo parts were being sourced, then two rounds of 3D-printed enclosures to resolve motor clearance and hinge positioning issues — before arriving at a mountable, demo-ready final unit.\n\n' +
+      '[PLACEHOLDER: Add team size, course name / program context if relevant]\n' +
+      '[PLACEHOLDER: Add any grade, mark, or evaluation outcome received]',
+    github: '#', // PLACEHOLDER: Add GitHub link if code is public
+    demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share',
+    links: [
+      { label: 'Demo Video', href: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share' },
+      { label: 'GitHub', href: '#' }, // PLACEHOLDER: replace '#' with repo URL or remove
+    ],
   },
 ];
 
