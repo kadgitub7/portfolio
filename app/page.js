@@ -33,11 +33,11 @@ const schoolProjects = [
       'The team iterated through three physical prototypes — starting with cardboard mockups and LED stand-ins while servo parts were being sourced, then two rounds of 3D-printed enclosures to resolve motor clearance and hinge positioning issues — before arriving at a mountable, demo-ready final unit.\n\n' +
       '[PLACEHOLDER: Add team size, course name / program context if relevant]\n' +
       '[PLACEHOLDER: Add any grade, mark, or evaluation outcome received]',
-    github: '#', // PLACEHOLDER: Add GitHub link if code is public
+    github: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main',
     demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share',
     links: [
       { label: 'Demo Video', href: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share' },
-      { label: 'GitHub', href: '#' }, // PLACEHOLDER: replace '#' with repo URL or remove
+      { label: 'GitHub', href: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main' },
     ],
   },
 ];
