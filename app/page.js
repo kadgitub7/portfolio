@@ -27,12 +27,40 @@ const schoolProjects = [
     meta: 'Capstone project • Embedded Systems • 4 months',
     tags: ['Arduino', 'Circuit Design', 'CAD / 3D Printing', 'C Programming'],
     description:
-      'Designed and built AccessoBox, a servo-driven storage unit that mounts to a wheelchair armrest and opens/closes with a single low-force button press — designed for a client with severe mobility limitations whose existing Velcro-based storage was flimsy and inaccessible.\n\n' +
-      'The system centers on an Arduino Uno reading a large-surface button pad (custom CAD-printed cap to minimize required force), checking lid state in firmware, and rotating a servo motor between 0° and 90° with a <1 s response time. A 2-second software debounce buffer prevents accidental double-triggers. The full unit weighs under 500 g and was built within a $100 budget.\n\n' +
-      'My contributions spanned the full stack: circuit design and simulation in TinkerCAD, breadboard-to-PCB wiring with servo motor and battery pack integration, Arduino C firmware for state-based lid control, and CAD design of the button lid cap. I also provided geometric feedback on box tolerances to maximise the servo\'s rotation arc and reduce wasted material across print iterations.\n\n' +
-      'The team iterated through three physical prototypes — starting with cardboard mockups and LED stand-ins while servo parts were being sourced, then two rounds of 3D-printed enclosures to resolve motor clearance and hinge positioning issues — before arriving at a mountable, demo-ready final unit.\n\n' +
-      '[PLACEHOLDER: Add team size, course name / program context if relevant]\n' +
-      '[PLACEHOLDER: Add any grade, mark, or evaluation outcome received]',
+      'Designed and built AccessoBox, an electronically controlled storage system mounted to a wheelchair armrest for a client who needed easier access to personal items.\n\n' +
+      'The final prototype uses an Arduino-controlled servo mechanism to open and close the lid with a low-force button press and an approximately 90 degree opening range. The button pad includes a custom 3D-printed cap to increase surface area and reduce required pressure, and the system responds in under one second.\n\n' +
+      'I contributed across circuit design, coding, and mechanical integration: I developed and simulated control circuits, helped wire and integrate motors/buttons, wrote Arduino C logic for open/close state control, and designed the button-lid CAD geometry used in the final assembly.\n\n' +
+      'Development followed multiple iterations (cardboard concept models, early electrical testing with LED stand-ins before part arrival, and revised 3D-printed housings). These iterations resolved motor clearance, linkage alignment, and enclosure design issues before final demo.\n\n' +
+      'This project strengthened my ability to translate accessibility requirements into engineering constraints, validate ideas through staged prototyping, and deliver a practical hardware solution under material and timeline constraints.',
+    caseStudy: {
+      motivation:
+        'The project was motivated by a real client need: a wheelchair user had limited access to personal belongings while moving. Existing storage solutions were hard to operate, unstable, and not designed for low-force interaction. Our goal was to create a lightweight, mountable, and easy-to-use device that gave the client independent access to essentials at any time.',
+      prototypingNarrative: [
+        '3D modeling began with simple enclosure concepts to validate fit on a wheelchair armrest and enough internal space for electronics. Early feedback focused on button size, lid thickness, and mechanical clearance for servo movement.',
+        'The circuitry design started with simulated logic and a test circuit where an LED represented the actuator state while the servo motor was still being sourced. This helped validate button-driven state logic and wiring flow before full hardware integration.',
+        'After parts arrived, we moved through multiple prototype iterations: initial printed housing, revised geometry for motor opening and linkage spacing, and a final casing with exposed accessibility-focused buttons and improved visual finish.',
+      ],
+      prototypeImages: [
+        { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype model', caption: 'CAD concept: internal volume and lid geometry planning.' },
+        { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype on breadboard', caption: 'Circuit prototype: button input and actuator control logic validation.' },
+        { src: '/imageAssets/accessobox-final-prototype.png', alt: 'AccessoBox final mounted prototype', caption: 'Final prototype: mountable enclosure with integrated controls.' },
+      ],
+      mechanismFlow: [
+        'User presses low-force button with enlarged cap.',
+        'Arduino reads button input and checks current lid state.',
+        'Control logic toggles target state (open or close).',
+        'Servo rotates linkage to move lid to target angle (~90 degrees when opening).',
+        'System waits briefly for stability, then returns to input-ready state.',
+      ],
+      demoExplanation:
+        'In the demo, the user can open and close the storage lid quickly with a single button interaction. The mechanism shows low-latency response and consistent movement, demonstrating how the device improves daily accessibility when attached to a wheelchair armrest.',
+      skills: [
+        { name: 'Circuit Design & Simulation', detail: 'Built and validated button-actuator logic with simulated and physical test circuits before final integration.' },
+        { name: 'Embedded C (Arduino)', detail: 'Implemented state-based open/close firmware logic for reliable servo control and user interaction.' },
+        { name: 'CAD & 3D Printing', detail: 'Co-developed enclosure geometry and button-cap design for accessibility, manufacturability, and motor clearance.' },
+        { name: 'Prototype Iteration', detail: 'Used staged prototyping to resolve parts delays, mechanical faults, and integration issues under project timelines.' },
+      ],
+    },
     github: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main',
     demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share',
     links: [
