@@ -621,6 +621,79 @@ export default function Page() {
             <button className="modal-close" onClick={() => setSelectedProject(null)}>×</button>
             <h2>{selectedProject.title}</h2>
             <p>{selectedProject.description}</p>
+
+            {selectedProject.caseStudy && (
+              <div style={{ marginTop: '1.25rem' }}>
+                <h3>1) Motivation</h3>
+                <p>{selectedProject.caseStudy.motivation}</p>
+
+                <h3 style={{ marginTop: '1rem' }}>2) 3D Modeling and Circuitry Prototypes</h3>
+                <ul style={{ paddingLeft: '1.1rem' }}>
+                  {selectedProject.caseStudy.prototypingNarrative.map((item) => (
+                    <li key={item} style={{ marginBottom: '0.4rem' }}>{item}</li>
+                  ))}
+                </ul>
+                <div className="projects-grid" style={{ marginTop: '0.85rem' }}>
+                  {selectedProject.caseStudy.prototypeImages.map((image) => (
+                    <figure key={image.src} style={{ margin: 0 }}>
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        style={{
+                          width: '100%',
+                          borderRadius: '12px',
+                          border: '1px solid var(--line)',
+                          objectFit: 'cover',
+                        }}
+                      />
+                      <figcaption style={{ fontSize: '0.9rem', marginTop: '0.35rem', color: 'var(--muted)' }}>
+                        {image.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+
+                <h3 style={{ marginTop: '1rem' }}>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>
+                <pre
+                  style={{
+                    background: 'rgba(15, 23, 42, 0.05)',
+                    border: '1px solid var(--line)',
+                    borderRadius: '12px',
+                    padding: '0.8rem',
+                    whiteSpace: 'pre-wrap',
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+                    fontSize: '0.88rem',
+                  }}
+                >
+{`[Button Press]
+      ↓
+[Read Input + Lid State]
+      ↓
+[Toggle Open/Close State]
+      ↓
+[Rotate Servo]
+      ↓
+[Move Lid to Target Position]
+      ↓
+[Return to Ready State]`}
+                </pre>
+                <ul style={{ paddingLeft: '1.1rem', marginTop: '0.65rem' }}>
+                  {selectedProject.caseStudy.mechanismFlow.map((step) => (
+                    <li key={step} style={{ marginBottom: '0.35rem' }}>{step}</li>
+                  ))}
+                </ul>
+                <p style={{ marginTop: '0.5rem' }}>{selectedProject.caseStudy.demoExplanation}</p>
+
+                <h3 style={{ marginTop: '1rem' }}>4) Skills</h3>
+                <ul style={{ paddingLeft: '1.1rem' }}>
+                  {selectedProject.caseStudy.skills.map((skill) => (
+                    <li key={skill.name} style={{ marginBottom: '0.35rem' }}>
+                      <strong>{skill.name}:</strong> {skill.detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="modal-links">
               <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
               {selectedProject.demoVideo && <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>}
