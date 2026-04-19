@@ -967,13 +967,13 @@ textarea:focus {
 
 .experience-description,
 .experience-list li {
-  font-size: 1.04rem;
+  font-size: 1.08rem;
   line-height: 1.85;
 }
 
 .experience-icon {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   border-radius: 8px;
   flex-shrink: 0;

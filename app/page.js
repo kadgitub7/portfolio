@@ -8,14 +8,14 @@ const profile = {
   name: 'Kadhir Ponnambalam',
   nativeName: 'கதிர்',
   subtitleLines: [
-    'Research Assistant at HADI Labs',
-    'Electrical & Computer Engineering • Big Data Research',
+    'BEng (Co-op) Engineering 1 @ McMaster University (2025–2029)',
+    'Research Assistant • Linux systems evaluation • Data pipelines',
   ],
   aboutLines: [
-  'I am an Engineering student at McMaster University with research experience across electrical, computer, and data-driven engineering work.',
-  'My experience includes experimental lab work with microcontrollers and electronic components, as well as technical evaluation on constrained Linux systems.',
-  'I have contributed to published research in flexible temperature sensing and have worked on documenting system performance, bottlenecks, and engineering trade-offs.',
-  'I am interested in hardware, embedded systems, and practical engineering development roles where I can build strong technical depth through hands-on work.',
+  'I am a McMaster University engineering student with research experience evaluating open-source data processing software on constrained Linux systems.',
+  'I benchmark performance, memory usage, and throughput, and document engineering trade-offs between compute, latency, and accuracy for deployment feasibility.',
+  'I have contributed to peer-reviewed publications in flexible temperature sensing through experimental, sensor-based work with microcontrollers and electronics.',
+  'I am seeking hands-on engineering roles where I can grow in embedded systems, backend/system tooling, and applied hardware-adjacent development.',
   ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
@@ -23,7 +23,7 @@ const profile = {
 
 const schoolProjects = [
   {
-    title: 'AccessoBox — Electronically Controlled Mountable Storage System',
+    title: 'Electronically Controlled Mountable Storage System (AccessoBox)',
     meta: 'Capstone project • Embedded Systems • 4 months',
     tags: ['Arduino', 'Circuit Design', 'CAD / 3D Printing', 'C Programming'],
     description:
@@ -39,11 +39,6 @@ const schoolProjects = [
         '3D modeling began with simple enclosure concepts to validate fit on a wheelchair armrest and enough internal space for electronics. Early feedback focused on button size, lid thickness, and mechanical clearance for servo movement.',
         'The circuitry design started with simulated logic and a test circuit where an LED represented the actuator state while the servo motor was still being sourced. This helped validate button-driven state logic and wiring flow before full hardware integration.',
         'After parts arrived, we moved through multiple prototype iterations: initial printed housing, revised geometry for motor opening and linkage spacing, and a final casing with exposed accessibility-focused buttons and improved visual finish.',
-      ],
-      prototypeImages: [
-        { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype model', caption: 'CAD concept: internal volume and lid geometry planning.' },
-        { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype on breadboard', caption: 'Circuit prototype: button input and actuator control logic validation.' },
-        { src: '/imageAssets/accessobox-final-prototype.png', alt: 'AccessoBox final mounted prototype', caption: 'Final prototype: mountable enclosure with integrated controls.' },
       ],
       mechanismFlow: [
         'User presses low-force button with enlarged cap.',
@@ -72,57 +67,54 @@ const schoolProjects = [
 
 const personalProjects = [
   {
-    title: 'Placeholder Personal Project 1',
-    meta: 'Personal • Web app',
-    tags: ['React', 'Node.js'],
-    description: 'A personal project exploring new technologies and creative ideas.',
-    github: '#',
-    demoVideo: '#',
+    title: 'Autonomous Anomaly Detection for Logging-system',
+    meta: 'Project • Distributed backend • Jan 2026',
+    tags: ['Flask', 'REST APIs', 'HDFS', 'Spark', 'SQL'],
+    description:
+      'Designed and implemented a distributed backend system using Flask REST APIs to ingest telemetry-style log data from a web client.\n\n' +
+      'Built a scalable data pipeline using HDFS, Spark, and SQL to process, store, and serve structured analytic data.\n\n' +
+      'Implemented logging, error handling, and API endpoints to expose system metrics and processed outputs for downstream monitoring.',
+    github: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system',
+    demoVideo: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s',
     links: [
-      { label: 'Live', href: '#' },
-      { label: 'Code', href: '#' },
+      { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s' },
+      { label: 'GitHub', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
     ],
   },
   {
-    title: 'Placeholder Personal Project 2',
-    meta: 'Personal • Mobile app',
-    tags: ['React Native', 'Firebase'],
-    description: 'A mobile application developed for personal use and learning.',
-    github: '#',
-    demoVideo: '#',
-    links: [{ label: 'Code', href: '#' }],
+    title: 'EZ-MLAI (Automated machine learning models)',
+    meta: 'Project • Backend-driven web platform • Jun 2024',
+    tags: ['REST APIs', 'Data validation', 'Job execution', 'Live prediction'],
+    description:
+      'Developed a backend-driven web platform with REST APIs enabling dataset upload, model execution, and persistent access to results.\n\n' +
+      'Implemented backend workflows for data validation, job execution, result storage, and live prediction.',
+    github: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-',
+    demoVideo: 'https://www.youtube.com/watch?v=PeN1xNjkYBw',
+    links: [
+      { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=PeN1xNjkYBw' },
+      { label: 'GitHub', href: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-' },
+    ],
   },
 ];
 
 const experience = [
   {
-    title: 'HADI Labs — Research Assistant',
-    date: 'Sep 2024 - Present',
-    icon: '/imageAssets/HADI_Labs_Logo.png',
+    title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
+    date: 'Oct 2025 - Present',
+    icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'Develop and prototype novel nickel oxide/graphene composite temperature sensors for flexible electronics.',
-      'Lead FPGA/Verilog design tasks for embedded signal conditioning and low-latency data acquisition.',
-      'Coordinate data collection and big data analysis pipelines for sensor performance and lifecycle modeling.',
+      'Integrated and evaluated open-source data processing software (CaImAn) on constrained Linux systems, benchmarking performance, memory usage, and throughput for deployment feasibility.',
+      'Analyzed system bottlenecks and documented trade-offs between compute, latency, and accuracy for deployment.',
+      'Produced technical documentation for system architecture, experimental results, and optimization recommendations.',
     ],
   },
   {
-    title: 'Research Assistant — Electrical & Computer Engineering | Jamal Deen',
-    date: 'Jan 2023 - Aug 2024',
+    title: 'Research Assistant — Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
+    date: 'Jun 2023 - Sep 2023',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'Built predictive analytics models linking housing/environment variables with quality-of-life metrics.',
-      'Created spatial analysis tools for biodiversity correlation using Python, GIS, and large-scale datasets.',
-      'Authored technical reports and co-authored peer-reviewed journal articles.',
-    ],
-  },
-  {
-    title: 'Research Assistant - Microfluidics Lab',
-    date: 'Jun 2022 - Dec 2022',
-    icon: '/imageAssets/McMaster_Logo.jpg',
-    descriptionLines: [
-      'Designed and implemented embedded system modules using C/C++, Verilog, and Xilinx FPGAs.',
-      'Improved module efficiency by 17% through architectural refinements and simulation-driven optimization.',
-      'Worked in a cross-functional team to integrate IoT sensor firmware with cloud analytics.',
+      'Conducted experimental and sensor-based engineering work using microcontrollers and electronic components.',
+      'Collaborated with graduate researchers and contributed to peer-reviewed publications.',
     ],
   },
 ];
@@ -193,39 +185,29 @@ const research = {
 
 const highlights = [
   {
-    year: '2025',
-    title: 'McMaster University Entrance Scholarship',
-    detail: 'Awarded a $3,500 entrance scholarship upon entering Engineering 1 at McMaster University.',
+    year: '2026',
+    title: 'Autonomous Anomaly Detection for Logging-system',
+    detail: 'Designed a distributed backend and data pipeline for telemetry-style log ingestion, processing, and monitoring.',
+  },
+  {
+    year: '2025–Present',
+    title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
+    detail: 'Evaluated CaImAn on constrained Linux systems and documented performance trade-offs for deployment feasibility.',
   },
   {
     year: '2025',
-    title: 'Bachelor of Engineering Co-op — Engineering 1',
-    detail: 'Started first year in Engineering 1 at McMaster University with a 12.0 GPA listed on resume.',
+    title: 'Peer-reviewed publications (co-author)',
+    detail: 'Co-authored publications on nickel oxide/graphene flexible temperature sensing (Advanced Materials Technologies; Sensors and Actuators A: Physical).',
   },
   {
-    year: '2025',
-    title: 'Co-author on peer-reviewed publications',
-    detail: 'Credited as co-author on research publications related to nickel oxide/graphene flexible temperature sensing.',
+    year: '2025–2029',
+    title: 'Bachelor of Engineering Co-op (BEng) — Engineering 1, McMaster University',
+    detail: 'GPA: 12.0. Entrance Scholarship: $3,500.',
   },
   {
     year: '2023',
-    title: 'Research Assistant — Electrical and Computer Engineering Lab',
-    detail: 'Worked in a McMaster engineering research lab on experimental and sensor-based work with microcontrollers and electronics.',
-  },
-  {
-    year: 'Past',
-    title: 'Canada-Wide Science Fair',
-    detail: 'Participated in a major national-level science fair setting.',
-  },
-  {
-    year: 'Past',
-    title: 'CAIS Soccer Silver Medalist — Division 2',
-    detail: 'Earned silver medal placement in competitive school athletics.',
-  },
-  {
-    year: 'Past',
-    title: 'Piano',
-    detail: 'Long-term extracurricular involvement in piano.',
+    title: 'Research Assistant — Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
+    detail: 'Conducted experimental and sensor-based work using microcontrollers and electronic components; contributed to peer-reviewed publications.',
   },
 ];
 
@@ -233,22 +215,22 @@ const highlights = [
 
 const blogPosts = [
   {
-    date: 'March 2026',
-    topic: 'Placeholder — FPGA design reflections',
+    date: 'Coming soon',
+    topic: 'LinkedIn post — Systems benchmarking notes',
     content:
-      'Placeholder for a future post on FPGA development, design iteration, debugging workflow, and lessons learned from implementation work.',
+      'I’ll be publishing short technical posts here (mirroring my LinkedIn) on constrained-system benchmarking, deployment trade-offs, and practical engineering notes. Links will be added once published.',
   },
   {
-    date: 'February 2026',
-    topic: 'Placeholder — Research and engineering workflow',
+    date: 'Coming soon',
+    topic: 'LinkedIn post — Building distributed pipelines',
     content:
-      'Placeholder for a future post on research execution, documenting experiments, balancing accuracy with constraints, and turning technical work into clear outcomes.',
+      'A brief write-up on designing REST ingestion, telemetry-style log modeling, and processing workflows with HDFS/Spark/SQL.',
   },
   {
-    date: 'January 2026',
-    topic: 'Placeholder — Hardware project notes',
+    date: 'Coming soon',
+    topic: 'LinkedIn post — Embedded prototyping lessons',
     content:
-      'Placeholder for a future post on embedded systems, electronics prototyping, and practical engineering trade-offs.',
+      'A short reflection on staged prototyping, wiring validation, and how we iterated AccessoBox toward a demo-ready build.',
   },
 ];
 
@@ -633,24 +615,8 @@ export default function Page() {
                     <li key={item} style={{ marginBottom: '0.4rem' }}>{item}</li>
                   ))}
                 </ul>
-                <div className="projects-grid" style={{ marginTop: '0.85rem' }}>
-                  {selectedProject.caseStudy.prototypeImages.map((image) => (
-                    <figure key={image.src} style={{ margin: 0 }}>
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        style={{
-                          width: '100%',
-                          borderRadius: '12px',
-                          border: '1px solid var(--line)',
-                          objectFit: 'cover',
-                        }}
-                      />
-                      <figcaption style={{ fontSize: '0.9rem', marginTop: '0.35rem', color: 'var(--muted)' }}>
-                        {image.caption}
-                      </figcaption>
-                    </figure>
-                  ))}
+                <div className="empty-state" style={{ marginTop: '0.85rem' }}>
+                  Prototype images will be added here (CAD model, circuit prototype, and final mounted build).
                 </div>
 
                 <h3 style={{ marginTop: '1rem' }}>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>

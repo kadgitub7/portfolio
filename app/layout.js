@@ -1,8 +1,21 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Portfolio',
-  description: 'Software Engineer Portfolio',
+  title: 'Kadhir Ponnambalam — Portfolio',
+  description:
+    'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
+  openGraph: {
+    title: 'Kadhir Ponnambalam — Portfolio',
+    description:
+      'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Kadhir Ponnambalam — Portfolio',
+    description:
+      'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
+  },
 };
 
 export default function RootLayout({ children }) {
