@@ -12,10 +12,10 @@ const profile = {
     'Research Assistant • Linux systems evaluation • Data pipelines',
   ],
   aboutLines: [
-  'I am a McMaster University engineering student with research experience evaluating open-source data processing software on constrained Linux systems.',
-  'I benchmark performance, memory usage, and throughput, and document engineering trade-offs between compute, latency, and accuracy for deployment feasibility.',
-  'I have contributed to peer-reviewed publications in flexible temperature sensing through experimental, sensor-based work with microcontrollers and electronics.',
-  'I am seeking hands-on engineering roles where I can grow in embedded systems, backend/system tooling, and applied hardware-adjacent development.',
+  'I am a McMaster University engineering student with research experience evaluating **open-source data processing software** on **constrained Linux systems**.',
+  'I benchmark **performance**, **memory usage**, and **throughput**, and document engineering trade-offs between **compute**, **latency**, and **accuracy** for deployment feasibility.',
+  'I have contributed to **peer-reviewed publications** in flexible temperature sensing through experimental, sensor-based work with **microcontrollers** and **electronics**.',
+  'I am seeking hands-on engineering roles where I can grow in **embedded systems**, **backend/system tooling**, and applied **hardware-adjacent development**.',
   ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
@@ -62,6 +62,11 @@ const schoolProjects = [
       { label: 'Demo Video', href: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share' },
       { label: 'GitHub', href: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main' },
     ],
+    images: [
+      { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype render' },
+      { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype wiring' },
+      { src: '/imageAssets/accissobox-final-prototype.png', alt: 'AccessoBox final mounted prototype' },
+    ],
   },
 ];
 
@@ -101,11 +106,11 @@ const experience = [
   {
     title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
     date: 'Oct 2025 - Present',
-    icon: '/imageAssets/McMaster_Logo.jpg',
+    icon: '/imageAssets/HADI_Labs_Logo.png',
     descriptionLines: [
-      'Integrated and evaluated open-source data processing software (CaImAn) on constrained Linux systems, benchmarking performance, memory usage, and throughput for deployment feasibility.',
-      'Analyzed system bottlenecks and documented trade-offs between compute, latency, and accuracy for deployment.',
-      'Produced technical documentation for system architecture, experimental results, and optimization recommendations.',
+      'Optimized constrained Linux evaluation workflows for CaImAn by building reproducible benchmark runs across throughput, memory, and latency profiles.',
+      'Executed comparative system studies to isolate bottlenecks, then translated findings into deployment-ready trade-off guidance for compute vs. accuracy constraints.',
+      'Documented architecture, experiment design, and recommendation pathways so results could be reused quickly by collaborators and incoming researchers.',
     ],
   },
   {
@@ -113,8 +118,8 @@ const experience = [
     date: 'Jun 2023 - Sep 2023',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'Conducted experimental and sensor-based engineering work using microcontrollers and electronic components.',
-      'Collaborated with graduate researchers and contributed to peer-reviewed publications.',
+      'Built and tested microcontroller-driven sensing experiments, improving reliability of data collection during iterative lab trials.',
+      'Collaborated with graduate researchers on flexible temperature sensor studies and contributed to peer-reviewed publication outputs.',
     ],
   },
 ];
@@ -123,22 +128,40 @@ const experience = [
 
 const skills = {
   S: [
-    { name: 'Verilog', blurb: 'Experience building and simulating digital hardware projects, with a focus on logic design, architecture concepts, and FPGA-oriented development.' },
-    { name: 'FPGA', blurb: 'Hands-on exposure to FPGA workflows, digital system implementation, and hardware-oriented prototyping.' },
+    { name: 'Python', blurb: 'Primary tool for research automation, data processing, and experiment analytics. Used for benchmarking scripts, result parsing, and technical reporting pipelines.' },
+    { name: 'Embedded Systems', blurb: 'Applied in accessibility-focused hardware builds with integrated electronics, actuator control, and practical constraints around user interaction and reliability.' },
+    { name: 'Verilog', blurb: 'Strong foundation in digital logic implementation and simulation, including architecture-oriented design thinking and hardware behavior validation.' },
   ],
   A: [
-    { name: 'Computer Architecture', blurb: 'Comfortable with processor/datapath concepts, ALUs, memory flow, and low-level hardware organization.' },
-    { name: 'Python', blurb: 'Used for analytics, scripting, data processing, and research-oriented technical work.' },
+    { name: 'FPGA', blurb: 'Hands-on exposure to FPGA flow from logic mapping to prototype validation; comfortable with iterative debugging in hardware design workflows.' },
+    { name: 'Computer Architecture', blurb: 'Solid understanding of datapaths, memory movement, ALU operations, and performance-oriented low-level design trade-offs.' },
+    { name: 'Data Visualization', blurb: 'Uses clean visual summaries to communicate benchmarks and experiment outcomes for technical and cross-functional audiences.' },
   ],
   B: [
-    { name: 'Embedded Systems', blurb: 'Familiar with embedded development concepts and hardware-software interaction in project settings.' },
-    { name: 'Data Visualization', blurb: 'Able to communicate technical findings through charts, plots, and structured presentation of results.' },
+    { name: 'REST APIs', blurb: 'Built backend endpoints for ingestion and analytics workflows with emphasis on clear data contracts and operational reliability.' },
+    { name: 'Flask', blurb: 'Used to ship project-level backend services for telemetry/log ingestion and metrics-oriented data delivery.' },
+    { name: 'SQL', blurb: 'Applies relational querying for processed analytics data and supports reporting from pipeline outputs.' },
   ],
   C: [
-    { name: 'VHDL', blurb: 'Basic familiarity; less central than Verilog in current work.' },
-    { name: 'SoC Design', blurb: 'Early-stage exposure to system-level chip design concepts.' },
+    { name: 'VHDL', blurb: 'Working familiarity from coursework and exploratory projects; used less frequently than Verilog in current stack.' },
+    { name: 'SoC Design', blurb: 'Early exposure to system-level integration concepts with growing practical depth over time.' },
+    { name: 'Spark/HDFS', blurb: 'Project-based experience using distributed processing and storage components for analytics pipelines.' },
   ],
 };
+
+function renderEmphasizedText(line) {
+  const parts = line.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={`${part}-${index}`} className="bio-emphasis">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
+}
 
 const research = {
   electricalEngineering: [
@@ -295,6 +318,19 @@ export default function Page() {
                   <article key={p.title} className="project-card" onClick={() => setSelectedProject(p)}>
                     <div className="project-title">{p.title}</div>
                     <div className="project-meta">{p.meta}</div>
+                    {p.images?.length ? (
+                      <div className="project-thumb-wrap">
+                        <img
+                          src={p.images[0].src}
+                          alt={p.images[0].alt}
+                          className="project-thumb"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    ) : null}
                     <div className="pill-row" style={{ marginTop: 0 }}>
                       {p.tags.slice(0, 4).map((t) => (
                         <span key={t} className="pill">
@@ -529,7 +565,7 @@ export default function Page() {
                   <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
                   {profile.aboutLines.map((line) => (
                     <p key={line} className="bio-line">
-                      {line}
+                      {renderEmphasizedText(line)}
                     </p>
                   ))}
                 </div>
@@ -615,9 +651,28 @@ export default function Page() {
                     <li key={item} style={{ marginBottom: '0.4rem' }}>{item}</li>
                   ))}
                 </ul>
-                <div className="empty-state" style={{ marginTop: '0.85rem' }}>
-                  Prototype images will be added here (CAD model, circuit prototype, and final mounted build).
-                </div>
+                {selectedProject.images?.length ? (
+                  <div className="project-image-gallery">
+                    {selectedProject.images.map((image) => (
+                      <figure key={image.src} className="project-image-card">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="project-image"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.parentElement.style.display = 'none';
+                          }}
+                        />
+                        <figcaption>{image.alt}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="empty-state" style={{ marginTop: '0.85rem' }}>
+                    Prototype images are not currently available in this build.
+                  </div>
+                )}
 
                 <h3 style={{ marginTop: '1rem' }}>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>
                 <pre

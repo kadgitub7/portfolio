@@ -1126,3 +1126,105 @@ textarea:focus {
   color: var(--muted);
   background: rgba(243, 244, 247, 0.55);
 }
+
+/* Final layout/polish overrides */
+.hero-copy {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: 1.1rem 1.25rem;
+  align-items: start;
+}
+
+.profile-photo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  float: none;
+  grid-row: 1 / span 10;
+  align-self: start;
+}
+
+.bio-line {
+  max-width: 75ch;
+}
+
+.bio-emphasis {
+  font-weight: 700;
+  color: #0b3ea8;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-thumb-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.25px solid var(--line);
+  background: #fff;
+}
+
+.project-thumb {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.experience-list li {
+  margin-bottom: 0.5rem;
+}
+
+.experience-list li::marker {
+  color: #2563eb;
+}
+
+.project-image-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.project-image-card {
+  margin: 0;
+  border: 1.25px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.project-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-image-card figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 0.5rem 0.6rem 0.65rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+  .hero-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-photo {
+    width: min(100%, 260px);
+    max-width: 260px;
+    margin: 0 auto 0.2rem;
+    grid-row: auto;
+  }
+
+  .project-image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
