@@ -1,4 +1,4 @@
-/* Ported layout styling from Zach's simple portfolio HTML. */
+
 
 :root {
   --bg0: #0b1020;
@@ -1130,14 +1130,24 @@ textarea:focus {
 /* Final layout/polish overrides */
 .hero-copy {
   display: grid;
-  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
-  gap: 1.1rem 1.25rem;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 0.75rem 1.35rem;
   align-items: start;
+}
+
+.hero-photo-wrap {
+  align-self: start;
+}
+
+.hero-text-wrap {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
 }
 
 .profile-photo {
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   height: auto;
   aspect-ratio: 1 / 1;
   margin: 0;
@@ -1212,6 +1222,89 @@ textarea:focus {
   border-top: 1px solid var(--line);
 }
 
+.project-modal h2 {
+  margin-top: 0.65rem;
+}
+
+.modal-intro {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1rem;
+  border: 1.25px solid var(--line);
+  border-radius: 14px;
+  background: rgba(243, 244, 247, 0.7);
+}
+
+.modal-hero {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  background: #fff;
+}
+
+.modal-hero-image {
+  width: 100%;
+  max-height: 290px;
+  object-fit: cover;
+  display: block;
+}
+
+.case-study-wrap {
+  margin-top: 1.15rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.case-study-wrap h3 {
+  margin-top: 0.5rem;
+}
+
+.case-study-list {
+  padding-left: 1.1rem;
+  margin-top: 0.2rem;
+}
+
+.case-study-list li {
+  margin-bottom: 0.4rem;
+}
+
+.flowchart-block {
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.8rem;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+}
+
+.skill-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.9rem;
+}
+
+.skill-detail-card {
+  border: 1.25px solid var(--line);
+  border-radius: 14px;
+  background: rgba(243, 244, 247, 0.75);
+  padding: 0.85rem 0.95rem;
+}
+
+.skill-detail-card h3 {
+  font-size: 0.98rem;
+  margin-bottom: 0.35rem;
+}
+
+.skill-links-block {
+  margin-top: 1rem;
+}
+
+.skill-links-block h3 {
+  font-size: 1rem;
+  margin-bottom: 0.55rem;
+}
+
 @media (max-width: 768px) {
   .hero-copy {
     grid-template-columns: 1fr;
@@ -1225,6 +1318,10 @@ textarea:focus {
   }
 
   .project-image-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-detail-grid {
     grid-template-columns: 1fr;
   }
 }
