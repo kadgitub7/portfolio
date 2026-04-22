@@ -319,22 +319,60 @@ const highlights = [
 
 const blogPosts = [
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Systems benchmarking notes',
+    date: 'Sep 3, 2025',
+    topic: 'Summer update: publications, coursework, and projects',
     content:
-      'I’ll be publishing short technical posts here (mirroring my LinkedIn) on constrained-system benchmarking, deployment trade-offs, and practical engineering notes. Links will be added once published.',
+      'Published two research papers, shared first-year engineering study resources, and documented project builds including EZ-MLAI and SQL/Neural Network work.',
+    links: [
+      { label: 'Paper 1: Nickel Oxide/Graphene Composite Sensor', href: 'https://lnkd.in/gGT8DyJm' },
+      { label: 'Paper 2: Nickel oxide/graphene-based temperature sensor', href: 'https://lnkd.in/g2MmXKWU' },
+      { label: 'Calculus 2 (Khan Academy)', href: 'https://lnkd.in/grv33awG' },
+      { label: 'Linear Algebra (Khan Academy)', href: 'https://lnkd.in/gyTYsVJ9' },
+      { label: 'CS50 Intro to Computer Science', href: 'https://lnkd.in/gxVmcxSp' },
+      { label: 'Odin Foundations', href: 'https://lnkd.in/gzzSPxTm' },
+      { label: 'AI Chip Accelerators series', href: 'https://lnkd.in/gYN2RRRH' },
+      { label: 'EZ-MLAI GitHub', href: 'https://lnkd.in/gUiiPKgE' },
+      { label: 'EZ-MLAI YouTube demo', href: 'https://lnkd.in/gwrk2teb' },
+      { label: 'SQL/Neural Network GitHub', href: 'https://lnkd.in/gg3rZByS' },
+      { label: 'SQL/Neural Network YouTube demo', href: 'https://lnkd.in/gZiqd_Za' },
+      { label: 'AI Chip Cost Estimator GitHub', href: 'https://lnkd.in/gisQUGuq' },
+    ],
   },
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Building distributed pipelines',
+    date: 'Oct 7, 2025',
+    topic: 'Research start, matrix multiplier build, and MVP prototyping',
     content:
-      'A brief write-up on designing REST ingestion, telemetry-style log modeling, and processing workflows with HDFS/Spark/SQL.',
+      'Started a volunteer research assistant role at McMaster under Dr. Abdelhadi, built a pipelined matrix multiplier with Arduino integration, and launched multiple Base44 MVP prototypes.',
+    links: [
+      { label: 'Pipelined Matrix Multiplier GitHub', href: 'https://lnkd.in/g4wdHiV6' },
+      { label: 'Pipelined Matrix Multiplier YouTube', href: 'https://lnkd.in/ggQTuggi' },
+      { label: 'Base44 Prototype 1', href: 'https://lnkd.in/gbA4v_Qv' },
+      { label: 'Base44 Prototype 2', href: 'https://lnkd.in/gw9XxVTg' },
+      { label: 'Base44 Prototype 3', href: 'https://lnkd.in/gCih_eVu' },
+      { label: 'Base44 Prototype 4', href: 'https://lnkd.in/g-Uh5ptg' },
+    ],
   },
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Embedded prototyping lessons',
+    date: 'Feb 20, 2026',
+    topic: 'Post-exam update: distributed anomaly detection project',
     content:
-      'A short reflection on staged prototyping, wiring validation, and how we iterated AccessoBox toward a demo-ready build.',
+      'After first-semester engineering exams, I built a full-stack log processing system using HDFS + SQL + ML classification for anomaly detection and expanded my Docker/full-stack integration skills.',
+    links: [
+      { label: 'Project GitHub', href: 'https://lnkd.in/eWdcERhc' },
+      { label: 'YouTube demo', href: 'https://lnkd.in/eBf5MUj7' },
+    ],
+  },
+  {
+    date: 'Mar 20, 2025',
+    topic: 'Hackathons + FPGA foundations sprint',
+    content:
+      'Attended first hackathons (UTRA Hacks and Mac-a-Thon), built Glitch-E and GemAds, and started deeper FPGA fundamentals through Boolean algebra/digital logic projects.',
+    links: [
+      { label: 'Glitch-E Devpost', href: 'https://lnkd.in/efbM2fur' },
+      { label: 'GemAds Devpost', href: 'https://lnkd.in/eRfiFDqa' },
+      { label: '4-bit Even Parity Generator', href: 'https://lnkd.in/erpV77kW' },
+      { label: '7 Segment Display Decoder', href: 'https://lnkd.in/ed_U9MQp' },
+    ],
   },
 ];
 
@@ -601,7 +639,26 @@ export default function Page() {
                       <div className="blog-toggle">{isOpen ? '−' : '+'}</div>
                     </div>
 
-                    {isOpen && <div className="blog-content">{post.content}</div>}
+                    {isOpen && (
+                      <div className="blog-content">
+                        <p>{post.content}</p>
+                        {post.links?.length ? (
+                          <div className="blog-links">
+                            {post.links.map((link) => (
+                              <a
+                                key={`${post.topic}-${link.href}`}
+                                href={link.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {link.label}
+                              </a>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
                   </button>
                 );
               })}
