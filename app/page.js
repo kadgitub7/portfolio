@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { track } from '@vercel/analytics';
 import ContactForm from './components/ContactForm';
 
 const profile = {
@@ -477,7 +476,6 @@ export default function Page() {
                           rel="noreferrer"
                           onClick={(e) => {
                             e.stopPropagation();
-                            track('project_link_click', { project: p.title, label: l.label });
                           }}
                         >
                           {l.label}
@@ -667,7 +665,6 @@ export default function Page() {
                                 rel="noreferrer"
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  track('blog_link_click', { post: post.topic, label: link.label });
                                 }}
                               >
                                 {link.label}
@@ -737,7 +734,6 @@ export default function Page() {
                     className="btn"
                     href="/imageAssets/KadhirPonnambalamRESUME.pdf"
                     download
-                    onClick={() => track('resume_download_click', { source: 'home_hero' })}
                   >
                     Download Resume
                   </a>
@@ -884,7 +880,6 @@ export default function Page() {
                 href={selectedProject.github}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => track('project_link_click', { project: selectedProject.title, label: 'GitHub' })}
               >
                 GitHub
               </a>
@@ -893,7 +888,6 @@ export default function Page() {
                   href={selectedProject.demoVideo}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => track('project_link_click', { project: selectedProject.title, label: 'Demo Video' })}
                 >
                   Demo Video
                 </a>

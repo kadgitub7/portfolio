@@ -1,5 +1,4 @@
 import './globals.css';
-import { Analytics } from '@vercel/analytics/react';
 
 const siteUrl = 'https://kadhir-ponnambalam.vercel.app';
 const ogImage = '/imageAssets/Kadhir_Ponnambalam_Sketch.png';
@@ -83,10 +82,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body>
-        {children}
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { track } from '@vercel/analytics';
 
 function encode(value) {
   return encodeURIComponent(value).replace(/%20/g, '+');
@@ -23,7 +22,6 @@ export default function ContactForm() {
 
   function onSubmit(e) {
     e.preventDefault();
-    track('contact_submit', { source: 'contact_form_mailto' });
     window.location.href = mailtoHref;
   }
 
