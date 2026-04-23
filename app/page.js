@@ -1,7 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useEffect, useState } from 'react';
+import { track } from '@vercel/analytics';
 import ContactForm from './components/ContactForm';
 
 const profile = {
@@ -63,9 +63,9 @@ const schoolProjects = [
       { label: 'GitHub', href: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main' },
     ],
     images: [
-      { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype render' },
+      { src: '/imageAssets/accessobox-final-prototype.png', alt: 'AccessoBox final mounted prototype' },
       { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype wiring' },
-      { src: '/imageAssets/accissobox-final-prototype.png', alt: 'AccessoBox final mounted prototype' },
+      { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype render' },
     ],
   },
 ];
@@ -128,24 +128,105 @@ const experience = [
 
 const skills = {
   S: [
-    { name: 'Python', blurb: 'Primary tool for research automation, data processing, and experiment analytics. Used for benchmarking scripts, result parsing, and technical reporting pipelines.' },
-    { name: 'Embedded Systems', blurb: 'Applied in accessibility-focused hardware builds with integrated electronics, actuator control, and practical constraints around user interaction and reliability.' },
-    { name: 'Verilog', blurb: 'Strong foundation in digital logic implementation and simulation, including architecture-oriented design thinking and hardware behavior validation.' },
+    {
+      name: 'Python',
+      blurb: 'Primary tool for research automation, data processing, and experiment analytics.',
+      meaning: 'Python is my default language for building reproducible engineering workflows quickly.',
+      usage: 'I used Python scripts to benchmark Linux workloads, parse experiment outputs, and generate decision-ready summaries for collaborators.',
+      evidence: [{ label: 'Autonomous Anomaly Detection (GitHub)', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' }],
+    },
+    {
+      name: 'Embedded Systems',
+      blurb: 'Applied in accessibility-focused hardware builds with integrated electronics and actuator control.',
+      meaning: 'Embedded systems is where I combine circuits, firmware, and physical constraints into practical devices.',
+      usage: 'I implemented button-driven control logic, integrated servo wiring, and iterated hardware behavior for reliable user interaction.',
+      evidence: [
+        { label: 'AccessoBox Capstone (GitHub)', href: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main' },
+        { label: 'AccessoBox Demo Video', href: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share' },
+      ],
+    },
+    {
+      name: 'Verilog',
+      blurb: 'Strong foundation in digital logic implementation and simulation.',
+      meaning: 'Verilog is my core HDL for expressing and validating digital hardware behavior.',
+      usage: 'I used Verilog in architecture-focused coursework to reason about datapaths, state machines, and timing-driven logic correctness.',
+      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+    },
   ],
   A: [
-    { name: 'FPGA', blurb: 'Hands-on exposure to FPGA flow from logic mapping to prototype validation; comfortable with iterative debugging in hardware design workflows.' },
-    { name: 'Computer Architecture', blurb: 'Solid understanding of datapaths, memory movement, ALU operations, and performance-oriented low-level design trade-offs.' },
-    { name: 'Data Visualization', blurb: 'Uses clean visual summaries to communicate benchmarks and experiment outcomes for technical and cross-functional audiences.' },
+    {
+      name: 'FPGA',
+      blurb: 'Hands-on exposure to FPGA flow from logic mapping to prototype validation.',
+      meaning: 'FPGA development lets me test hardware ideas quickly before committing to fixed implementations.',
+      usage: 'I worked through synthesis/debug cycles and validated digital logic behavior in lab-style hardware workflows.',
+      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+    },
+    {
+      name: 'Computer Architecture',
+      blurb: 'Solid understanding of datapaths, memory movement, and low-level trade-offs.',
+      meaning: 'Computer architecture helps me reason about performance bottlenecks from first principles.',
+      usage: 'I apply architecture thinking when interpreting throughput/latency results and when balancing compute-vs-accuracy deployment decisions.',
+      evidence: [{ label: 'Research Assistant experience', href: 'https://www.mcmaster.ca/' }],
+    },
+    {
+      name: 'Data Visualization',
+      blurb: 'Uses clear visual summaries to communicate benchmarks and experiment outcomes.',
+      meaning: 'Data visualization is how I turn technical results into decisions stakeholders can act on.',
+      usage: 'I built readable summaries for benchmark and experiment outputs so collaborators could quickly compare system trade-offs.',
+      evidence: [{ label: 'Research Assistant experience', href: 'https://www.mcmaster.ca/' }],
+    },
   ],
   B: [
-    { name: 'REST APIs', blurb: 'Built backend endpoints for ingestion and analytics workflows with emphasis on clear data contracts and operational reliability.' },
-    { name: 'Flask', blurb: 'Used to ship project-level backend services for telemetry/log ingestion and metrics-oriented data delivery.' },
-    { name: 'SQL', blurb: 'Applies relational querying for processed analytics data and supports reporting from pipeline outputs.' },
+    {
+      name: 'REST APIs',
+      blurb: 'Built backend endpoints for ingestion and analytics workflows.',
+      meaning: 'REST APIs are my preferred interface for dependable data exchange between client, backend, and analytics services.',
+      usage: 'I designed endpoints for telemetry ingestion, metric retrieval, and downstream monitoring integrations.',
+      evidence: [
+        { label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
+        { label: 'EZ-MLAI project', href: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-' },
+      ],
+    },
+    {
+      name: 'Flask',
+      blurb: 'Used to ship backend services for telemetry/log ingestion and metrics delivery.',
+      meaning: 'Flask helps me build lightweight backend services fast while keeping routing and service logic explicit.',
+      usage: 'I implemented project APIs, request handling, and service wiring for log processing and model-serving style workflows.',
+      evidence: [{ label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' }],
+    },
+    {
+      name: 'SQL',
+      blurb: 'Applies relational querying for processed analytics data and reporting.',
+      meaning: 'SQL is the language I use to turn raw processed outputs into filterable, decision-ready views.',
+      usage: 'I used SQL in data pipelines to query processed telemetry, generate summaries, and support analytics endpoints.',
+      evidence: [{ label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' }],
+    },
   ],
   C: [
-    { name: 'VHDL', blurb: 'Working familiarity from coursework and exploratory projects; used less frequently than Verilog in current stack.' },
-    { name: 'SoC Design', blurb: 'Early exposure to system-level integration concepts with growing practical depth over time.' },
-    { name: 'Spark/HDFS', blurb: 'Project-based experience using distributed processing and storage components for analytics pipelines.' },
+    {
+      name: 'VHDL',
+      blurb: 'Working familiarity from coursework and exploratory digital design projects.',
+      meaning: 'VHDL broadened my HDL fluency and helped me compare different hardware description styles.',
+      usage: 'I used VHDL in coursework to implement and test basic digital modules while strengthening simulation discipline.',
+      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+    },
+    {
+      name: 'SoC Design',
+      blurb: 'Early exposure to system-level integration concepts with growing practical depth.',
+      meaning: 'SoC design connects processing, memory, and peripherals into one coherent hardware system.',
+      usage: 'I explored SoC-level trade-offs through architecture-focused learning and hardware integration activities.',
+      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+    },
+    {
+      name: 'Spark/HDFS',
+      blurb: 'Project experience with distributed processing and storage for analytics pipelines.',
+      meaning: 'Spark/HDFS let me scale data processing beyond single-machine workflows.',
+      usage: 'I implemented ingestion-to-processing pipelines that used HDFS for storage and Spark for distributed computation.',
+      evidence: [
+        { label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
+        { label: 'Anomaly Detection demo', href: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s' },
+      ],
+    },
   ],
 };
 
@@ -238,22 +319,60 @@ const highlights = [
 
 const blogPosts = [
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Systems benchmarking notes',
+    date: 'Sep 3, 2025',
+    topic: 'Summer update: publications, coursework, and projects',
     content:
-      'I’ll be publishing short technical posts here (mirroring my LinkedIn) on constrained-system benchmarking, deployment trade-offs, and practical engineering notes. Links will be added once published.',
+      'Published two research papers, shared first-year engineering study resources, and documented project builds including EZ-MLAI and SQL/Neural Network work.',
+    links: [
+      { label: 'Paper 1: Nickel Oxide/Graphene Composite Sensor', href: 'https://lnkd.in/gGT8DyJm' },
+      { label: 'Paper 2: Nickel oxide/graphene-based temperature sensor', href: 'https://lnkd.in/g2MmXKWU' },
+      { label: 'Calculus 2 (Khan Academy)', href: 'https://lnkd.in/grv33awG' },
+      { label: 'Linear Algebra (Khan Academy)', href: 'https://lnkd.in/gyTYsVJ9' },
+      { label: 'CS50 Intro to Computer Science', href: 'https://lnkd.in/gxVmcxSp' },
+      { label: 'Odin Foundations', href: 'https://lnkd.in/gzzSPxTm' },
+      { label: 'AI Chip Accelerators series', href: 'https://lnkd.in/gYN2RRRH' },
+      { label: 'EZ-MLAI GitHub', href: 'https://lnkd.in/gUiiPKgE' },
+      { label: 'EZ-MLAI YouTube demo', href: 'https://lnkd.in/gwrk2teb' },
+      { label: 'SQL/Neural Network GitHub', href: 'https://lnkd.in/gg3rZByS' },
+      { label: 'SQL/Neural Network YouTube demo', href: 'https://lnkd.in/gZiqd_Za' },
+      { label: 'AI Chip Cost Estimator GitHub', href: 'https://lnkd.in/gisQUGuq' },
+    ],
   },
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Building distributed pipelines',
+    date: 'Oct 7, 2025',
+    topic: 'Research start, matrix multiplier build, and MVP prototyping',
     content:
-      'A brief write-up on designing REST ingestion, telemetry-style log modeling, and processing workflows with HDFS/Spark/SQL.',
+      'Started a volunteer research assistant role at McMaster under Dr. Abdelhadi, built a pipelined matrix multiplier with Arduino integration, and launched multiple Base44 MVP prototypes.',
+    links: [
+      { label: 'Pipelined Matrix Multiplier GitHub', href: 'https://lnkd.in/g4wdHiV6' },
+      { label: 'Pipelined Matrix Multiplier YouTube', href: 'https://lnkd.in/ggQTuggi' },
+      { label: 'Base44 Prototype 1', href: 'https://lnkd.in/gbA4v_Qv' },
+      { label: 'Base44 Prototype 2', href: 'https://lnkd.in/gw9XxVTg' },
+      { label: 'Base44 Prototype 3', href: 'https://lnkd.in/gCih_eVu' },
+      { label: 'Base44 Prototype 4', href: 'https://lnkd.in/g-Uh5ptg' },
+    ],
   },
   {
-    date: 'Coming soon',
-    topic: 'LinkedIn post — Embedded prototyping lessons',
+    date: 'Feb 20, 2026',
+    topic: 'Post-exam update: distributed anomaly detection project',
     content:
-      'A short reflection on staged prototyping, wiring validation, and how we iterated AccessoBox toward a demo-ready build.',
+      'After first-semester engineering exams, I built a full-stack log processing system using HDFS + SQL + ML classification for anomaly detection and expanded my Docker/full-stack integration skills.',
+    links: [
+      { label: 'Project GitHub', href: 'https://lnkd.in/eWdcERhc' },
+      { label: 'YouTube demo', href: 'https://lnkd.in/eBf5MUj7' },
+    ],
+  },
+  {
+    date: 'Mar 20, 2025',
+    topic: 'Hackathons + FPGA foundations sprint',
+    content:
+      'Attended first hackathons (UTRA Hacks and Mac-a-Thon), built Glitch-E and GemAds, and started deeper FPGA fundamentals through Boolean algebra/digital logic projects.',
+    links: [
+      { label: 'Glitch-E Devpost', href: 'https://lnkd.in/efbM2fur' },
+      { label: 'GemAds Devpost', href: 'https://lnkd.in/eRfiFDqa' },
+      { label: '4-bit Even Parity Generator', href: 'https://lnkd.in/erpV77kW' },
+      { label: '7 Segment Display Decoder', href: 'https://lnkd.in/ed_U9MQp' },
+    ],
   },
 ];
 
@@ -290,6 +409,17 @@ export default function Page() {
     syncFromHash();
     window.addEventListener('hashchange', syncFromHash);
     return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null);
+        setSelectedSkill(null);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
   const activeSection = (() => {
@@ -345,7 +475,10 @@ export default function Page() {
                           href={l.href}
                           target="_blank"
                           rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            track('project_link_click', { project: p.title, label: l.label });
+                          }}
                         >
                           {l.label}
                         </a>
@@ -499,7 +632,7 @@ export default function Page() {
           <section className="section" id="blog">
             <div className="section-item">Blog</div>
             <div className="description">
-              Placeholder entries for future technical writing, project reflections, and engineering notes.
+              LinkedIn-style updates on projects, research milestones, and technical learning sprints.
             </div>
 
             <div className="blog-list" style={{ marginTop: '1rem' }}>
@@ -511,6 +644,7 @@ export default function Page() {
                     type="button"
                     className={isOpen ? 'blog-tab open' : 'blog-tab'}
                     onClick={() => setOpenBlog(isOpen ? null : index)}
+                    aria-expanded={isOpen}
                   >
                     <div className="blog-tab-header">
                       <div>
@@ -520,7 +654,29 @@ export default function Page() {
                       <div className="blog-toggle">{isOpen ? '−' : '+'}</div>
                     </div>
 
-                    {isOpen && <div className="blog-content">{post.content}</div>}
+                    {isOpen && (
+                      <div className="blog-content">
+                        <p>{post.content}</p>
+                        {post.links?.length ? (
+                          <div className="blog-links">
+                            {post.links.map((link) => (
+                              <a
+                                key={`${post.topic}-${link.href}`}
+                                href={link.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  track('blog_link_click', { post: post.topic, label: link.label });
+                                }}
+                              >
+                                {link.label}
+                              </a>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
                   </button>
                 );
               })}
@@ -533,7 +689,7 @@ export default function Page() {
           <section className="section" id="contact">
             <div className="section-item">Contact</div>
             <div className="description">
-              Send a note and I’ll reply soon. (This form opens your email client via
+              Send a note and I&apos;ll reply soon. (This form opens your email client via
               `mailto:`.)
             </div>
 
@@ -562,18 +718,27 @@ export default function Page() {
             <div className="hero-card">
               <div className="hero-grid">
                 <div className="hero-copy">
-                  <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
-                  {profile.aboutLines.map((line) => (
-                    <p key={line} className="bio-line">
-                      {renderEmphasizedText(line)}
-                    </p>
-                  ))}
+                  <div className="hero-photo-wrap">
+                    <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
+                  </div>
+                  <div className="hero-text-wrap">
+                    {profile.aboutLines.map((line) => (
+                      <p key={line} className="bio-line">
+                        {renderEmphasizedText(line)}
+                      </p>
+                    ))}
+                  </div>
                 </div>
                 <div className="cta-row">
                   <a className="btn btn-primary" href="#projects">
                     View projects →
                   </a>
-                  <a className="btn" href="/imageAssets/KadhirPonnambalamRESUME.pdf" download>
+                  <a
+                    className="btn"
+                    href="/imageAssets/KadhirPonnambalamRESUME.pdf"
+                    download
+                    onClick={() => track('resume_download_click', { source: 'home_hero' })}
+                  >
                     Download Resume
                   </a>
                 </div>
@@ -635,20 +800,29 @@ export default function Page() {
 
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelectedProject(null)}>×</button>
+          <div className="modal-content project-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" aria-label="Close project details" onClick={() => setSelectedProject(null)}>×</button>
+            {selectedProject.images?.length ? (
+              <div className="modal-hero">
+                <img
+                  src={selectedProject.images[0].src}
+                  alt={selectedProject.images[0].alt}
+                  className="modal-hero-image"
+                />
+              </div>
+            ) : null}
             <h2>{selectedProject.title}</h2>
-            <p>{selectedProject.description}</p>
+            <p className="modal-intro">{selectedProject.description}</p>
 
             {selectedProject.caseStudy && (
-              <div style={{ marginTop: '1.25rem' }}>
+              <div className="case-study-wrap">
                 <h3>1) Motivation</h3>
                 <p>{selectedProject.caseStudy.motivation}</p>
 
-                <h3 style={{ marginTop: '1rem' }}>2) 3D Modeling and Circuitry Prototypes</h3>
-                <ul style={{ paddingLeft: '1.1rem' }}>
+                <h3>2) 3D Modeling and Circuitry Prototypes</h3>
+                <ul className="case-study-list">
                   {selectedProject.caseStudy.prototypingNarrative.map((item) => (
-                    <li key={item} style={{ marginBottom: '0.4rem' }}>{item}</li>
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
                 {selectedProject.images?.length ? (
@@ -674,18 +848,8 @@ export default function Page() {
                   </div>
                 )}
 
-                <h3 style={{ marginTop: '1rem' }}>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>
-                <pre
-                  style={{
-                    background: 'rgba(15, 23, 42, 0.05)',
-                    border: '1px solid var(--line)',
-                    borderRadius: '12px',
-                    padding: '0.8rem',
-                    whiteSpace: 'pre-wrap',
-                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
-                    fontSize: '0.88rem',
-                  }}
-                >
+                <h3>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>
+                <pre className="flowchart-block">
 {`[Button Press]
       ↓
 [Read Input + Lid State]
@@ -698,17 +862,17 @@ export default function Page() {
       ↓
 [Return to Ready State]`}
                 </pre>
-                <ul style={{ paddingLeft: '1.1rem', marginTop: '0.65rem' }}>
+                <ul className="case-study-list">
                   {selectedProject.caseStudy.mechanismFlow.map((step) => (
-                    <li key={step} style={{ marginBottom: '0.35rem' }}>{step}</li>
+                    <li key={step}>{step}</li>
                   ))}
                 </ul>
-                <p style={{ marginTop: '0.5rem' }}>{selectedProject.caseStudy.demoExplanation}</p>
+                <p>{selectedProject.caseStudy.demoExplanation}</p>
 
-                <h3 style={{ marginTop: '1rem' }}>4) Skills</h3>
-                <ul style={{ paddingLeft: '1.1rem' }}>
+                <h3>4) Skills</h3>
+                <ul className="case-study-list">
                   {selectedProject.caseStudy.skills.map((skill) => (
-                    <li key={skill.name} style={{ marginBottom: '0.35rem' }}>
+                    <li key={skill.name}>
                       <strong>{skill.name}:</strong> {skill.detail}
                     </li>
                   ))}
@@ -716,18 +880,56 @@ export default function Page() {
               </div>
             )}
             <div className="modal-links">
-              <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
-              {selectedProject.demoVideo && <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>}
+              <a
+                href={selectedProject.github}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track('project_link_click', { project: selectedProject.title, label: 'GitHub' })}
+              >
+                GitHub
+              </a>
+              {selectedProject.demoVideo && (
+                <a
+                  href={selectedProject.demoVideo}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => track('project_link_click', { project: selectedProject.title, label: 'Demo Video' })}
+                >
+                  Demo Video
+                </a>
+              )}
             </div>
           </div>
         </div>
       )}
       {selectedSkill && (
         <div className="modal-overlay" onClick={() => setSelectedSkill(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelectedSkill(null)}>×</button>
+          <div className="modal-content" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" aria-label="Close skill details" onClick={() => setSelectedSkill(null)}>×</button>
             <h2>{selectedSkill.name}</h2>
             <p>{selectedSkill.blurb}</p>
+            <div className="skill-detail-grid">
+              <article className="skill-detail-card">
+                <h3>What this means</h3>
+                <p>{selectedSkill.meaning}</p>
+              </article>
+              <article className="skill-detail-card">
+                <h3>How I used it</h3>
+                <p>{selectedSkill.usage}</p>
+              </article>
+            </div>
+            {selectedSkill.evidence?.length ? (
+              <div className="skill-links-block">
+                <h3>Where I implemented this</h3>
+                <div className="modal-links">
+                  {selectedSkill.evidence.map((item) => (
+                    <a key={item.href} href={item.href} target="_blank" rel="noreferrer">
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       )}
