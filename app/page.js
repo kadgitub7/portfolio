@@ -360,6 +360,35 @@ const highlights = [
 
 
 
+const honours = [
+  {
+    year: '2025',
+    title: 'McMaster University Entrance Scholarship',
+    detail: '$3,500 entrance scholarship awarded based on academic achievement.',
+  },
+  {
+    year: '2025',
+    title: 'Co-author — Advanced Materials Technologies Publication',
+    detail: 'Co-authored peer-reviewed publication on flexible temperature sensing.',
+  },
+  {
+    year: '2025',
+    title: 'Co-author — Sensors and Actuators A: Physical Publication',
+    detail: 'Co-authored publication on low-temperature flexible sensor fabrication.',
+  },
+  {
+    year: '2025',
+    title: 'Hackathon Participant — UTRA Hacks',
+    detail: 'Participated in university-level rapid prototyping competition.',
+  },
+  {
+    year: '2025',
+    title: 'Hackathon Participant — Mac-a-Thon',
+    detail: 'Collaborated on engineering and software development projects.',
+  },
+];
+
+
 const blogPosts = [
   {
     date: 'Sep 3, 2025',
@@ -426,13 +455,13 @@ const tabs = [
   { id: 'research', label: 'Research' },
   { id: 'skills', label: 'Skills' },
   { id: 'honours', label: 'Honours' },
-  { id: 'activities', label: 'Activities' },
   { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ];
 
 export default function Page() {
   const [activeId, setActiveId] = useState('home');
+  const [projectTab, setProjectTab] = useState('embeddedSystems');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [openBlog, setOpenBlog] = useState(null);
@@ -468,60 +497,77 @@ export default function Page() {
   const activeSection = (() => {
     switch (activeId) {
       case 'projects':
+        const currentProjects = projects[projectTab] || [];
         return (
           <section className="section" id="projects">
             <div className="section-item">Projects</div>
-
             <div className="description">
               Technical projects across embedded systems, FPGA design, backend systems, and machine learning infrastructure.
             </div>
 
-            {Object.entries(projects).map(([category, items]) => (
-              <div key={category} style={{ marginTop: '2rem' }}>
-                <h3>
+            <div className="project-tabs">
+              {Object.keys(projects).map((category) => (
+                <button
+                  key={category}
+                  className={projectTab === category ? 'tab active' : 'tab'}
+                  onClick={() => setProjectTab(category)}
+                >
                   {category
                     .replace(/([A-Z])/g, ' $1')
                     .replace(/^./, (s) => s.toUpperCase())}
-                </h3>
+                </button>
+              ))}
+            </div>
 
-                <div className="projects-grid">
-                  {items.map((p) => (
-                    <article
-                      key={p.title}
-                      className="project-card"
-                      onClick={() => setSelectedProject(p)}
-                    >
-                      <div className="project-title">{p.title}</div>
-                      <div className="project-meta">{p.meta}</div>
+            <div className="projects-grid">
+              {currentProjects.map((p) => (
+                <article
+                  key={p.title}
+                  className="project-card"
+                  onClick={() => setSelectedProject(p)}
+                >
+                  {p.images?.length ? (
+                    <div className="project-thumb-wrap">
+                      <img
+                        src={p.images[0].src}
+                        alt={p.images[0].alt}
+                        className="project-thumb"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  ) : null}
+                  <div className="project-title">{p.title}</div>
+                  <div className="project-meta">{p.meta}</div>
 
-                      <div className="pill-row" style={{ marginTop: 0 }}>
-                        {p.tags.map((t) => (
-                          <span key={t} className="pill">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+                  <div className="pill-row" style={{ marginTop: 0 }}>
+                    {p.tags.map((t) => (
+                      <span key={t} className="pill">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
 
-                      <div className="project-links" style={{ marginTop: '0.85rem' }}>
-                        {p.links?.map((l) => (
-                          <a
-                            key={l.label}
-                            href={l.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                          >
-                            {l.label}
-                          </a>
-                        ))}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            ))}
+                  <div className="project-links" style={{ marginTop: '0.85rem' }}>
+                    {p.links?.map((l) => (
+                      <a
+                        key={l.label}
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
           </section>
         );
       case 'experience':
@@ -534,8 +580,8 @@ export default function Page() {
             </div>
 
             <div className="experience-stack" style={{ marginTop: '1rem' }}>
-              {experience.map((e) => (
-                <div key={e.title} className="experience-item">
+              {experience.map((e, index) => (
+                <div key={e.title} className={`experience-item ${index === 0 ? 'education-item' : ''}`}>
                   <div className="experience-header-row">
                     {e.icon && (
                       <img
@@ -672,29 +718,6 @@ export default function Page() {
           </section>
         );
 
-      case 'activities':
-        return (
-          <section className="section" id="activities">
-            <div className="section-item">Activities</div>
-            <div className="description">
-              A chronological view of awards, research milestones, academic progress, and extracurricular involvement.
-            </div>
-
-            <div className="timeline" style={{ marginTop: '1.2rem' }}>
-              {highlights.map((item, index) => (
-                <div key={`${item.year}-${item.title}-${index}`} className="timeline-item">
-                  <div className="timeline-marker" />
-                  <div className="timeline-content">
-                    <div className="timeline-year">{item.year}</div>
-                    <div className="timeline-title">{item.title}</div>
-                    <div className="timeline-detail">{item.detail}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      
       case 'blog':
         return (
           <section className="section" id="blog">
