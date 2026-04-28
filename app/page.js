@@ -131,17 +131,17 @@ const projects = {
   ],
 };
 
+const education = {
+  title: 'McMaster University — Bachelor of Engineering (Co-op)',
+  date: 'Sep 2025 - Apr 2029 (Expected)',
+  icon: '/imageAssets/McMaster_Logo.jpg',
+  gpa: '12.0',
+  program: 'Engineering 1 (Computer Engineering Focus)',
+  focus: 'Embedded Systems, FPGA Design, Hardware/Software Systems',
+  areasOfStudy: 'Computer Architecture, Digital Logic, Embedded Systems, Backend Systems',
+};
+
 const experience = [
-  {
-    title: 'McMaster University — Bachelor of Engineering (Co-op)',
-    date: 'Sep 2025 - Apr 2029 (Expected)',
-    icon: '/imageAssets/McMaster_Logo.jpg',
-    descriptionLines: [
-      'Engineering 1 student focusing on computer engineering, embedded systems, FPGA design, and hardware/software systems.',
-      'Relevant areas: computer architecture, digital logic, embedded systems, backend systems, and applied engineering research.',
-      'Maintaining strong academic standing while participating in research and technical project development.',
-    ],
-  },
   {
     title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
     date: 'Oct 2025 - Present',
@@ -363,28 +363,58 @@ const highlights = [
 const honours = [
   {
     year: '2025',
-    title: 'McMaster University Entrance Scholarship',
-    detail: '$3,500 entrance scholarship awarded based on academic achievement.',
-  },
-  {
-    year: '2025',
     title: 'Co-author — Advanced Materials Technologies Publication',
-    detail: 'Co-authored peer-reviewed publication on flexible temperature sensing.',
+    detail: 'Published peer-reviewed research on nickel oxide/graphene flexible temperature sensing.',
   },
   {
     year: '2025',
     title: 'Co-author — Sensors and Actuators A: Physical Publication',
-    detail: 'Co-authored publication on low-temperature flexible sensor fabrication.',
+    detail: 'Published research on low-temperature flexible sensor fabrication and stability.',
   },
   {
     year: '2025',
-    title: 'Hackathon Participant — UTRA Hacks',
-    detail: 'Participated in university-level rapid prototyping competition.',
+    title: 'Hackathon Participant — UTRA Hacks & Mac-a-Thon',
+    detail: 'Collaborated on rapid prototyping and engineering projects at university-level competitions.',
   },
   {
-    year: '2025',
-    title: 'Hackathon Participant — Mac-a-Thon',
-    detail: 'Collaborated on engineering and software development projects.',
+    year: '2023',
+    title: 'McMaster University Faculty of Engineering Scholarship',
+    detail: '$3,500 scholarship awarded upon entry into the program.',
+  },
+  {
+    year: '2023',
+    title: 'STEM Fellowship High School Big Data Challenge National Finalist',
+    detail: 'Selected as Top 10 in Canada for paper on housing factors and life satisfaction.',
+  },
+  {
+    year: '2023',
+    title: 'Canada Wide Science Fair Silver Medalist',
+    detail: 'Awarded Silver Medal for project: Electrotaxis of the Tardigrade Species Hypsibius .sp',
+  },
+  {
+    year: '2022',
+    title: 'Canada Wide Science Fair Silver Medalist',
+    detail: 'Awarded Silver Medal for project: Effect Of Electrical Field On Tardigrades In A Microfluidic Environment.',
+  },
+  {
+    year: '2022',
+    title: 'Innovation Nation Junior STEM Star Award',
+    detail: 'Awarded 3rd place (Junior STEM Star Award) amongst high school and university student projects.',
+  },
+  {
+    year: '2022',
+    title: 'Level 7 RCM Theory and Practical First Class Honors',
+    detail: 'Achieved Royal Conservatory of Music Level 7 Theory and Practical certification with First Class Honors.',
+  },
+  {
+    year: '2023',
+    title: 'STEM Fellowship High School Big Data Challenge National Finalist',
+    detail: 'Selected as Top 10 in Canada for paper on plant species and biological variety.',
+  },
+  {
+    year: '2021',
+    title: 'Canada Wide Science Fair Finalist',
+    detail: 'Selected as finalist by Bay Area Science and Engineering Fair to participate in Canada Wide Science Fair.',
   },
 ];
 
@@ -579,9 +609,34 @@ export default function Page() {
               Research experience focused on engineering experimentation, system evaluation, technical documentation, and applied hardware-adjacent work.
             </div>
 
+            <div className="education-card" style={{ marginBottom: '2rem', padding: '1.5rem', backgroundColor: '#f9f9f9', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+                {education.icon && (
+                  <img
+                    src={education.icon}
+                    alt=""
+                    className="experience-icon"
+                    style={{ width: '60px', height: '60px', flexShrink: 0 }}
+                  />
+                )}
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '1.15rem', fontWeight: 600, marginBottom: '0.5rem' }}>{education.title}</div>
+                  <div style={{ fontSize: '0.95rem', color: '#666', marginBottom: '1rem' }}>{education.date}</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                    <div><strong>Program:</strong> {education.program}</div>
+                    <div><strong>GPA:</strong> {education.gpa}</div>
+                    <div><strong>Focus Areas:</strong> {education.focus}</div>
+                    <div><strong>Key Coursework:</strong> {education.areasOfStudy}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 style={{ marginTop: '2.5rem', marginBottom: '1.5rem' }}>Professional Experience</h3>
+
             <div className="experience-stack" style={{ marginTop: '1rem' }}>
-              {experience.map((e, index) => (
-                <div key={e.title} className={`experience-item ${index === 0 ? 'education-item' : ''}`}>
+              {experience.map((e) => (
+                <div key={e.title} className="experience-item">
                   <div className="experience-header-row">
                     {e.icon && (
                       <img
