@@ -135,8 +135,8 @@ const education = {
   title: 'McMaster University — Bachelor of Engineering (Co-op)',
   date: 'Sep 2025 - Apr 2029 (Expected)',
   icon: '/imageAssets/McMaster_Logo.jpg',
-  gpa: '12.0',
-  program: 'Engineering 1 (Computer Engineering Focus)',
+  gpa: '4.0',
+  program: 'Computer Engineering',
   focus: 'Embedded Systems, FPGA Design, Hardware/Software Systems',
   areasOfStudy: 'Computer Architecture, Digital Logic, Embedded Systems, Backend Systems',
 };
@@ -147,9 +147,9 @@ const experience = [
     date: 'Oct 2025 - Present',
     icon: '/imageAssets/HADI_Labs_Logo.png',
     descriptionLines: [
-      'Optimized constrained Linux evaluation workflows for CaImAn by building reproducible benchmark runs across throughput, memory, and latency profiles.',
-      'Executed comparative system studies to isolate bottlenecks, then translated findings into deployment-ready trade-off guidance for compute vs. accuracy constraints.',
-      'Documented architecture, experiment design, and recommendation pathways so results could be reused quickly by collaborators and incoming researchers.',
+      'TODO: Add quantifiable details about benchmark workflows (e.g., number of profiles tested, specific tools used)',
+      'TODO: Specify metrics from system studies (e.g., number of configurations, specific bottlenecks identified, measurable performance improvements)',
+      'TODO: Add concrete outcomes from documentation work (e.g., how many team members used results, adoption impact)',
     ],
   },
   {
@@ -157,8 +157,20 @@ const experience = [
     date: 'Jun 2023 - Sep 2023',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'Built and tested microcontroller-driven sensing experiments, improving reliability of data collection during iterative lab trials.',
-      'Collaborated with graduate researchers on flexible temperature sensor studies and contributed to peer-reviewed publication outputs.',
+      'TODO: Provide specific reliability metrics and test parameters for sensor firmware validation',
+      'TODO: Add quantifiable improvements to sensor performance (percentages, specific parameters improved)',
+      'TODO: Confirm publication details (titles, venues, authorship status)',
+      'TODO: Specify number of collaborators and their contributions',
+    ],
+  },
+  {
+    title: 'Research Assistant — Natural Intelligence & Computational Detection Systems, McMaster University',
+    date: 'Jan 2024 - Present',
+    icon: '/imageAssets/McMaster_Logo.jpg',
+    descriptionLines: [
+      'TODO: Quantify improvements to arrhythmia detection algorithm (accuracy %, sensitivity metrics, specific parameters improved)',
+      'TODO: Define scope of CDS approach development (methods tested, iterations, validation approach)',
+      'TODO: Add measurable outcomes or deliverables from this research position',
     ],
   },
 ];
@@ -363,58 +375,57 @@ const highlights = [
 const honours = [
   {
     year: '2025',
-    title: 'Co-author — Advanced Materials Technologies Publication',
-    detail: 'Published peer-reviewed research on nickel oxide/graphene flexible temperature sensing.',
+    detail: 'Jan 2024 — STEM Fellowship High School Big Data Challenge National Finalist',
+    title: 'Selected as Top 10 in Canada for paper: Utilizing Spatial Analysis to Identify Correlations between Plant Species and Biological Variety.',
+    link: 'https://www.stemfellowship.org/',
   },
   {
     year: '2025',
-    title: 'Co-author — Sensors and Actuators A: Physical Publication',
-    detail: 'Published research on low-temperature flexible sensor fabrication and stability.',
+    detail: 'Jan 2023 — STEM Fellowship High School Big Data Challenge National Finalist',
+    title: 'Selected as Top 10 in Canada for paper: Investigating the correlation between housing factors and life satisfaction.',
+    link: 'https://www.stemfellowship.org/',
   },
   {
     year: '2025',
-    title: 'Hackathon Participant — UTRA Hacks & Mac-a-Thon',
-    detail: 'Collaborated on rapid prototyping and engineering projects at university-level competitions.',
+    detail: 'May 2023 — Canada Wide Science Fair Silver Medalist',
+    title: 'Awarded Silver Medal for project: Electrotaxis of the Tardigrade Species Hypsibius sp',
+    link: 'https://www.canadawidesfair.ca/',
   },
   {
-    year: '2023',
-    title: 'McMaster University Faculty of Engineering Scholarship',
-    detail: '$3,500 scholarship awarded upon entry into the program.',
+    year: '2025',
+    detail: 'May 2022 — Canada Wide Science Fair Silver Medalist',
+    title: 'Awarded Silver Medal for project: Effect Of Electrical Field On Tardigrades In A Microfluidic Environment.',
+    link: 'https://www.canadawidesfair.ca/',
   },
   {
-    year: '2023',
-    title: 'STEM Fellowship High School Big Data Challenge National Finalist',
-    detail: 'Selected as Top 10 in Canada for paper on housing factors and life satisfaction.',
+    year: '2025',
+    detail: 'Mar 2023 — McMaster University Faculty of Engineering Scholarship',
+    title: '$3,500 scholarship awarded upon entry into the Computer Engineering program.',
+    link: 'https://www.mcmaster.ca/',
   },
   {
-    year: '2023',
-    title: 'Canada Wide Science Fair Silver Medalist',
-    detail: 'Awarded Silver Medal for project: Electrotaxis of the Tardigrade Species Hypsibius .sp',
+    year: '2025',
+    detail: 'Mar 2021 — Canada Wide Science Fair Finalist',
+    title: 'Selected as finalist by Bay Area Science and Engineering Fair for: Investigation of the Water Vapor Collection Efficiency of Various Household Materials.',
+    link: 'https://www.canadawidesfair.ca/',
   },
   {
-    year: '2022',
-    title: 'Canada Wide Science Fair Silver Medalist',
-    detail: 'Awarded Silver Medal for project: Effect Of Electrical Field On Tardigrades In A Microfluidic Environment.',
+    year: '2025',
+    detail: 'Oct 2022 — Innovation Nation Junior STEM Star Award',
+    title: 'Awarded 3rd place (Junior STEM Star Award) amongst high school and university student projects.',
+    link: 'https://www.innovationnationconference.com/',
   },
   {
-    year: '2022',
-    title: 'Innovation Nation Junior STEM Star Award',
-    detail: 'Awarded 3rd place (Junior STEM Star Award) amongst high school and university student projects.',
+    year: '2025',
+    detail: 'Nov 2022 — RCM Level 7 Theory and Practical First Class Honors',
+    title: 'Achieved Royal Conservatory of Music Level 7 Theory and Practical certification with First Class Honors.',
+    link: 'https://www.rcmusic.com/',
   },
   {
-    year: '2022',
-    title: 'Level 7 RCM Theory and Practical First Class Honors',
-    detail: 'Achieved Royal Conservatory of Music Level 7 Theory and Practical certification with First Class Honors.',
-  },
-  {
-    year: '2023',
-    title: 'STEM Fellowship High School Big Data Challenge National Finalist',
-    detail: 'Selected as Top 10 in Canada for paper on plant species and biological variety.',
-  },
-  {
-    year: '2021',
-    title: 'Canada Wide Science Fair Finalist',
-    detail: 'Selected as finalist by Bay Area Science and Engineering Fair to participate in Canada Wide Science Fair.',
+    year: '2025',
+    detail: 'Jan 2025 — Co-author Publications',
+    title: 'Published peer-reviewed research on nickel oxide/graphene flexible temperature sensing in Advanced Materials Technologies and Sensors & Actuators A: Physical.',
+    link: 'https://advanced.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/admt.202500060',
   },
 ];
 
@@ -760,12 +771,18 @@ export default function Page() {
 
             <div className="timeline" style={{ marginTop: '1.2rem' }}>
               {honours.map((item, index) => (
-                <div key={`${item.year}-${item.title}-${index}`} className="timeline-item">
+                <div key={`${item.year}-${item.detail}-${index}`} className="timeline-item">
                   <div className="timeline-marker" />
                   <div className="timeline-content">
-                    <div className="timeline-year">{item.year}</div>
-                    <div className="timeline-title">{item.title}</div>
-                    <div className="timeline-detail">{item.detail}</div>
+                    <div className="timeline-year">{item.detail}</div>
+                    <div 
+                      className="timeline-title" 
+                      onClick={() => item.link && window.open(item.link, '_blank')}
+                      style={{ cursor: item.link ? 'pointer' : 'default', textDecoration: item.link ? 'underline' : 'none' }}
+                      role={item.link ? 'button' : 'heading'}
+                    >
+                      {item.title}
+                    </div>
                   </div>
                 </div>
               ))}
