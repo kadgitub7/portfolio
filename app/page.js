@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import ContactForm from './components/ContactForm';
+import { asset } from '../lib/asset';
 
 const profile = {
   name: 'Kadhir Ponnambalam',
@@ -342,36 +343,6 @@ const research = {
   ],
 };
 
-const highlights = [
-  {
-    year: '2026',
-    title: 'Autonomous Anomaly Detection for Logging-system',
-    detail: 'Designed a distributed backend and data pipeline for telemetry-style log ingestion, processing, and monitoring.',
-  },
-  {
-    year: '2025–Present',
-    title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
-    detail: 'Evaluated CaImAn on constrained Linux systems and documented performance trade-offs for deployment feasibility.',
-  },
-  {
-    year: '2025',
-    title: 'Peer-reviewed publications (co-author)',
-    detail: 'Co-authored publications on nickel oxide/graphene flexible temperature sensing (Advanced Materials Technologies; Sensors and Actuators A: Physical).',
-  },
-  {
-    year: '2025–2029',
-    title: 'Bachelor of Engineering Co-op (BEng) — Engineering 1, McMaster University',
-    detail: 'GPA: 12.0. Entrance Scholarship: $3,500.',
-  },
-  {
-    year: '2023',
-    title: 'Research Assistant — Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
-    detail: 'Conducted experimental and sensor-based work using microcontrollers and electronic components; contributed to peer-reviewed publications.',
-  },
-];
-
-
-
 const honours = [
   {
     year: '2024',
@@ -489,316 +460,381 @@ const blogPosts = [
   },
 ];
 
-const tabs = [
-  { id: 'home', label: 'Home' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'research', label: 'Research' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'honours', label: 'Honours' },
-  { id: 'blog', label: 'Blog' },
-  { id: 'contact', label: 'Contact' },
+const projectCategoryLabels = {
+  embeddedSystems: 'Embedded Systems',
+  fpgaAndDigitalDesign: 'FPGA & Digital Design',
+  backendAndDistributedSystems: 'Backend & Distributed Systems',
+  machineLearningAndDataSystems: 'Machine Learning & Data',
+};
+
+const skillCategories = [
+  {
+    name: 'Core Programming',
+    items: ['Python', 'Verilog', 'Embedded Systems'],
+  },
+  {
+    name: 'Hardware & Architecture',
+    items: ['FPGA', 'Computer Architecture', 'VHDL', 'SoC Design'],
+  },
+  {
+    name: 'Backend & Data',
+    items: ['REST APIs', 'Flask', 'SQL', 'Spark/HDFS'],
+  },
+  {
+    name: 'Analysis & Tools',
+    items: ['Data Visualization', 'Linux Systems', 'CAD', 'Benchmarking'],
+  },
+  {
+    name: 'Research Focus',
+    items: ['Sensor Systems', 'Digital Logic', 'Prototyping', 'Publications'],
+  },
 ];
 
+const researchGroups = [
+  { title: 'Flexible Electronics & Sensors', papers: research.flexibleElectronicsAndSensors },
+  { title: 'Data Analytics & Spatial Analysis', papers: research.dataAnalyticsAndSpatialAnalysis },
+  { title: 'Socioeconomic Data Analysis', papers: research.socioeconomicDataAnalysis },
+];
+
+function flattenProjects(projectMap) {
+  return Object.entries(projectMap).flatMap(([key, items]) =>
+    items.map((p) => ({
+      ...p,
+      category: projectCategoryLabels[key] || key,
+    }))
+  );
+}
+
+function findSkillByName(name) {
+  for (const tier of Object.values(skills)) {
+    const match = tier.find((s) => s.name === name);
+    if (match) return match;
+  }
+  return null;
+}
+
+const allProjects = flattenProjects(projects);
+
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m2 7 10 7 10-7" />
+  </svg>
+);
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  </svg>
+);
+
 export default function Page() {
-  const [activeId, setActiveId] = useState('home');
-  const [projectTab, setProjectTab] = useState('embeddedSystems');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [openBlog, setOpenBlog] = useState(null);
-
-  useEffect(() => {
-    const validIds = tabs.map((t) => t.id);
-
-    const syncFromHash = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && validIds.includes(hash)) setActiveId(hash);
-      if (!hash) {
-        // Keep the URL stable for back/refresh while still starting on Home.
-        window.history.replaceState(null, '', '#home');
-      }
-    };
-
-    syncFromHash();
-    window.addEventListener('hashchange', syncFromHash);
-    return () => window.removeEventListener('hashchange', syncFromHash);
-  }, []);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') {
         setSelectedProject(null);
         setSelectedSkill(null);
+        setResumeOpen(false);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const activeSection = (() => {
-    switch (activeId) {
-      case 'projects':
-        const currentProjects = projects[projectTab] || [];
-        return (
-          <section className="section" id="projects">
-            <div className="section-item">Projects</div>
-            <div className="description">
-              Technical projects across embedded systems, FPGA design, backend systems, and machine learning infrastructure.
-            </div>
+  useEffect(() => {
+    document.body.style.overflow = resumeOpen || selectedProject || selectedSkill ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [resumeOpen, selectedProject, selectedSkill]);
 
-            <div className="project-tabs">
-              {Object.keys(projects).map((category) => (
-                <button
-                  key={category}
-                  className={projectTab === category ? 'tab active' : 'tab'}
-                  onClick={() => setProjectTab(category)}
-                >
-                  {category
-                    .replace(/([A-Z])/g, ' $1')
-                    .replace(/^./, (s) => s.toUpperCase())}
-                </button>
+  return (
+    <>
+      <nav className="site-nav" aria-label="Primary">
+        <a href="#hero" className="nav-logo">K.P</a>
+        <div className="nav-right">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#research">Research</a>
+          <a href="#skills">Skills</a>
+          <button type="button" className="nav-resume" onClick={() => setResumeOpen(true)}>
+            Resume
+          </button>
+          <a href="https://github.com/kadgitub7" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
+            <GitHubIcon />
+          </a>
+          <a href="https://ca.linkedin.com/in/kadhir-ponnambalam-3211ab261" target="_blank" rel="noreferrer" className="nav-icon" aria-label="LinkedIn">
+            <LinkedInIcon />
+          </a>
+          <a href="mailto:kadhir.ponnambalam@gmail.com" className="nav-icon" aria-label="Email">
+            <MailIcon />
+          </a>
+        </div>
+      </nav>
+
+      <section id="hero">
+        <div className="hero-bg" aria-hidden="true" />
+        <div className="hero-inner">
+          <div className="profile-wrap">
+            <div className="profile-square">
+              <div className="profile-frame">
+                <img
+                  src={asset(profile.photo)}
+                  alt="Kadhir Ponnambalam"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="hero-text">
+            <p className="hero-label">Computer Engineering Portfolio</p>
+            <h1>
+              {profile.name}
+              <span className="hero-native"> ({profile.nativeName})</span>
+            </h1>
+            <p className="hero-degrees">BEng (Co-op) · McMaster University</p>
+            <p className="hero-tagline">
+              Embedded Systems · FPGA · Backend Systems · Research
+            </p>
+            <div className="hero-bio">
+              {profile.aboutLines.map((line) => (
+                <p key={line} style={{ marginBottom: '0.85rem' }}>
+                  {renderEmphasizedText(line)}
+                </p>
               ))}
             </div>
+            <div className="hero-pills" aria-label="Technologies">
+              {profile.pills.map((p) => (
+                <span key={p} className="hero-pill">{p}</span>
+              ))}
+            </div>
+            <div className="hero-ctas">
+              <a href="#projects" className="btn-white">Projects</a>
+              <button type="button" className="btn-outline-white" onClick={() => setResumeOpen(true)}>
+                Resume
+              </button>
+              <a href="#contact" className="btn-outline-white">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div className="white-body">
+        <div className="divider" />
+        <section id="projects" className="section-block">
+          <div className="container">
+            <span className="section-label">Build</span>
+            <h2>Projects</h2>
+            <p className="section-intro">
+              Technical work across embedded systems, FPGA design, backend infrastructure, and machine learning platforms.
+            </p>
             <div className="projects-grid">
-              {currentProjects.map((p) => (
+              {allProjects.map((p) => (
                 <article
                   key={p.title}
-                  className="project-card"
+                  className="p-card"
                   onClick={() => setSelectedProject(p)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') setSelectedProject(p); }}
+                  role="button"
+                  tabIndex={0}
                 >
-                  {p.images?.length ? (
-                    <div className="project-thumb-wrap">
+                  <div className="p-image">
+                    {p.images?.length ? (
                       <img
-                        src={p.images[0].src}
+                        src={asset(p.images[0].src)}
                         alt={p.images[0].alt}
-                        className="project-thumb"
                         loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
                       />
-                    </div>
-                  ) : null}
-                  <div className="project-title">{p.title}</div>
-                  <div className="project-meta">{p.meta}</div>
-
-                  <div className="pill-row" style={{ marginTop: 0 }}>
-                    {p.tags.map((t) => (
-                      <span key={t} className="pill">
-                        {t}
-                      </span>
-                    ))}
+                    ) : (
+                      <div className="p-ph"><span>{p.category}</span></div>
+                    )}
+                    <div className="p-overlay"><span className="p-more">More →</span></div>
                   </div>
-
-                  <div className="project-links" style={{ marginTop: '0.85rem' }}>
-                    {p.links?.map((l) => (
-                      <a
-                        key={l.label}
-                        href={l.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        {l.label}
-                      </a>
-                    ))}
+                  <div className="p-body">
+                    <div className="p-cat">{p.category}</div>
+                    <div className="p-title">{p.title}</div>
+                    <p className="p-desc">{p.description.split('\n\n')[0]}</p>
+                    <div className="p-tags">
+                      {p.tags.map((t) => <span key={t} className="p-tag">{t}</span>)}
+                    </div>
                   </div>
                 </article>
               ))}
             </div>
-          </section>
-        );
-      case 'experience':
-        return (
-          <section className="section" id="experience">
-            <div className="section-item">Experience</div>
+          </div>
+        </section>
 
-            <div className="description">
+        <div className="divider" />
+        <section id="experience" className="section-block">
+          <div className="container">
+            <span className="section-label">Professional</span>
+            <h2>Experience</h2>
+            <p className="section-intro">
               Research experience focused on engineering experimentation, system evaluation, technical documentation, and applied hardware-adjacent work.
-            </div>
-
-            <div className="education-card" style={{ marginBottom: '2rem', padding: '1.5rem', backgroundColor: '#f9f9f9', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-                {education.icon && (
-                  <img
-                    src={education.icon}
-                    alt=""
-                    className="experience-icon"
-                    style={{ width: '60px', height: '60px', flexShrink: 0 }}
-                  />
-                )}
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: '1.15rem', fontWeight: 600, marginBottom: '0.5rem' }}>{education.title}</div>
-                  <div style={{ fontSize: '0.95rem', color: '#666', marginBottom: '1rem' }}>{education.date}</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                    <div><strong>Program:</strong> {education.program}</div>
-                    <div><strong>GPA:</strong> {education.gpa}</div>
-                    <div><strong>Focus Areas:</strong> {education.focus}</div>
-                    <div><strong>Key Coursework:</strong> {education.areasOfStudy}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h3 style={{ marginTop: '2.5rem', marginBottom: '1.5rem' }}>Professional Experience</h3>
-
-            <div className="experience-stack" style={{ marginTop: '1rem' }}>
+            </p>
+            <div className="exp-stack">
               {experience.map((e) => (
-                <div key={e.title} className="experience-item">
-                  <div className="experience-header-row">
-                    {e.icon && (
-                      <img
-                        src={e.icon}
-                        alt=""
-                        className="experience-icon"
-                      />
-                    )}
-                    <div className="experience-title">{e.title}</div>
-                  </div>
-                  <div className="experience-date">{e.date}</div>
-                  <div className="description" style={{ marginTop: 0 }}>
-                    <ul className="experience-list" style={{ paddingLeft: '1.1rem' }}>
-                      {e.descriptionLines.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
+                <div key={e.title} className="exp-card">
+                  {e.icon && (
+                    <img src={asset(e.icon)} alt="" className="exp-icon" onError={(ev) => { ev.currentTarget.style.display = 'none'; }} />
+                  )}
+                  <div>
+                    <div className="exp-title">{e.title}</div>
+                    <div className="exp-date">{e.date}</div>
+                    <ul className="exp-list">
+                      {e.descriptionLines.map((line) => <li key={line}>{line}</li>)}
                     </ul>
                   </div>
                 </div>
               ))}
             </div>
-          </section>
-        );
-      case 'research':
-        return (
-          <section className="section" id="research">
-            <div className="section-item">Research/Journal Papers</div>
-            <div className="description">
-              Research and technical experience across engineering labs, data analysis, and applied experimentation.
-            </div>
+          </div>
+        </section>
 
-            <div className="research-section">
-              <h3>Flexible Electronics & Sensors</h3>
-              {research.flexibleElectronicsAndSensors.map((paper) => (
-                <div
-                  key={paper.title}
-                  className="research-item"
-                  onClick={() => window.open(paper.link, '_blank')}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter') window.open(paper.link, '_blank'); }}
-                >
-                  <h4>{paper.title}</h4>
-                  <p className="citation">{paper.citation}</p>
-                  <p>{paper.blurb}</p>
+        <div className="divider" />
+        <section id="research" className="section-block">
+          <div className="container">
+            <span className="section-label">Publications</span>
+            <h2>Research</h2>
+            <p className="section-intro">
+              Peer-reviewed publications and data-driven research across flexible electronics, spatial analysis, and socioeconomic modeling.
+            </p>
+            <div className="research-grid">
+              {researchGroups.map((group) => (
+                <div key={group.title} className="research-group">
+                  <h3>{group.title}</h3>
+                  {group.papers.map((paper) => (
+                    <div
+                      key={paper.title}
+                      className="research-item"
+                      onClick={() => window.open(paper.link, '_blank')}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.open(paper.link, '_blank'); }}
+                    >
+                      <h4>{paper.title}</h4>
+                      <p className="citation">{paper.citation}</p>
+                      <p>{paper.blurb}</p>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div className="research-section">
-              <h3>Data Analytics & Spatial Analysis</h3>
-              {research.dataAnalyticsAndSpatialAnalysis.map((paper) => (
-                <div
-                  key={paper.title}
-                  className="research-item"
-                  onClick={() => window.open(paper.link, '_blank')}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter') window.open(paper.link, '_blank'); }}
-                >
-                  <h4>{paper.title}</h4>
-                  <p className="citation">{paper.citation}</p>
-                  <p>{paper.blurb}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="research-section">
-              <h3>Socioeconomic Data Analysis</h3>
-              {research.socioeconomicDataAnalysis.map((paper) => (
-                <div
-                  key={paper.title}
-                  className="research-item"
-                  onClick={() => window.open(paper.link, '_blank')}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter') window.open(paper.link, '_blank'); }}
-                >
-                  <h4>{paper.title}</h4>
-                  <p className="citation">{paper.citation}</p>
-                  <p>{paper.blurb}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      case 'skills':
-        return (
-          <section className="section" id="skills">
-            <div className="section-item">Skills</div>
-            <div className="description">
+        <div className="divider" />
+        <section id="skills" className="section-block">
+          <div className="container">
+            <span className="section-label">Toolkit</span>
+            <h2>Skills &amp; Tools</h2>
+            <p className="section-intro">
               Tools and technical areas based on current use, project exposure, and research experience.
-            </div>
-
-            <div className="skills-tier-list" style={{ marginTop: '1rem' }}>
-              {Object.entries(skills).map(([tier, items]) => (
-                <div key={tier} className="skill-tier">
-                  <div className="skill-tier-label">{tier}</div>
-                  <div className="skills-list">
-                    {items.map((skill) => (
-                      <button
-                        key={skill.name}
-                        type="button"
-                        className="pill skill-button"
-                        onClick={() => setSelectedSkill(skill)}
-                      >
-                        {skill.name}
-                      </button>
-                    ))}
+            </p>
+            <div className="skills-row">
+              {skillCategories.map((cat) => (
+                <div key={cat.name} className="sk-box">
+                  <div className="sk-cat">{cat.name}</div>
+                  <div className="sk-tags">
+                    {cat.items.map((name) => {
+                      const skill = findSkillByName(name);
+                      return (
+                        <button
+                          key={name}
+                          type="button"
+                          className="sk-tag"
+                          onClick={() => skill && setSelectedSkill(skill)}
+                          disabled={!skill}
+                          title={skill ? `View details for ${name}` : name}
+                        >
+                          {name}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
             </div>
-          </section>
-        );
+          </div>
+        </section>
 
-      case 'honours':
-        return (
-          <section className="section" id="honours">
-            <div className="section-item">Honours</div>
+        <div className="divider" />
+        <section id="education" className="section-block">
+          <div className="container">
+            <span className="section-label">Academic</span>
+            <h2>Education</h2>
+            <div className="edu-grid">
+              <div className="edu-card">
+                <div className="edu-body">
+                  <div>
+                    <div className="edu-deg">{education.title}</div>
+                    <a href="https://www.eng.mcmaster.ca/" target="_blank" rel="noreferrer" className="edu-school">
+                      McMaster University
+                    </a>
+                    <div className="edu-meta">{education.date}</div>
+                    <span className="edu-gpa">GPA {education.gpa}</span>
+                    <p className="edu-detail"><strong>Program:</strong> {education.program}</p>
+                    <p className="edu-detail"><strong>Focus:</strong> {education.focus}</p>
+                  </div>
+                  {education.icon && (
+                    <img src={asset(education.icon)} alt="McMaster University" className="edu-logo" onError={(ev) => { ev.currentTarget.style.display = 'none'; }} />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="coursework-block">
+              <strong>Relevant Coursework</strong>
+              {education.areasOfStudy}
+            </div>
 
-            <div className="timeline" style={{ marginTop: '1.2rem' }}>
+            <span className="section-label" style={{ marginTop: '4rem', display: 'block' }}>Recognition</span>
+            <h2 style={{ marginTop: '0.4rem' }}>Honours &amp; Awards</h2>
+            <div className="cert-grid">
               {honours.map((item, index) => (
-                <div key={`${item.year}-${item.detail}-${index}`} className="timeline-item">
-                  <div className="timeline-marker" />
-                  <div className="timeline-content">
-                    <div className="timeline-year">{item.detail}</div>
-                    <div 
-                      className="timeline-title" 
-                      onClick={() => item.link && window.open(item.link, '_blank')}
-                      style={{ cursor: item.link ? 'pointer' : 'default', textDecoration: item.link ? 'underline' : 'none' }}
-                      role={item.link ? 'button' : 'heading'}
-                    >
-                      {item.title}
+                <div key={`${item.year}-${item.detail}`} className="cert-card">
+                  <div className="cert-left">
+                    <div className="cert-n">{String(index + 1).padStart(2, '0')}</div>
+                    <div>
+                      <div className="cert-name">{item.title}</div>
+                      <div className="cert-issuer">{item.detail}</div>
                     </div>
                   </div>
+                  {item.link ? (
+                    <a href={item.link} target="_blank" rel="noreferrer" className="cert-view">View ↗</a>
+                  ) : (
+                    <span className="cert-view" style={{ opacity: 0.4, pointerEvents: 'none' }}>—</span>
+                  )}
                 </div>
               ))}
             </div>
-          </section>
-        );
+          </div>
+        </section>
 
-      case 'blog':
-        return (
-          <section className="section" id="blog">
-            <div className="section-item">Blog</div>
-            <div className="description">
+        <div className="divider" />
+        <section id="blog" className="section-block">
+          <div className="container">
+            <span className="section-label">Updates</span>
+            <h2>Blog</h2>
+            <p className="section-intro">
               LinkedIn-style updates on projects, research milestones, and technical learning sprints.
-            </div>
-
-            <div className="blog-list" style={{ marginTop: '1rem' }}>
+            </p>
+            <div className="blog-list">
               {blogPosts.map((post, index) => {
                 const isOpen = openBlog === index;
                 return (
@@ -816,7 +852,6 @@ export default function Page() {
                       </div>
                       <div className="blog-toggle">{isOpen ? '−' : '+'}</div>
                     </div>
-
                     {isOpen && (
                       <div className="blog-content">
                         <p>{post.content}</p>
@@ -828,9 +863,7 @@ export default function Page() {
                                 href={link.href}
                                 target="_blank"
                                 rel="noreferrer"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                }}
+                                onClick={(e) => e.stopPropagation()}
                               >
                                 {link.label}
                               </a>
@@ -843,230 +876,108 @@ export default function Page() {
                 );
               })}
             </div>
-          </section>
-        );
-
-      case 'contact':
-        return (
-          <section className="section" id="contact">
-            <div className="section-item">Contact</div>
-            <div className="description">
-              Send a note and I&apos;ll reply soon. (This form opens your email client via
-              `mailto:`.)
-            </div>
-
-            <div className="contact-grid">
-              <div className="contact-card">
-                <ContactForm />
-              </div>
-            </div>
-          </section>
-        );
-
-      case 'home':
-      default:
-        return (
-          <section className="section header" id="home">
-            <div className="header">
-              <h1>
-                {profile.name} <span className="native-name">({profile.nativeName})</span>
-              </h1>
-              <div className="subtitle">— {profile.subtitleLines[0]}</div>
-              <div className="subtitle">— {profile.subtitleLines[1]}</div>
-            </div>
-
-            <div className="header-divider" />
-
-            <div className="hero-card">
-              <div className="hero-grid">
-                <div className="hero-copy">
-                  <div className="hero-photo-wrap">
-                    <img src={profile.photo} alt="Kadhir Ponnambalam" className="profile-photo" />
-                  </div>
-                  <div className="hero-text-wrap">
-                    {profile.aboutLines.map((line) => (
-                      <p key={line} className="bio-line">
-                        {renderEmphasizedText(line)}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-                <div className="cta-row">
-                  <a className="btn btn-primary" href="#projects">
-                    View projects →
-                  </a>
-                  <a
-                    className="btn"
-                    href="/imageAssets/KadhirPonnambalamRESUME.pdf"
-                    download
-                  >
-                    Download Resume
-                  </a>
-                </div>
-
-                <div className="pill-row" aria-label="Technologies">
-                  {profile.pills.map((p) => (
-                    <span key={p} className="pill">
-                      {p}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-    }
-  })();
-
-  return (
-    <div className="layout">
-      <aside className="sidebar">
-        <nav className="nav" aria-label="Primary">
-          {tabs.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              className={t.id === activeId ? 'tab active' : 'tab'}
-              aria-selected={t.id === activeId}
-              onClick={() => {
-                setActiveId(t.id);
-                window.history.replaceState(null, '', `#${t.id}`);
-              }}
-            >
-              {t.label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="sidebar-social">
-          <div className="social-links">
-            <a
-              href="https://ca.linkedin.com/in/kadhir-ponnambalam-3211ab261"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-            <a href="https://github.com/kadgitub7" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-            <a href="mailto:kadhir.ponnambalam@gmail.com">Email</a>
           </div>
-        </div>
-      </aside>
+        </section>
 
-      <main className="content">
-        {activeSection}
-      </main>
+        <div className="divider" />
+        <section id="contact" className="section-block">
+          <div className="container">
+            <span className="section-label">Get in Touch</span>
+            <h2>Contact</h2>
+            <p className="section-intro">
+              Hamilton, ON · Open to co-op, internship, and research opportunities across Canada
+            </p>
+            <div className="contact-links">
+              <a href="mailto:kadhir.ponnambalam@gmail.com" className="c-link">
+                <MailIcon />
+                kadhir.ponnambalam@gmail.com
+              </a>
+              <a href="https://ca.linkedin.com/in/kadhir-ponnambalam-3211ab261" target="_blank" rel="noreferrer" className="c-link">
+                <LinkedInIcon />
+                LinkedIn
+              </a>
+              <a href="https://github.com/kadgitub7" target="_blank" rel="noreferrer" className="c-link">
+                <GitHubIcon />
+                GitHub
+              </a>
+            </div>
+            <div className="contact-form-wrap">
+              <ContactForm />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div className="footer-inner">
+          <span>Kadhir Ponnambalam — Computer Engineering</span>
+          <span>© {new Date().getFullYear()}</span>
+        </div>
+      </footer>
 
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="modal-content project-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" aria-label="Close project details" onClick={() => setSelectedProject(null)}>×</button>
+            <button type="button" className="modal-close" aria-label="Close project details" onClick={() => setSelectedProject(null)}>×</button>
             {selectedProject.images?.length ? (
               <div className="modal-hero">
-                <img
-                  src={selectedProject.images[0].src}
-                  alt={selectedProject.images[0].alt}
-                  className="modal-hero-image"
-                />
+                <img src={asset(selectedProject.images[0].src)} alt={selectedProject.images[0].alt} className="modal-hero-image" />
               </div>
             ) : null}
             <h2>{selectedProject.title}</h2>
             <p className="modal-intro">{selectedProject.description}</p>
-
             {selectedProject.caseStudy && (
               <div className="case-study-wrap">
                 <h3>1) Motivation</h3>
                 <p>{selectedProject.caseStudy.motivation}</p>
-
                 <h3>2) 3D Modeling and Circuitry Prototypes</h3>
                 <ul className="case-study-list">
-                  {selectedProject.caseStudy.prototypingNarrative.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
+                  {selectedProject.caseStudy.prototypingNarrative.map((item) => <li key={item}>{item}</li>)}
                 </ul>
                 {selectedProject.images?.length ? (
                   <div className="project-image-gallery">
                     {selectedProject.images.map((image) => (
                       <figure key={image.src} className="project-image-card">
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="project-image"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.parentElement.style.display = 'none';
-                          }}
-                        />
+                        <img src={asset(image.src)} alt={image.alt} loading="lazy" onError={(ev) => { ev.currentTarget.parentElement.style.display = 'none'; }} />
                         <figcaption>{image.alt}</figcaption>
                       </figure>
                     ))}
                   </div>
-                ) : (
-                  <div className="empty-state" style={{ marginTop: '0.85rem' }}>
-                    Prototype images are not currently available in this build.
-                  </div>
-                )}
-
-                <h3>3) Mechanism Flowchart, Demo Video, and Device Explanation</h3>
-                <pre className="flowchart-block">
-{`[Button Press]
-      ↓
-[Read Input + Lid State]
-      ↓
-[Toggle Open/Close State]
-      ↓
-[Rotate Servo]
-      ↓
-[Move Lid to Target Position]
-      ↓
-[Return to Ready State]`}
-                </pre>
+                ) : null}
+                <h3>3) Mechanism Flow &amp; Demo</h3>
                 <ul className="case-study-list">
-                  {selectedProject.caseStudy.mechanismFlow.map((step) => (
-                    <li key={step}>{step}</li>
-                  ))}
+                  {selectedProject.caseStudy.mechanismFlow.map((step) => <li key={step}>{step}</li>)}
                 </ul>
                 <p>{selectedProject.caseStudy.demoExplanation}</p>
-
                 <h3>4) Skills</h3>
                 <ul className="case-study-list">
                   {selectedProject.caseStudy.skills.map((skill) => (
-                    <li key={skill.name}>
-                      <strong>{skill.name}:</strong> {skill.detail}
-                    </li>
+                    <li key={skill.name}><strong>{skill.name}:</strong> {skill.detail}</li>
                   ))}
                 </ul>
               </div>
             )}
             <div className="modal-links">
-              <a
-                href={selectedProject.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              {selectedProject.demoVideo && (
-                <a
-                  href={selectedProject.demoVideo}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Demo Video
-                </a>
+              {selectedProject.github && (
+                <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
               )}
+              {selectedProject.demoVideo && (
+                <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>
+              )}
+              {selectedProject.links?.map((l) => (
+                <a key={l.href} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+              ))}
             </div>
           </div>
         </div>
       )}
+
       {selectedSkill && (
         <div className="modal-overlay" onClick={() => setSelectedSkill(null)}>
           <div className="modal-content" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" aria-label="Close skill details" onClick={() => setSelectedSkill(null)}>×</button>
+            <button type="button" className="modal-close" aria-label="Close skill details" onClick={() => setSelectedSkill(null)}>×</button>
             <h2>{selectedSkill.name}</h2>
-            <p>{selectedSkill.blurb}</p>
+            <p className="modal-intro">{selectedSkill.blurb}</p>
             <div className="skill-detail-grid">
               <article className="skill-detail-card">
                 <h3>What this means</h3>
@@ -1082,9 +993,7 @@ export default function Page() {
                 <h3>Where I implemented this</h3>
                 <div className="modal-links">
                   {selectedSkill.evidence.map((item) => (
-                    <a key={item.href} href={item.href} target="_blank" rel="noreferrer">
-                      {item.label}
-                    </a>
+                    <a key={item.href} href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
                   ))}
                 </div>
               </div>
@@ -1092,7 +1001,22 @@ export default function Page() {
           </div>
         </div>
       )}
-    </div>
+
+      {resumeOpen && (
+        <div className="modal-overlay resume-modal" onClick={() => setResumeOpen(false)}>
+          <div className="modal-content" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+            <div className="resume-modal-header">
+              <span>Kadhir_Ponnambalam_Resume.pdf</span>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <a href={asset('/imageAssets/KadhirPonnambalamRESUME.pdf')} download className="resume-download">Download ↗</a>
+                <button type="button" className="modal-close" aria-label="Close resume" onClick={() => setResumeOpen(false)}>×</button>
+              </div>
+            </div>
+            <iframe src={asset('/imageAssets/KadhirPonnambalamRESUME.pdf')} title="Kadhir Ponnambalam Resume" />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

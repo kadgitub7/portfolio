@@ -68,7 +68,7 @@ export default function ContactForm() {
         </div>
 
         <div className="form-actions">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn-white">
             Send message
           </button>
         </div>

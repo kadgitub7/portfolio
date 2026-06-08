@@ -1,89 +1,34 @@
 import './globals.css';
+import { asset } from '../lib/asset';
 
-const siteUrl = 'https://kadhir-ponnambalam.vercel.app';
-const ogImage = '/imageAssets/Kadhir_Ponnambalam_Sketch.png';
+const siteUrl = 'https://kadgitub7.github.io/portfolio';
 
 export const metadata = {
   title: 'Kadhir Ponnambalam — Portfolio',
   description:
-    'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
+    'McMaster University computer engineering student and research assistant. Projects in embedded systems, FPGA design, and backend data pipelines.',
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: '/',
-  },
-  keywords: [
-    'Kadhir Ponnambalam',
-    'Engineering portfolio',
-    'Embedded systems',
-    'Backend development',
-    'Research assistant',
-    'McMaster University',
-  ],
-  authors: [{ name: 'Kadhir Ponnambalam' }],
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
-  },
-  openGraph: {
-    title: 'Kadhir Ponnambalam — Portfolio',
-    description:
-      'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
-    type: 'website',
-    url: siteUrl,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: 'Kadhir Ponnambalam portfolio preview',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Kadhir Ponnambalam — Portfolio',
-    description:
-      'McMaster University engineering student and research assistant. Projects in embedded prototyping and backend/data pipeline systems.',
-    images: [ogImage],
+    icon: asset('/favicon.svg'),
+    shortcut: asset('/favicon.svg'),
+    apple: asset('/favicon.svg'),
   },
 };
 
 export default function RootLayout({ children }) {
-  const personSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Kadhir Ponnambalam',
-    url: siteUrl,
-    sameAs: [
-      'https://github.com/kadgitub7',
-      'https://ca.linkedin.com/in/kadhir-ponnambalam-3211ab261',
-    ],
-    alumniOf: 'McMaster University',
-    jobTitle: 'Engineering Student and Research Assistant',
-  };
-
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@400;500&family=Noto+Serif+Tamil:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;500;600&display=swap"
           rel="stylesheet"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
       <body>{children}</body>
     </html>
   );
 }
-
