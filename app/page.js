@@ -8,14 +8,14 @@ const profile = {
   name: 'Kadhir Ponnambalam',
   nativeName: 'கதிர்',
   subtitleLines: [
-    'BEng (Co-op) Engineering 1 @ McMaster University (2025–2029)',
-    'Research Assistant • Linux systems evaluation • Data pipelines',
+    'B.Eng (Co-op) Computer Engineering @ McMaster University (2025–2029)',
+    'Hardware Research Intern | FPGA Design | Computer Architecture | AI Acceleration',
   ],
   aboutLines: [
-  'I am a McMaster University engineering student with research experience evaluating **open-source data processing software** on **constrained Linux systems**.',
+  'I am a McMaster University engineering student with research experience **improving and accelerating AI algorithms** using **custom hardware**.',
   'I benchmark **performance**, **memory usage**, and **throughput**, and evaluate engineering trade-offs between **compute**, **latency**, and **accuracy** for deployment feasibility.',
   'I have contributed to **peer-reviewed publications** in flexible temperature sensing through experimental, sensor-based work with **microcontrollers** and **electronics**.',
-  'I am seeking hands-on engineering roles where I can grow in **embedded systems**, **FPGA development**, **backend/system tooling**, and applied **hardware-adjacent development**.',
+  'I am seeking hands-on engineering roles where I can grow in **embedded systems**, **FPGA development**, **ASIC**, **IC design**, and applied **hardware-adjacent development**.',
   ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
@@ -73,29 +73,20 @@ const projects = {
 
   fpgaAndDigitalDesign: [
     {
-      title: 'Pipelined Matrix Multiplier with Arduino Integration',
-      meta: 'FPGA / Digital Design • Hardware Acceleration • Oct 2025',
-      tags: ['Verilog', 'FPGA', 'Pipelining', 'Arduino'],
+      title: 'FPGA-Accelerated Cardiac Arrhythmia Diagnosis (CDS-NI)',
+      meta: 'FPGA / AI Acceleration • Cardiac Diagnostics • 2025–2026',
+      tags: ['Verilog', 'FPGA', 'Fixed-Point', 'AI Acceleration', 'UART', 'Python'],
       description:
-        'Designed and implemented a pipelined matrix multiplication accelerator with Arduino integration for external interfacing and validation.',
-      demoVideo: 'https://lnkd.in/ggQTuggi',
+        'Built an end-to-end FPGA AI acceleration system that runs CDS-NI (Cognitive Dynamic System + Natural Intelligence) cardiac arrhythmia inference entirely on a Digilent Basys 3 board (Xilinx Artix-7), communicating with a host PC over UART.\n\n' +
+        'The pipeline trains on 452 patients from the UCI Arrhythmia Dataset (279 features per 12-lead ECG), converts the model to fixed-point arithmetic in Python, exports BRAM initialization files, and runs inference in 14 synthesizable Verilog modules with a 4-lane parallel architecture.\n\n' +
+        'Results: 100% bit-exact agreement with the Python golden model; fixed-point outputs matched floating-point within 0.2% across all 452 patients. Four patients are processed in parallel with nearly zero additional clock cycles. Per-user inference dropped from 10 ms (Python) to 3 ms on FPGA (~70% reduction) at ~0.13 W vs ~1.2–1.7 W on a laptop CPU for the same workload.\n\n' +
+        'Key engineering challenges included profiling Q-format bit budgets across the full dataset (one probability table would have clamped 78% of values under the first format choice), designing a two-level deduplicated BRAM lookup to fit ~131,000-entry healthy-range tables within block RAM limits, and coordinating handshake timing across a 14-state FSM with pipelined dividers, DSP multipliers, and UART I/O.',
+      github: 'https://github.com/kadgitub7/FPGA-x-CDS-NI',
+      demoVideo: 'https://www.youtube.com/watch?v=AOe1tF_W6hg',
       links: [
-        { label: 'Demo Video', href: 'https://lnkd.in/ggQTuggi' },
+        { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=AOe1tF_W6hg' },
+        { label: 'GitHub', href: 'https://github.com/kadgitub7/FPGA-x-CDS-NI' },
       ],
-    },
-    {
-      title: '4-bit Even Parity Generator',
-      meta: 'Digital Logic Project • FPGA Foundations • Mar 2025',
-      tags: ['Verilog', 'Boolean Logic', 'Digital Circuits'],
-      description:
-        'Implemented and verified a 4-bit even parity generator while learning foundational FPGA and digital logic concepts.',
-    },
-    {
-      title: '7-Segment Display Decoder',
-      meta: 'Digital Logic Project • FPGA Foundations • Mar 2025',
-      tags: ['Verilog', 'Digital Logic', 'Combinational Circuits'],
-      description:
-        'Built and simulated a seven-segment display decoder to strengthen understanding of combinational logic design and FPGA-oriented implementation.',
     },
   ],
 
@@ -114,26 +105,10 @@ const projects = {
       ],
     },
   ],
-
-  machineLearningAndDataSystems: [
-    {
-      title: 'EZ-MLAI (Automated Machine Learning Models)',
-      meta: 'ML Platform • Jun 2024',
-      tags: ['REST APIs', 'Machine Learning', 'Backend Systems'],
-      description:
-        'Developed a backend-driven ML platform enabling dataset upload, automated model execution, result storage, and live prediction workflows.',
-      github: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-',
-      demoVideo: 'https://www.youtube.com/watch?v=PeN1xNjkYBw',
-      links: [
-        { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=PeN1xNjkYBw' },
-        { label: 'GitHub', href: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-' },
-      ],
-    },
-  ],
 };
 
 const education = {
-  title: 'McMaster University — Bachelor of Engineering (Co-op)',
+  title: 'McMaster University Bachelor of Engineering (Co-op)',
   date: 'Sep 2025 - Apr 2029 (Expected)',
   icon: '/imageAssets/McMaster_Logo.jpg',
   gpa: '4.0',
@@ -144,34 +119,34 @@ const education = {
 
 const experience = [
   {
-    title: 'Research Assistant — Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
-    date: 'Oct 2025 - Present',
-    icon: '/imageAssets/HADI_Labs_Logo.png',
-    descriptionLines: [
-      'TODO: Add quantifiable details about benchmark workflows (e.g., number of profiles tested, specific tools used)',
-      'TODO: Specify metrics from system studies (e.g., number of configurations, specific bottlenecks identified, measurable performance improvements)',
-      'TODO: Add concrete outcomes from documentation work (e.g., how many team members used results, adoption impact)',
-    ],
-  },
-  {
-    title: 'Research Assistant — Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
-    date: 'Jun 2023 - Sep 2023',
-    icon: '/imageAssets/McMaster_Logo.jpg',
-    descriptionLines: [
-      'TODO: Provide specific reliability metrics and test parameters for sensor firmware validation',
-      'TODO: Add quantifiable improvements to sensor performance (percentages, specific parameters improved)',
-      'TODO: Confirm publication details (titles, venues, authorship status)',
-      'TODO: Specify number of collaborators and their contributions',
-    ],
-  },
-  {
-    title: 'Research Assistant — Natural Intelligence & Computational Detection Systems, McMaster University',
+    title: 'Research Assistant: Natural Intelligence & Computational Detection Systems, McMaster University',
     date: 'Jan 2024 - Present',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'TODO: Quantify improvements to arrhythmia detection algorithm (accuracy %, sensitivity metrics, specific parameters improved)',
-      'TODO: Define scope of CDS approach development (methods tested, iterations, validation approach)',
-      'TODO: Add measurable outcomes or deliverables from this research position',
+      'Developed an FPGA-accelerated CDS-NI cardiac arrhythmia inference system on a Basys 3 (Artix-7) board, spanning Python model training, fixed-point conversion, and 14 synthesizable Verilog modules with UART host communication.',
+      'Profiled Q-format bit budgets across all 452 patients in the UCI Arrhythmia Dataset (279 features each), converting the full floating-point pipeline to fixed-point with results within 0.2% of floating-point across every patient.',
+      'Implemented a 4-lane parallel FPGA architecture achieving 100% bit-exact agreement with the Python golden model, ~3 ms per-user inference (vs 10 ms in Python), and ~0.13 W power draw (vs ~1.2–1.7 W on a laptop CPU).',
+      'Validated the design with 10-fold cross-validation (71.5% overall accuracy, 82.1% sensitivity, 62.4% specificity on 452 patients) and built Python tooling for UART-based hardware verification against golden outputs.',
+    ],
+  },
+  {
+    title: 'Research Assistant: Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
+    date: 'Oct 2025 - Present',
+    icon: '/imageAssets/HADI_Labs_Logo.png',
+    descriptionLines: [
+      'Volunteer research assistant evaluating open-source data processing software on constrained Linux systems for lab deployment feasibility.',
+      'Benchmarked CaImAn across performance, memory usage, and throughput to characterize engineering trade-offs between compute cost, latency, and output accuracy.',
+      'Documented benchmark workflows and system-study findings for collaborators assessing which tooling profiles are practical on resource-limited hardware.',
+    ],
+  },
+  {
+    title: 'Research Assistant: Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
+    date: 'Jun 2023 - Sep 2023',
+    icon: '/imageAssets/McMaster_Logo.jpg',
+    descriptionLines: [
+      'Conducted experimental and sensor-based research using microcontrollers and electronic test equipment in a flexible electronics lab environment.',
+      'Co-authored two peer-reviewed publications on nickel oxide/graphene flexible temperature sensors published in Advanced Materials Technologies (2025) and Sensors and Actuators A: Physical (2025).',
+      'Supported sensor fabrication and characterization workflows focused on low-temperature processing and flexible device stability.',
     ],
   },
 ];
@@ -202,7 +177,7 @@ const skills = {
       blurb: 'Strong foundation in digital logic implementation and simulation.',
       meaning: 'Verilog is my core HDL for expressing and validating digital hardware behavior.',
       usage: 'I used Verilog in architecture-focused coursework to reason about datapaths, state machines, and timing-driven logic correctness.',
-      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+      evidence: [{ label: 'FPGA-Accelerated Arrhythmia Diagnosis (GitHub)', href: 'https://github.com/kadgitub7/FPGA-x-CDS-NI' }],
     },
   ],
   A: [
@@ -211,21 +186,14 @@ const skills = {
       blurb: 'Hands-on exposure to FPGA flow from logic mapping to prototype validation.',
       meaning: 'FPGA development lets me test hardware ideas quickly before committing to fixed implementations.',
       usage: 'I worked through synthesis/debug cycles and validated digital logic behavior in lab-style hardware workflows.',
-      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
+      evidence: [{ label: 'FPGA-Accelerated Arrhythmia Diagnosis (GitHub)', href: 'https://github.com/kadgitub7/FPGA-x-CDS-NI' }],
     },
     {
       name: 'Computer Architecture',
       blurb: 'Solid understanding of datapaths, memory movement, and low-level trade-offs.',
       meaning: 'Computer architecture helps me reason about performance bottlenecks from first principles.',
       usage: 'I apply architecture thinking when interpreting throughput/latency results and when balancing compute-vs-accuracy deployment decisions.',
-      evidence: [{ label: 'Research Assistant experience', href: 'https://www.mcmaster.ca/' }],
-    },
-    {
-      name: 'Data Visualization',
-      blurb: 'Uses clear visual summaries to communicate benchmarks and experiment outcomes.',
-      meaning: 'Data visualization is how I turn technical results into decisions stakeholders can act on.',
-      usage: 'I built readable summaries for benchmark and experiment outputs so collaborators could quickly compare system trade-offs.',
-      evidence: [{ label: 'Research Assistant experience', href: 'https://www.mcmaster.ca/' }],
+      evidence: [{ label: 'Coming soon', href: 'https://www.mcmaster.ca/' }],
     },
   ],
   B: [
@@ -236,7 +204,6 @@ const skills = {
       usage: 'I designed endpoints for telemetry ingestion, metric retrieval, and downstream monitoring integrations.',
       evidence: [
         { label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
-        { label: 'EZ-MLAI project', href: 'https://github.com/kadgitub7/ez-mlai-Automated-Machine-Learning-' },
       ],
     },
     {
@@ -255,30 +222,7 @@ const skills = {
     },
   ],
   C: [
-    {
-      name: 'VHDL',
-      blurb: 'Working familiarity from coursework and exploratory digital design projects.',
-      meaning: 'VHDL broadened my HDL fluency and helped me compare different hardware description styles.',
-      usage: 'I used VHDL in coursework to implement and test basic digital modules while strengthening simulation discipline.',
-      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
-    },
-    {
-      name: 'SoC Design',
-      blurb: 'Early exposure to system-level integration concepts with growing practical depth.',
-      meaning: 'SoC design connects processing, memory, and peripherals into one coherent hardware system.',
-      usage: 'I explored SoC-level trade-offs through architecture-focused learning and hardware integration activities.',
-      evidence: [{ label: 'Engineering coursework at McMaster', href: 'https://www.eng.mcmaster.ca/' }],
-    },
-    {
-      name: 'Spark/HDFS',
-      blurb: 'Project experience with distributed processing and storage for analytics pipelines.',
-      meaning: 'Spark/HDFS let me scale data processing beyond single-machine workflows.',
-      usage: 'I implemented ingestion-to-processing pipelines that used HDFS for storage and Spark for distributed computation.',
-      evidence: [
-        { label: 'Anomaly Detection project', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
-        { label: 'Anomaly Detection demo', href: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s' },
-      ],
-    },
+    
   ],
 };
 
@@ -346,55 +290,55 @@ const research = {
 const honours = [
   {
     year: '2024',
-    detail: 'Jan 2024 — STEM Fellowship High School Big Data Challenge National Finalist',
+    detail: 'Jan 2024: STEM Fellowship High School Big Data Challenge National Finalist',
     title: 'Selected as Top 10 in Canada for paper: Utilizing Spatial Analysis to Identify Correlations between Plant Species and Biological Variety.',
     link: 'https://www.stemfellowship.org/hsbdc-projects/2023',
   },
   {
     year: '2023',
-    detail: 'Jan 2023 — STEM Fellowship High School Big Data Challenge National Finalist',
+    detail: 'Jan 2023: STEM Fellowship High School Big Data Challenge National Finalist',
     title: 'Selected as Top 10 in Canada for paper: Investigating the correlation between housing factors and life satisfaction.',
     link: 'https://www.stemfellowship.org/hsbdc-projects/2022',
   },
   {
     year: '2023',
-    detail: 'May 2023 — Canada Wide Science Fair Silver Medalist',
+    detail: 'May 2023: Canada Wide Science Fair Silver Medalist',
     title: 'Awarded Silver Medal for project: Electrotaxis of the Tardigrade Species Hypsibius sp',
     link: 'https://youthscience.ca/wp-content/uploads/2023/05/CWSF2023-Award-Results-Scholarships-EN.pdf',
   },
   {
     year: '2022',
-    detail: 'May 2022 — Canada Wide Science Fair Silver Medalist',
+    detail: 'May 2022: Canada Wide Science Fair Silver Medalist',
     title: 'Awarded Silver Medal for project: Effect Of Electrical Field On Tardigrades In A Microfluidic Environment.',
     link: 'https://youthscience.ca/wp-content/uploads/2022/05/CWSF-2022-Award-Scholarship-Results-EN.pdf',
   },
   {
     year: '2023',
-    detail: 'Mar 2023 — McMaster University Faculty of Engineering Scholarship',
+    detail: 'Mar 2023: McMaster University Faculty of Engineering Scholarship',
     title: '$3,500 scholarship awarded upon entry into the Computer Engineering program.',
     link: 'https://www.mcmaster.ca/',
   },
   {
     year: '2021',
-    detail: 'Mar 2021 — Canada Wide Science Fair Finalist',
+    detail: 'Mar 2021: Canada Wide Science Fair Finalist',
     title: 'Selected as finalist by Bay Area Science and Engineering Fair for: Investigation of the Water Vapor Collection Efficiency of Various Household Materials.',
     link: 'https://www.basef.ca/past-fairs/basef2021/2021-award-winners/',
   },
   {
     year: '2022',
-    detail: 'Oct 2022 — Innovation Nation Junior STEM Star Award',
+    detail: 'Oct 2022: Innovation Nation Junior STEM Star Award',
     title: 'Awarded 3rd place (Junior STEM Star Award) amongst high school and university student projects.',
     link: 'https://www.csii.ca/innovation-nation/past-winners',
   },
   {
     year: '2022',
-    detail: 'Nov 2022 — RCM Level 7 Theory and Practical First Class Honors',
+    detail: 'Nov 2022: RCM Level 7 Theory and Practical First Class Honors',
     title: 'Achieved Royal Conservatory of Music Level 7 Theory and Practical certification with First Class Honors.',
     link: 'https://www.rcmusic.com/',
   },
   {
     year: '2025',
-    detail: 'Jan 2025 — Co-author Publications',
+    detail: 'Jan 2025: Co-author Publications',
     title: 'Published peer-reviewed research on nickel oxide/graphene flexible temperature sensing in Advanced Materials Technologies and Sensors & Actuators A: Physical.',
     link: 'https://advanced.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/admt.202500060',
   },
@@ -818,7 +762,7 @@ export default function Page() {
                   {item.link ? (
                     <a href={item.link} target="_blank" rel="noreferrer" className="cert-view">View ↗</a>
                   ) : (
-                    <span className="cert-view" style={{ opacity: 0.4, pointerEvents: 'none' }}>—</span>
+                    <span className="cert-view" style={{ opacity: 0.4, pointerEvents: 'none' }}>-</span>
                   )}
                 </div>
               ))}
@@ -910,7 +854,7 @@ export default function Page() {
 
       <footer>
         <div className="footer-inner">
-          <span>Kadhir Ponnambalam — Computer Engineering</span>
+          <span>Kadhir Ponnambalam | Computer Engineering</span>
           <span>© {new Date().getFullYear()}</span>
         </div>
       </footer>
