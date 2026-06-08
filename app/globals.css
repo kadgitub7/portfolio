@@ -1072,7 +1072,137 @@ footer span {
   color: var(--gray-2);
   line-height: 1.75;
   margin-bottom: 1.25rem;
-  white-space: pre-line;
+}
+
+.modal-meta {
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.modal-link-thumbs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+  clear: both;
+}
+
+.link-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border: 1px solid var(--gray-5);
+  text-decoration: none;
+  color: var(--black);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  min-height: 118px;
+  overflow: hidden;
+}
+
+.link-thumb:hover {
+  border-color: var(--gray-4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.link-thumb-github {
+  background: var(--gray-6);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.link-thumb-video {
+  padding: 0;
+  position: relative;
+  background: #000;
+}
+
+.link-thumb-preview {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+  opacity: 0.88;
+}
+
+.link-thumb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--black);
+}
+
+.link-thumb-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.link-thumb-play {
+  width: 100%;
+  height: 72px;
+  font-size: 1.5rem;
+  color: #fff;
+  background: #111;
+}
+
+.link-thumb-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.link-thumb-sub {
+  font-size: 0.68rem;
+  color: var(--gray-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.link-thumb-video .link-thumb-label,
+.link-thumb-video .link-thumb-sub {
+  padding: 0 0.85rem 0.75rem;
+  color: #fff;
+}
+
+.link-thumb-video .link-thumb-sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.project-narrative {
+  margin-top: 0.5rem;
+}
+
+.narrative-block {
+  margin-bottom: 1.5rem;
+}
+
+.narrative-block h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-3);
+  margin-bottom: 0.65rem;
+}
+
+.narrative-block p {
+  font-size: 0.86rem;
+  color: var(--gray-2);
+  line-height: 1.75;
+}
+
+.narrative-struggles li {
+  color: var(--gray-2);
+}
+
+.narrative-outcomes li {
+  color: var(--gray-1);
 }
 
 .modal-hero {
@@ -1298,6 +1428,10 @@ footer span {
   }
 
   .skill-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-link-thumbs {
     grid-template-columns: 1fr;
   }
 

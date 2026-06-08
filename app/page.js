@@ -27,47 +27,36 @@ const projects = {
       title: 'Electronically Controlled Mountable Storage System (AccessoBox)',
       meta: 'Embedded Systems • Accessibility Engineering • 4 months',
       tags: ['Arduino', 'Embedded Systems', 'CAD', 'C Programming'],
-      description:
-        'Designed and built AccessoBox, an electronically controlled storage system mounted to a wheelchair armrest for a client who needed easier access to personal items.\n\n' +
-        'The final prototype uses an Arduino-controlled servo mechanism to open and close the lid with a low-force button press and an approximately 90 degree opening range. The button pad includes a custom 3D-printed cap to increase surface area and reduce required pressure, and the system responds in under one second.\n\n' +
-        'I contributed across circuit design, coding, and mechanical integration: I developed and simulated control circuits, helped wire and integrate motors/buttons, wrote Arduino C logic for open/close state control, and designed the button-lid CAD geometry used in the final assembly.\n\n' +
-        'Development followed multiple iterations (cardboard concept models, early electrical testing with LED stand-ins before part arrival, and revised 3D-printed housings). These iterations resolved motor clearance, linkage alignment, and enclosure design issues before final demo.\n\n' +
-        'This project strengthened my ability to translate accessibility requirements into engineering constraints, validate ideas through staged prototyping, and deliver a practical hardware solution under material and timeline constraints.',
-      caseStudy: {
-        motivation:
-          'The project was motivated by a real client need: a wheelchair user had limited access to personal belongings while moving. Existing storage solutions were hard to operate, unstable, and not designed for low-force interaction. Our goal was to create a lightweight, mountable, and easy-to-use device that gave the client independent access to essentials at any time.',
-        prototypingNarrative: [
-          '3D modeling began with simple enclosure concepts to validate fit on a wheelchair armrest and enough internal space for electronics. Early feedback focused on button size, lid thickness, and mechanical clearance for servo movement.',
-          'The circuitry design started with simulated logic and a test circuit where an LED represented the actuator state while the servo motor was still being sourced. This helped validate button-driven state logic and wiring flow before full hardware integration.',
-          'After parts arrived, we moved through multiple prototype iterations: initial printed housing, revised geometry for motor opening and linkage spacing, and a final casing with exposed accessibility-focused buttons and improved visual finish.',
-        ],
-        mechanismFlow: [
-          'User presses low-force button with enlarged cap.',
-          'Arduino reads button input and checks current lid state.',
-          'Control logic toggles target state (open or close).',
-          'Servo rotates linkage to move lid to target angle (~90 degrees when opening).',
-          'System waits briefly for stability, then returns to input-ready state.',
-        ],
-        demoExplanation:
-          'In the demo, the user can open and close the storage lid quickly with a single button interaction. The mechanism shows low-latency response and consistent movement, demonstrating how the device improves daily accessibility when attached to a wheelchair armrest.',
-        skills: [
-          { name: 'Circuit Design & Simulation', detail: 'Built and validated button-actuator logic with simulated and physical test circuits before final integration.' },
-          { name: 'Embedded C (Arduino)', detail: 'Implemented state-based open/close firmware logic for reliable servo control and user interaction.' },
-          { name: 'CAD & 3D Printing', detail: 'Co-developed enclosure geometry and button-cap design for accessibility, manufacturability, and motor clearance.' },
-          { name: 'Prototype Iteration', detail: 'Used staged prototyping to resolve parts delays, mechanical faults, and integration issues under project timelines.' },
-        ],
-      },
-      github: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main',
-      demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share',
-      links: [
-        { label: 'Demo Video', href: 'https://youtube.com/shorts/jYOuo-QSWQE?feature=share' },
-        { label: 'GitHub', href: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1/tree/main' },
-      ],
+      summary:
+        'An Arduino-controlled storage box mounted to a wheelchair armrest, designed for a client who needed low-force, independent access to personal items.',
+      github: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1',
+      demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE',
       images: [
         { src: '/imageAssets/accessobox-final-prototype.png', alt: 'AccessoBox final mounted prototype' },
         { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype wiring' },
         { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype render' },
       ],
+      narrative: {
+        motivation:
+          'This capstone project started from a real client need: a wheelchair user had limited access to personal belongings while moving. Existing storage options were hard to operate, unstable, and not designed for low-force interaction. Our goal was a lightweight, armrest-mounted device the client could open and close independently at any time.',
+        process: [
+          'Interviewed the client and translated accessibility requirements into mechanical constraints: low button force, ~90° lid opening, sub-second response, and stable mounting on a wheelchair armrest.',
+          'Built cardboard concept models and early CAD enclosures to validate internal clearance for electronics, servo travel, and button reach before committing to printed parts.',
+          'Designed and simulated the control circuit first, using an LED as a stand-in for the servo while hardware was still being sourced, which let us validate button-driven state logic before full integration.',
+          'Iterated 3D-printed housings through multiple revisions to resolve motor clearance, linkage alignment, and button-cap geometry for accessibility.',
+          'Integrated the final assembly: Arduino firmware for open/close state control, servo linkage, custom enlarged button cap, and client-ready mounting demo.',
+        ],
+        struggles: [
+          'Parts delays forced us to validate firmware and wiring logic with LED stand-ins long before the servo arrived, which was workable but compressed the integration timeline.',
+          'Early printed housings failed on motor clearance and linkage alignment; each revision exposed a new mechanical constraint we had not modeled in CAD.',
+          'Balancing lid opening range, enclosure rigidity, and armrest fit required several prototype cycles rather than a single clean design pass.',
+        ],
+        outcomes: [
+          'Delivered a working prototype with a low-force button, ~90° lid opening, and response under one second in demo conditions.',
+          'Contributed across circuit design, Arduino C firmware, CAD/3D printing, and mechanical integration under real client and timeline constraints.',
+          'Source code and build notes are on GitHub; demo video shows the mounted device in use.',
+        ],
+      },
     },
   ],
 
@@ -76,17 +65,38 @@ const projects = {
       title: 'FPGA-Accelerated Cardiac Arrhythmia Diagnosis (CDS-NI)',
       meta: 'FPGA / AI Acceleration • Cardiac Diagnostics • 2025–2026',
       tags: ['Verilog', 'FPGA', 'Fixed-Point', 'AI Acceleration', 'UART', 'Python'],
-      description:
-        'Built an end-to-end FPGA AI acceleration system that runs CDS-NI (Cognitive Dynamic System + Natural Intelligence) cardiac arrhythmia inference entirely on a Digilent Basys 3 board (Xilinx Artix-7), communicating with a host PC over UART.\n\n' +
-        'The pipeline trains on 452 patients from the UCI Arrhythmia Dataset (279 features per 12-lead ECG), converts the model to fixed-point arithmetic in Python, exports BRAM initialization files, and runs inference in 14 synthesizable Verilog modules with a 4-lane parallel architecture.\n\n' +
-        'Results: 100% bit-exact agreement with the Python golden model; fixed-point outputs matched floating-point within 0.2% across all 452 patients. Four patients are processed in parallel with nearly zero additional clock cycles. Per-user inference dropped from 10 ms (Python) to 3 ms on FPGA (~70% reduction) at ~0.13 W vs ~1.2–1.7 W on a laptop CPU for the same workload.\n\n' +
-        'Key engineering challenges included profiling Q-format bit budgets across the full dataset (one probability table would have clamped 78% of values under the first format choice), designing a two-level deduplicated BRAM lookup to fit ~131,000-entry healthy-range tables within block RAM limits, and coordinating handshake timing across a 14-state FSM with pipelined dividers, DSP multipliers, and UART I/O.',
+      summary:
+        'End-to-end FPGA inference for CDS-NI cardiac arrhythmia detection on a $250 Basys 3 board, from Python training and fixed-point conversion to 14 Verilog modules over UART.',
       github: 'https://github.com/kadgitub7/FPGA-x-CDS-NI',
       demoVideo: 'https://www.youtube.com/watch?v=AOe1tF_W6hg',
-      links: [
-        { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=AOe1tF_W6hg' },
-        { label: 'GitHub', href: 'https://github.com/kadgitub7/FPGA-x-CDS-NI' },
+      images: [
+        { src: '/imageAssets/FPGA_CDS_photo.png', alt: 'FPGA-CDS-NI system diagram' },
       ],
+      narrative: {
+        motivation:
+          'I wanted to take a machine learning algorithm for cardiac arrhythmia detection and run it entirely on an FPGA, not on a GPU or cloud server, but on a Basys 3 board on my desk. The CDS-NI (Cognitive Dynamic System + Natural Intelligence) approach processes 12-lead ECG data from the UCI Arrhythmia Dataset (452 patients, 279 features each) and outputs a HEALTHY / UNHEALTHY / SCREENING decision per patient.',
+        process: [
+          'Implemented the four-stage CDS-NI pipeline in Python: decision tree construction (ID3), healthy-range and weight computation, action pruning, and floating-point inference as the golden reference model.',
+          'Profiled every intermediate variable across all 452 patients to assign Q-format bit budgets, then built a fixed-point Python pipeline that exports seven `.mem` BRAM initialization files for FPGA synthesis.',
+          'Designed 14 synthesizable Verilog modules: UART RX/TX, sensor interfaces, tree traversal, AF engine, fixed-point multiply/divide, range comparators, and a 14-state master FSM, targeting the Basys 3 (Artix-7 XC7A35T).',
+          'Built a 4-lane parallel architecture where shared model BRAMs broadcast to four per-patient datapaths, then validated with 10-fold cross-validation and a Python UART validator comparing five metrics against the golden model.',
+          'Added a real-time interactive CLI mode for live diagnosis over serial, with step-by-step setup guides for each sub-component in the repo.',
+        ],
+        struggles: [
+          'Fixed-point conversion was exhausting: one probability table would have clamped 78% of its values under my first Q-format choice, and I only caught it by profiling the actual data ranges across all patients.',
+          'Block RAM nearly ran out. The healthy-range lookup needed ~131,000 entries, so I designed a two-level deduplicated index table that cut memory roughly in half at the cost of one extra clock cycle per read.',
+          'Every sub-module has its own latency (BRAM reads, pipelined divider, DSP multiplier). Coordinating handshake timing across the full FSM produced bugs that only appeared on specific patients.',
+          'UART at 115,200 baud with 558 bytes per patient was painfully slow and surprisingly fragile, and the gap from "works in simulation" to "works on hardware talking to a real computer" was enormous.',
+          'Scaling from 1 patient to 4 in parallel forced a full rethink of module interfaces and shared-vs-replicated resource allocation.',
+        ],
+        outcomes: [
+          '100% bit-exact agreement with the Python golden model; fixed-point matched floating-point within 0.2% across all 452 patients.',
+          '4 patients processed in parallel with nearly zero additional clock cycles; ~3 ms per user on FPGA vs 10 ms in Python (~70% reduction).',
+          'Power draw ~0.13 W on FPGA vs ~1.2–1.7 W on a laptop CPU for the same workload; ~49/100 BRAM18 tiles used on the Basys 3.',
+          '10-fold cross-validation: 71.5% overall accuracy, 82.1% sensitivity, 62.4% specificity on 452 patients.',
+          'Full repo includes validation scripts, FSM diagrams, technical deep-dive docs, and a walkthrough demo video.',
+        ],
+      },
     },
   ],
 
@@ -95,14 +105,35 @@ const projects = {
       title: 'Autonomous Anomaly Detection for Logging-system',
       meta: 'Distributed Backend • Jan 2026',
       tags: ['Flask', 'REST APIs', 'HDFS', 'Spark', 'SQL'],
-      description:
-        'Designed and implemented a distributed backend system using Flask REST APIs to ingest telemetry-style log data from a web client.',
+      summary:
+        'A full-stack log processing pipeline, with a web client, Flask REST API, Unix preprocessing scripts, Docker-hosted HDFS, Spark-to-SQL ingestion, and logistic-regression anomaly detection.',
       github: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system',
-      demoVideo: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s',
-      links: [
-        { label: 'Demo Video', href: 'https://www.youtube.com/watch?v=TJmfjUQGjUo&t=152s' },
-        { label: 'GitHub', href: 'https://github.com/kadgitub7/Anomaly-detection-for-Logging-system' },
+      demoVideo: 'https://www.youtube.com/watch?v=TJmfjUQGjUo',
+      images: [
+        { src: '/imageAssets/Anomaly_detection_photo.png', alt: 'Anomaly detection system photograph' },
       ],
+      narrative: {
+        motivation:
+          'After first-semester engineering exams I wanted to build a realistic distributed backend, not a single-script demo, but a system that ingests telemetry-style logs from a web client, moves them through a multi-stage pipeline, stores them in HDFS and SQL, and runs ML-based anomaly detection on demand through a REST API.',
+        process: [
+          'Built a Flask REST API backend (`logs.py`) and web frontend for generating and submitting log entries from the browser.',
+          'Wrote Unix/Bash pipeline scripts that process raw logs in sequence: rotation → compression → ship → ingest_to_HDFS, segmenting and organizing files before they enter distributed storage.',
+          'Deployed HDFS inside Docker and wired a Spark layer to ingest processed files from HDFS into a MySQL SQL database.',
+          'Connected the REST API to retrieve stored log features and run a logistic classification model for anomaly detection, triggered from the frontend.',
+          'Visualized processed log distributions in Tableau for exploratory analysis of the ingested data.',
+        ],
+        struggles: [
+          'Getting Docker, HDFS, Spark, MySQL, and the Flask API to run reliably on one machine required careful ordering, since each stage depends on the previous pipeline step completing cleanly.',
+          'The Unix preprocessing scripts had to handle file rotation and compression correctly before HDFS ingestion; silent failures at any stage broke downstream SQL loading.',
+          'End-to-end testing needed at least ~20 log entries before the ML detection step produced meaningful results, which made incremental debugging slow.',
+          'This was my first time wiring a full distributed stack (frontend → API → bash pipeline → HDFS → Spark → SQL → ML) rather than isolated components.',
+        ],
+        outcomes: [
+          'Working full-stack pipeline from browser log submission through HDFS storage, SQL persistence, and frontend-triggered anomaly detection.',
+          'Modular bash scripts for each pipeline stage, documented setup requiring MySQL, Docker Desktop, and Python.',
+          'Tableau visualization of log data published for exploratory review; demo video walks through the full setup and run sequence.',
+        ],
+      },
     },
   ],
 };
@@ -405,11 +436,17 @@ const blogPosts = [
 ];
 
 const projectCategoryLabels = {
-  embeddedSystems: 'Embedded Systems',
   fpgaAndDigitalDesign: 'FPGA & Digital Design',
+  embeddedSystems: 'Embedded Systems',
   backendAndDistributedSystems: 'Backend & Distributed Systems',
   machineLearningAndDataSystems: 'Machine Learning & Data',
 };
+
+const projectDisplayOrder = [
+  'fpgaAndDigitalDesign',
+  'backendAndDistributedSystems',
+  'embeddedSystems',
+];
 
 const skillCategories = [
   {
@@ -441,8 +478,8 @@ const researchGroups = [
 ];
 
 function flattenProjects(projectMap) {
-  return Object.entries(projectMap).flatMap(([key, items]) =>
-    items.map((p) => ({
+  return projectDisplayOrder.flatMap((key) =>
+    (projectMap[key] || []).map((p) => ({
       ...p,
       category: projectCategoryLabels[key] || key,
     }))
@@ -458,6 +495,12 @@ function findSkillByName(name) {
 }
 
 const allProjects = flattenProjects(projects);
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([^&?/]+)/);
+  return match?.[1] || null;
+}
 
 const LinkedInIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -479,6 +522,39 @@ const GitHubIcon = () => (
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   </svg>
 );
+
+function ProjectLinkThumbs({ project }) {
+  const videoId = getYouTubeId(project.demoVideo);
+
+  return (
+    <div className="modal-link-thumbs">
+      {project.github && (
+        <a href={project.github} target="_blank" rel="noreferrer" className="link-thumb link-thumb-github">
+          <span className="link-thumb-icon" aria-hidden="true">
+            <GitHubIcon />
+          </span>
+          <span className="link-thumb-label">Source Code</span>
+          <span className="link-thumb-sub">GitHub ↗</span>
+        </a>
+      )}
+      {project.demoVideo && (
+        <a href={project.demoVideo} target="_blank" rel="noreferrer" className="link-thumb link-thumb-video">
+          {videoId ? (
+            <img
+              src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+              alt=""
+              className="link-thumb-preview"
+            />
+          ) : (
+            <span className="link-thumb-icon link-thumb-play" aria-hidden="true">▶</span>
+          )}
+          <span className="link-thumb-label">Demo Video</span>
+          <span className="link-thumb-sub">YouTube ↗</span>
+        </a>
+      )}
+    </div>
+  );
+}
 
 export default function Page() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -613,7 +689,7 @@ export default function Page() {
                   <div className="p-body">
                     <div className="p-cat">{p.category}</div>
                     <div className="p-title">{p.title}</div>
-                    <p className="p-desc">{p.description.split('\n\n')[0]}</p>
+                    <p className="p-desc">{p.summary}</p>
                     <div className="p-tags">
                       {p.tags.map((t) => <span key={t} className="p-tag">{t}</span>)}
                     </div>
@@ -863,22 +939,48 @@ export default function Page() {
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="modal-content project-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="modal-close" aria-label="Close project details" onClick={() => setSelectedProject(null)}>×</button>
+
+            <ProjectLinkThumbs project={selectedProject} />
+
             {selectedProject.images?.length ? (
               <div className="modal-hero">
                 <img src={asset(selectedProject.images[0].src)} alt={selectedProject.images[0].alt} className="modal-hero-image" />
               </div>
             ) : null}
+
             <h2>{selectedProject.title}</h2>
-            <p className="modal-intro">{selectedProject.description}</p>
-            {selectedProject.caseStudy && (
-              <div className="case-study-wrap">
-                <h3>1) Motivation</h3>
-                <p>{selectedProject.caseStudy.motivation}</p>
-                <h3>2) 3D Modeling and Circuitry Prototypes</h3>
-                <ul className="case-study-list">
-                  {selectedProject.caseStudy.prototypingNarrative.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-                {selectedProject.images?.length ? (
+            <p className="modal-meta">{selectedProject.meta}</p>
+            <p className="modal-intro">{selectedProject.summary}</p>
+
+            {selectedProject.narrative && (
+              <div className="project-narrative">
+                <section className="narrative-block">
+                  <h3>Why I built this</h3>
+                  <p>{selectedProject.narrative.motivation}</p>
+                </section>
+
+                <section className="narrative-block">
+                  <h3>Process</h3>
+                  <ul className="case-study-list">
+                    {selectedProject.narrative.process.map((step) => <li key={step}>{step}</li>)}
+                  </ul>
+                </section>
+
+                <section className="narrative-block">
+                  <h3>What was hard</h3>
+                  <ul className="case-study-list narrative-struggles">
+                    {selectedProject.narrative.struggles.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                </section>
+
+                <section className="narrative-block">
+                  <h3>Outcomes</h3>
+                  <ul className="case-study-list narrative-outcomes">
+                    {selectedProject.narrative.outcomes.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                </section>
+
+                {selectedProject.images?.length > 1 ? (
                   <div className="project-image-gallery">
                     {selectedProject.images.map((image) => (
                       <figure key={image.src} className="project-image-card">
@@ -888,30 +990,8 @@ export default function Page() {
                     ))}
                   </div>
                 ) : null}
-                <h3>3) Mechanism Flow &amp; Demo</h3>
-                <ul className="case-study-list">
-                  {selectedProject.caseStudy.mechanismFlow.map((step) => <li key={step}>{step}</li>)}
-                </ul>
-                <p>{selectedProject.caseStudy.demoExplanation}</p>
-                <h3>4) Skills</h3>
-                <ul className="case-study-list">
-                  {selectedProject.caseStudy.skills.map((skill) => (
-                    <li key={skill.name}><strong>{skill.name}:</strong> {skill.detail}</li>
-                  ))}
-                </ul>
               </div>
             )}
-            <div className="modal-links">
-              {selectedProject.github && (
-                <a href={selectedProject.github} target="_blank" rel="noreferrer">GitHub</a>
-              )}
-              {selectedProject.demoVideo && (
-                <a href={selectedProject.demoVideo} target="_blank" rel="noreferrer">Demo Video</a>
-              )}
-              {selectedProject.links?.map((l) => (
-                <a key={l.href} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
-              ))}
-            </div>
           </div>
         </div>
       )}

@@ -4,7 +4,7 @@ import { asset } from '../lib/asset';
 const siteUrl = 'https://kadgitub7.github.io/portfolio';
 
 export const metadata = {
-  title: 'Kadhir Ponnambalam — Portfolio',
+  title: 'Kadhir Ponnambalam - Portfolio',
   description:
     'McMaster University computer engineering student and research assistant. Projects in embedded systems, FPGA design, and backend data pipelines.',
   metadataBase: new URL(siteUrl),
