@@ -17,8 +17,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Project repo → https://kadgitub7.github.io/portfolio/
+      # For a user site repo (kadgitub7.github.io), set this to an empty string.
+      NEXT_PUBLIC_BASE_PATH: /portfolio
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v4
         with:
@@ -29,10 +34,6 @@ jobs:
 
       - name: Build static site
         run: npm run build
-        env:
-          # Project repo → https://kadgitub7.github.io/portfolio/
-          # For a user site repo (kadgitub7.github.io), set this to an empty string.
-          NEXT_PUBLIC_BASE_PATH: /portfolio
 
       - name: Disable Jekyll for GitHub Pages
         run: echo > out/.nojekyll
