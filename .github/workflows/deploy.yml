@@ -34,6 +34,9 @@ jobs:
           # For a user site repo (kadgitub7.github.io), set this to an empty string.
           NEXT_PUBLIC_BASE_PATH: /portfolio
 
+      - name: Disable Jekyll for GitHub Pages
+        run: echo > out/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
