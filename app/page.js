@@ -62,6 +62,39 @@ const projects = {
 
   fpgaAndDigitalDesign: [
     {
+      title: 'Custom MIPS Microprocessor with AI Extensions',
+      meta: 'Digital Design / Computer Architecture • 2026',
+      tags: ['Verilog', 'MIPS', 'Pipelining', 'Posit Arithmetic', 'BNN', 'Vivado'],
+      summary:
+        'A from-scratch MIPS microprocessor in Verilog, progressing through four architectures (single-cycle, multi-cycle, pipelined, custom) with three novel hardware extensions for ML/edge computing: posit arithmetic, ALU integrity checking, and a binary neural network coprocessor.',
+      github: 'https://github.com/kadgitub7/Custom-Microprocessor-project',
+      images: [{ src: '/imageAssets/MIPS_Image.jpg', alt: 'MIPS Processor' },],
+      narrative: {
+        motivation:
+          'This project started as a learning exercise following Digital Design and Computer Architecture (Harris & Harris, 4th Edition) and grew into something much larger. I wanted to understand how processors actually work by building one myself, then push beyond the textbook by adding custom hardware extensions targeting machine learning and edge computing workloads.',
+        process: [
+          'Built a single-cycle processor where every instruction completes in one clock cycle. Simple but wasteful, since fast instructions are held back by slow ones.',
+          'Redesigned as a multi-cycle version that breaks execution into discrete states so simple instructions finish sooner, consolidating three separate adders into one shared ALU.',
+          'Implemented a five-stage pipelined design (Fetch, Decode, Execute, Memory, Writeback) that overlaps instruction execution for much higher throughput, with data forwarding and hazard detection.',
+          'Extended the pipeline with three custom hardware units: an 8-bit posit arithmetic unit (ES=2) as an alternative to IEEE 754 that provides tapered precision clustered around 1.0 where ML weights tend to live; an ALU integrity checker using parity-based cross-validation between the standard ALU and posit unit to catch bit-flips without full dual-modular redundancy; and a binary neural network coprocessor with XNOR, accumulate, and threshold activation operations for edge AI inference on 32-bit vectors.',
+          'Verified the complete design with 10 testbenches in Vivado covering full pipeline integration, individual modules, and all three extensions, then validated by running assembly programs through the processor.',
+        ],
+        struggles: [
+          'Wiring up the forwarding paths and watching pipeline hazards get resolved in the waveform viewer is what made the theory click, but getting data forwarding correct across all instruction combinations was painstaking.',
+          'The posit encoding is fundamentally different from IEEE 754: variable-length regime bits mean the decode/encode logic is more complex than standard floating-point, and getting the rounding behavior right at the bit level required careful validation.',
+          'Integrating three custom coprocessors into the existing pipeline without breaking hazard detection or stalling logic meant rethinking module interfaces and control signals at each stage.',
+          'Each architecture iteration exposed new timing and resource-sharing tradeoffs that the previous design had hidden, requiring full re-verification at each step.',
+        ],
+        outcomes: [
+          'Four complete processor architectures demonstrating the progression from single-cycle to custom-extended pipeline, each fully simulated and verified.',
+          'Posit arithmetic unit provides tapered precision ideal for ML weight representation, with graceful precision loss toward extremes instead of the abrupt underflow/overflow of IEEE 754.',
+          'ALU integrity checker offers lightweight fault detection for safety-critical applications at a fraction of the cost of full dual-modular redundancy.',
+          'BNN coprocessor reduces multiply-accumulate operations to bitwise XNOR + popcount, making neural network inference practical on resource-constrained edge hardware.',
+          'Full repository includes design files for all four variants, ROM test programs, simulation testbenches, waveform captures, and a detailed development timeline.',
+        ],
+      },
+    },
+    {
       title: 'FPGA-Accelerated Cardiac Arrhythmia Diagnosis (CDS-NI)',
       meta: 'FPGA / AI Acceleration • Cardiac Diagnostics • 2025–2026',
       tags: ['Verilog', 'FPGA', 'Fixed-Point', 'AI Acceleration', 'UART', 'Python'],
@@ -375,6 +408,16 @@ const honours = [
   },
 ];
 
+
+const certifications = [
+  {
+    name: 'VLSI CAD Part I: Logic',
+    issuer: 'University of Illinois Urbana-Champaign',
+    platform: 'Coursera',
+    date: 'Jul 2026',
+    verifyUrl: 'https://coursera.org/verify/3ZNLT809WRHO',
+  },
+];
 
 const blogPosts = [
   {
@@ -840,6 +883,23 @@ export default function Page() {
                   ) : (
                     <span className="cert-view" style={{ opacity: 0.4, pointerEvents: 'none' }}>-</span>
                   )}
+                </div>
+              ))}
+            </div>
+
+            <span className="section-label" style={{ marginTop: '4rem', display: 'block' }}>Courses</span>
+            <h2 style={{ marginTop: '0.4rem' }}>Certifications</h2>
+            <div className="cert-grid">
+              {certifications.map((cert, index) => (
+                <div key={cert.name} className="cert-card">
+                  <div className="cert-left">
+                    <div className="cert-n">{String(index + 1).padStart(2, '0')}</div>
+                    <div>
+                      <div className="cert-name">{cert.name}</div>
+                      <div className="cert-issuer">{cert.issuer} · {cert.platform} · {cert.date}</div>
+                    </div>
+                  </div>
+                  <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="cert-view">Verify ↗</a>
                 </div>
               ))}
             </div>
