@@ -62,6 +62,40 @@ const projects = {
 
   fpgaAndDigitalDesign: [
     {
+      title: 'FPGA + Computer Vision Accelerated Traffic Light Controller',
+      meta: 'Digital Design / Computer Vision / Embedded Systems / Electronics • 2026',
+      tags: ['Verilog', 'Vivado', 'Arduino UNO', 'FPGA', 'YOLOv8n', 'Python', 'C++'],
+      summary:
+        'A full-stack embedded systems project that replaces traditional fixed-cycle traffic lights with an intelligent, real-time controller. A webcam feeds live video to a YOLOv8 object detection model that counts cars in each lane, sends those counts over UART to an FPGA running a custom finite state machine written in Verilog, which then decides the optimal signal phase and transmits the result to an Arduino that drives physical LED traffic lights. The system was benchmarked against a standard fixed-cycle traffic light across 11 test scenarios and achieved an average ~77% reduction in worst-case wait time.',
+      github: 'https://github.com/kadgitub7/FPGA-AI-Accelerated-Traffic-Controller',
+      images: [{ src: '/imageAssets/Traffic_Image.png', alt: 'Traffic Control System' },],
+      demoVideo: 'https://www.youtube.com/watch?v=FnLTe4PYCGY',
+      narrative: {
+        motivation:
+          'Everybody knows traffic lights are not efficient. I noticed from a young age many scenarios where there is only a single car in an intersection but it is waiting at a red light. I wanted to build a project that mixed both software and hardware, combining computer vision, FPGAs, and embedded systems into one integrated system that solves a real inefficiency.',
+        process: [
+          'Built a YOLOv8 nano computer vision pipeline to detect and count cars in each lane from a live webcam feed, creating a full testing environment for evaluation.',
+          'Designed a custom finite state machine in Verilog running on a Basys 3 FPGA that receives lane counts and determines the optimal traffic signal phase based on real-time demand.',
+          'Implemented UART communication across all three systems: PC to FPGA for sending car counts, and FPGA to Arduino UNO for transmitting the final light configuration.',
+          'Wired an Arduino UNO to drive physical LED traffic lights based on the signal commands received from the FPGA over serial.',
+          'Benchmarked the system against a standard fixed-cycle traffic light across 11 separate test scenarios to quantify wait time improvements.',
+        ],
+        struggles: [
+          'Debugging across three separate systems (PC, FPGA, Arduino) simultaneously was a nightmare. Going back and forth between software bugs and hardware bugs made isolating issues extremely difficult. At one point I tested every single wire and resistor on the breadboard only to find the problem was elsewhere.',
+          'Getting UART to sync properly with a correct start byte and common baud rate was a struggle. I needed to go beyond conceptual knowledge to make serial communication work reliably for both PC to FPGA and FPGA to Arduino links.',
+          'Discovered that the Rx and Tx digital pins 0 and 1 on the Arduino are shared with the USB-to-computer connection, which meant I needed to switch pins when sending data from the FPGA to the Arduino.',
+          'Debugging the finite state machine in Verilog was particularly hard. There were always timing errors or state mismatches that required simulation and careful waveform analysis to resolve.',
+        ],
+        outcomes: [
+          '~77% reduction in wait time for the worst-case scenario (car arriving at start of red phase) across 11 separate test scenarios compared to a standard fixed-cycle traffic light.',
+          'FPGA runs with Worst Negative Slack = 3.104 ns, True Negative Slack = 0.000, Worst Hold Slack = 0.082 ns, and True Hold Slack = 0.000, meeting all timing constraints.',
+          'FPGA operates at just 0.076 W of power, demonstrating the efficiency of hardware-accelerated traffic control logic.',
+          'Full end-to-end system integrating computer vision (YOLOv8n), digital design (Verilog FSM on FPGA), and embedded control (Arduino with LEDs), all communicating over UART.',
+          'Complete source code, step-by-step setup guides for every component, and a video demo walkthrough are available on GitHub.',
+        ],
+      },
+    },
+    {
       title: 'Custom MIPS Microprocessor with AI Extensions',
       meta: 'Digital Design / Computer Architecture • 2026',
       tags: ['Verilog', 'MIPS', 'Pipelining', 'Posit Arithmetic', 'BNN', 'Vivado'],
