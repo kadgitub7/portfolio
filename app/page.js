@@ -217,14 +217,13 @@ const education = {
 
 const experience = [
   {
-    title: 'Research Assistant: Natural Intelligence & Computational Detection Systems, McMaster University',
-    date: 'Jan 2024 - Present',
+    title: 'Summer Research Intern: Nano & Optoelectronics Lab | McMaster: Dr. Jamal Deen & Dr. Shiva Kumar, McMaster University',
+    date: 'May 2026 - Present',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
-      'Developed an FPGA-accelerated CDS-NI cardiac arrhythmia inference system on a Basys 3 (Artix-7) board, spanning Python model training, fixed-point conversion, and 14 synthesizable Verilog modules with UART host communication.',
-      'Profiled Q-format bit budgets across all 452 patients in the UCI Arrhythmia Dataset (279 features each), converting the full floating-point pipeline to fixed-point with results within 0.2% of floating-point across every patient.',
-      'Implemented a 4-lane parallel FPGA architecture achieving 100% bit-exact agreement with the Python golden model, ~3 ms per-user inference (vs 10 ms in Python), and ~0.13 W power draw (vs ~1.2–1.7 W on a laptop CPU).',
-      'Validated the design with 10-fold cross-validation (71.5% overall accuracy, 82.1% sensitivity, 62.4% specificity on 452 patients) and built Python tooling for UART-based hardware verification against golden outputs.',
+      'Implemented algorithmic changes to existing Cognitive Dynamic System for greater prediction capability as well as higher clinical separability of arrhythmia diagnosis',
+      'Grounded all algorithmic changes in data analysis and presented novel additions to existing pipeline stages for significantly improved accuracy',
+      'Conducted experiments to capture accuracy, AUC, ROC, F1, Precision, Recall scores of novel methods for comparison with current literature',
     ],
   },
   {
