@@ -8,7 +8,7 @@ const profile = {
   name: 'Kadhir Ponnambalam',
   nativeName: 'கதிர்',
   subtitleLines: [
-    'B.Eng (Co-op) Computer Engineering @ McMaster University (2025–2029)',
+    'B.Eng (Co-op) Computer Engineering @ McMaster University (2025-2029)',
     'Hardware Research Intern | FPGA Design | Computer Architecture | AI Acceleration',
   ],
   aboutLines: [
@@ -130,7 +130,7 @@ const projects = {
     },
     {
       title: 'FPGA-Accelerated Cardiac Arrhythmia Diagnosis (CDS-NI)',
-      meta: 'FPGA / AI Acceleration • Cardiac Diagnostics • 2025–2026',
+      meta: 'FPGA / AI Acceleration • Cardiac Diagnostics • 2025-2026',
       tags: ['Verilog', 'FPGA', 'Fixed-Point', 'AI Acceleration', 'UART', 'Python'],
       summary:
         'End-to-end FPGA inference for CDS-NI cardiac arrhythmia detection on a $250 Basys 3 board, from Python training and fixed-point conversion to 14 Verilog modules over UART.',
@@ -159,7 +159,7 @@ const projects = {
         outcomes: [
           '100% bit-exact agreement with the Python golden model; fixed-point matched floating-point within 0.2% across all 452 patients.',
           '4 patients processed in parallel with nearly zero additional clock cycles; ~3 ms per user on FPGA vs 10 ms in Python (~70% reduction).',
-          'Power draw ~0.13 W on FPGA vs ~1.2–1.7 W on a laptop CPU for the same workload; ~49/100 BRAM18 tiles used on the Basys 3.',
+          'Power draw ~0.13 W on FPGA vs ~1.2 to 1.7 W on a laptop CPU for the same workload; ~49/100 BRAM18 tiles used on the Basys 3.',
           '10-fold cross-validation: 71.5% overall accuracy, 82.1% sensitivity, 62.4% specificity on 452 patients.',
           'Full repo includes validation scripts, FSM diagrams, technical deep-dive docs, and a walkthrough demo video.',
         ],
@@ -184,7 +184,7 @@ const projects = {
           'After first-semester engineering exams I wanted to build a realistic distributed backend, not a single-script demo, but a system that ingests telemetry-style logs from a web client, moves them through a multi-stage pipeline, stores them in HDFS and SQL, and runs ML-based anomaly detection on demand through a REST API.',
         process: [
           'Built a Flask REST API backend (`logs.py`) and web frontend for generating and submitting log entries from the browser.',
-          'Wrote Unix/Bash pipeline scripts that process raw logs in sequence: rotation → compression → ship → ingest_to_HDFS, segmenting and organizing files before they enter distributed storage.',
+          'Wrote Unix/Bash pipeline scripts that process raw logs in sequence: rotation, compression, ship, and ingest_to_HDFS, segmenting and organizing files before they enter distributed storage.',
           'Deployed HDFS inside Docker and wired a Spark layer to ingest processed files from HDFS into a MySQL SQL database.',
           'Connected the REST API to retrieve stored log features and run a logistic classification model for anomaly detection, triggered from the frontend.',
           'Visualized processed log distributions in Tableau for exploratory analysis of the ingested data.',
@@ -193,12 +193,47 @@ const projects = {
           'Getting Docker, HDFS, Spark, MySQL, and the Flask API to run reliably on one machine required careful ordering, since each stage depends on the previous pipeline step completing cleanly.',
           'The Unix preprocessing scripts had to handle file rotation and compression correctly before HDFS ingestion; silent failures at any stage broke downstream SQL loading.',
           'End-to-end testing needed at least ~20 log entries before the ML detection step produced meaningful results, which made incremental debugging slow.',
-          'This was my first time wiring a full distributed stack (frontend → API → bash pipeline → HDFS → Spark → SQL → ML) rather than isolated components.',
+          'This was my first time wiring a full distributed stack (frontend, API, bash pipeline, HDFS, Spark, SQL, ML) rather than isolated components.',
         ],
         outcomes: [
           'Working full-stack pipeline from browser log submission through HDFS storage, SQL persistence, and frontend-triggered anomaly detection.',
           'Modular bash scripts for each pipeline stage, documented setup requiring MySQL, Docker Desktop, and Python.',
           'Tableau visualization of log data published for exploratory review; demo video walks through the full setup and run sequence.',
+        ],
+      },
+    },
+  ],
+
+  quantumComputing: [
+    {
+      title: 'Quantum Circuit Simulator',
+      meta: 'Quantum Computing • Python • 2026',
+      tags: ['Python', 'NumPy', 'Quantum Computing', 'Linear Algebra'],
+      summary:
+        'A from-scratch quantum circuit simulator in Python that implements qubit state vectors, single-qubit gates (Identity, Pauli-X, Pauli-Y, Pauli-Z, Hadamard), the two-qubit CNOT gate for entanglement, Born rule measurement collapse, and a depolarizing noise model simulating real hardware imperfections.',
+      github: 'https://github.com/kadgitub7/Quantum-Circuit-Simulator',
+      images: [
+        { src: '/imageAssets/Quantum_Circuit_Simulator.png', alt: 'Quantum circuit diagram with Hadamard, CNOT, and measurement gates' },
+      ],
+      narrative: {
+        motivation:
+          'I wanted to understand quantum computing from the ground up by building a simulator rather than just using an existing framework. The goal was to implement the core mathematical primitives (state vectors, unitary gates, tensor products, measurement) myself so I could see exactly how quantum algorithms work at the linear algebra level.',
+        process: [
+          'Represented qubits as two-dimensional state vectors of probability amplitudes, where the squared magnitude of each amplitude determines measurement probability and amplitudes sum to 1.',
+          'Implemented all fundamental single-qubit gates as matrix operations: Identity, Pauli-X (quantum NOT), Pauli-Y (NOT with phase shift), Pauli-Z (phase flip), and Hadamard (equal superposition).',
+          'Built the CNOT (Controlled-NOT) two-qubit gate using tensor product operations, enabling entanglement between qubit pairs where the target qubit flips conditionally on the control qubit state.',
+          'Implemented measurement following the Born rule, collapsing qubit states into the computational basis with probabilities determined by squared amplitudes.',
+          'Added a depolarizing noise model that applies random X, Y, or Z errors with a probability threshold of 0.001 after each gate operation, simulating the imperfections of real quantum hardware.',
+        ],
+        struggles: [
+          'Getting the tensor product calculations right for multi-qubit systems required careful attention to matrix dimensions and ordering, since Kronecker products do not commute.',
+          'Implementing the noise model required understanding how depolarizing channels affect quantum states probabilistically without violating unitarity constraints on the noiseless operations.',
+          'Ensuring numerical stability across chained gate operations was tricky, as floating-point rounding errors can accumulate and cause state vectors to drift from normalization.',
+        ],
+        outcomes: [
+          'Working simulator that correctly models qubit superposition, entanglement via CNOT, and probabilistic measurement collapse following the Born rule.',
+          'Depolarizing noise model provides realistic simulation of hardware imperfections, applying random Pauli errors at configurable probability thresholds.',
+          'Clean, minimal codebase with only NumPy as a dependency, designed to be readable and educational for anyone learning quantum computing fundamentals.',
         ],
       },
     },
@@ -512,14 +547,15 @@ const blogPosts = [
 ];
 
 const projectCategoryLabels = {
-  fpgaAndDigitalDesign: 'FPGA & Digital Design',
-  embeddedSystems: 'Embedded Systems',
-  backendAndDistributedSystems: 'Backend & Distributed Systems',
-  machineLearningAndDataSystems: 'Machine Learning & Data',
+  fpgaAndDigitalDesign: 'FPGA-Based AI Acceleration',
+  quantumComputing: 'Quantum Computing',
+  backendAndDistributedSystems: 'Software Projects',
+  embeddedSystems: 'Class Projects',
 };
 
 const projectDisplayOrder = [
   'fpgaAndDigitalDesign',
+  'quantumComputing',
   'backendAndDistributedSystems',
   'embeddedSystems',
 ];
@@ -737,7 +773,7 @@ export default function Page() {
             <span className="section-label">Build</span>
             <h2>Projects</h2>
             <p className="section-intro">
-              Technical work across embedded systems, FPGA design, backend infrastructure, and machine learning platforms.
+              Technical work across FPGA-based AI acceleration, quantum computing, software systems, and class projects.
             </p>
             <div className="projects-grid">
               {allProjects.map((p) => (
