@@ -18,13 +18,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      # Project repo → https://kadgitub7.github.io/portfolio/
+      # For a user site repo (kadgitub7.github.io), set this to an empty string.
       NEXT_PUBLIC_BASE_PATH: /portfolio
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
 
       - run: npm ci
@@ -33,7 +36,7 @@ jobs:
         run: npm run build
 
       - name: Disable Jekyll for GitHub Pages
-        run: touch out/.nojekyll
+        run: echo > out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -48,5 +51,3 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
-        with:
-          timeout: 1800000
