@@ -213,7 +213,7 @@ const projects = {
         'A from-scratch quantum circuit simulator in Python that implements qubit state vectors, single-qubit gates (Identity, Pauli-X, Pauli-Y, Pauli-Z, Hadamard), the two-qubit CNOT gate for entanglement, Born rule measurement collapse, and a depolarizing noise model simulating real hardware imperfections.',
       github: 'https://github.com/kadgitub7/Quantum-Circuit-Simulator',
       images: [
-        { src: '/imageAssets/Quantum_Circuit_Simulator.png', alt: 'Quantum circuit diagram with Hadamard, CNOT, and measurement gates' },
+        { src: '/imageAssets/Quantum_Circuit_Sim_Thumbnail.png', alt: 'Quantum circuit diagram with Hadamard, CNOT, and measurement gates' },
       ],
       narrative: {
         motivation:
