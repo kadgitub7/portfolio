@@ -6,24 +6,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      # Project repo → https://kadgitub7.github.io/portfolio/
-      # For a user site repo (kadgitub7.github.io), set this to an empty string.
       NEXT_PUBLIC_BASE_PATH: /portfolio
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
@@ -36,18 +31,10 @@ jobs:
         run: npm run build
 
       - name: Disable Jekyll for GitHub Pages
-        run: echo > out/.nojekyll
+        run: touch out/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
