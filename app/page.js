@@ -775,39 +775,50 @@ export default function Page() {
             <p className="section-intro">
               Technical work across FPGA-based AI acceleration, quantum computing, software systems, and class projects.
             </p>
-            <div className="projects-grid">
-              {allProjects.map((p) => (
-                <article
-                  key={p.title}
-                  className="p-card"
-                  onClick={() => setSelectedProject(p)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') setSelectedProject(p); }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <div className="p-image">
-                    {p.images?.length ? (
-                      <img
-                        src={asset(p.images[0].src)}
-                        alt={p.images[0].alt}
-                        loading="lazy"
-                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                      />
-                    ) : (
-                      <div className="p-ph"><span>{p.category}</span></div>
-                    )}
-                    <div className="p-overlay"><span className="p-more">More →</span></div>
-                  </div>
-                  <div className="p-body">
-                    <div className="p-cat">{p.category}</div>
-                    <div className="p-title">{p.title}</div>
-                    <p className="p-desc">{p.summary}</p>
-                    <div className="p-tags">
-                      {p.tags.map((t) => <span key={t} className="p-tag">{t}</span>)}
+            <div className="projects-sections">
+              {projectDisplayOrder.map((key) => {
+                const groupProjects = projects[key] || [];
+                const label = projectCategoryLabels[key] || key;
+                if (!groupProjects.length) return null;
+                return (
+                  <div key={key} className="project-group">
+                    <h3 className="project-group-title">{label}</h3>
+                    <div className="projects-grid">
+                      {groupProjects.map((p) => (
+                        <article
+                          key={p.title}
+                          className="p-card"
+                          onClick={() => setSelectedProject(p)}
+                          onKeyDown={(e) => { if (e.key === 'Enter') setSelectedProject(p); }}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <div className="p-image">
+                            {p.images?.length ? (
+                              <img
+                                src={asset(p.images[0].src)}
+                                alt={p.images[0].alt}
+                                loading="lazy"
+                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                              />
+                            ) : (
+                              <div className="p-ph"><span>{label}</span></div>
+                            )}
+                            <div className="p-overlay"><span className="p-more">More →</span></div>
+                          </div>
+                          <div className="p-body">
+                            <div className="p-title">{p.title}</div>
+                            <p className="p-desc">{p.summary}</p>
+                            <div className="p-tags">
+                              {p.tags.map((t) => <span key={t} className="p-tag">{t}</span>)}
+                            </div>
+                          </div>
+                        </article>
+                      ))}
                     </div>
                   </div>
-                </article>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
