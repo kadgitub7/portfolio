@@ -238,6 +238,41 @@ const projects = {
       },
     },
   ],
+
+  neuromorphicComputing: [
+    {
+      title: 'Leaky Integrate-and-Fire Spiking Neuron on FPGA',
+      meta: 'Neuromorphic Computing • Verilog • 2026',
+      tags: ['Verilog', 'FPGA', 'Neuromorphic Computing', 'Spiking Neural Networks', 'Vivado'],
+      summary:
+        'A digital implementation of the Leaky Integrate-and-Fire (LIF) spiking neuron model in Verilog, targeting the Basys 3 FPGA. The neuron processes three weighted synaptic inputs through a four-state finite state machine (integrate, spike, reset, refractory), using bit-shift decay to approximate exponential leak without requiring multipliers or dividers.',
+      github: 'https://github.com/kadgitub7/Leaky-Integrate-Fire---SNN-model-on-FPGA',
+      images: [
+        { src: '/imageAssets/LIF_neuron.jpg', alt: 'Leaky Integrate-and-Fire neuron FPGA architecture' },
+      ],
+      narrative: {
+        motivation:
+          'I wanted to understand how biological neurons can be modeled directly in hardware rather than simulated in software. The Leaky Integrate-and-Fire model is one of the foundational building blocks of spiking neural networks, and implementing it on an FPGA felt like the right way to learn both the neuroscience abstraction and the hardware design challenges that come with it.',
+        process: [
+          'Started from the LIF differential equation and discretized it into a form suitable for digital hardware, replacing the exponential decay term with a bit-shift approximation that avoids the need for multipliers or dividers on the FPGA.',
+          'Designed the neuron as a four-state finite state machine: integrate (apply decay and sum weighted inputs), spike (assert output for one clock cycle when membrane potential crosses the threshold), reset (clear potential back to zero), and refractory (block all inputs for 10 cycles before returning to integrate).',
+          'Implemented three synaptic inputs with independently configurable weights, allowing the neuron to respond differently to each input channel.',
+          'Built a testbench that cycles through spike patterns on the three inputs to verify accumulation, threshold firing, reset behavior, and refractory timing.',
+          'Validated the full design in simulation, confirming that membrane potential accumulates correctly across input spikes, fires at the threshold voltage of 100, resets to zero, and decays properly through the refractory period.',
+        ],
+        struggles: [
+          'Deriving the bit-shift decay from the continuous differential equation required careful discretization to make sure the hardware approximation stayed close enough to the mathematical model without introducing drift over many cycles.',
+          'Getting the refractory period timing right was tricky because the neuron needs to completely ignore incoming spikes for a fixed number of cycles after firing, and any off-by-one error in the state machine would either cut the refractory short or extend it.',
+          'Balancing the bit-width of the membrane potential register against overflow risk took some iteration, since weighted inputs accumulate over time and need enough headroom before the threshold triggers a spike.',
+        ],
+        outcomes: [
+          'Working LIF neuron that correctly models membrane potential accumulation, threshold-based spiking, post-spike reset, and a configurable refractory period, all running on the Basys 3 FPGA.',
+          'Bit-shift decay approximation eliminates the need for DSP multipliers or dividers, keeping resource usage minimal and making the design easy to replicate for multi-neuron arrays.',
+          'Full repository includes the Verilog source, testbench, simulation output, and a mathematical derivation document tracing the path from the continuous LIF equation to the hardware implementation.',
+        ],
+      },
+    },
+  ],
 };
 
 const education = {
@@ -548,6 +583,7 @@ const blogPosts = [
 
 const projectCategoryLabels = {
   fpgaAndDigitalDesign: 'FPGA-Based AI Acceleration',
+  neuromorphicComputing: 'Neuromorphic Computing Hardware',
   quantumComputing: 'Quantum Computing',
   backendAndDistributedSystems: 'Software Projects',
   embeddedSystems: 'Class Projects',
@@ -555,6 +591,7 @@ const projectCategoryLabels = {
 
 const projectDisplayOrder = [
   'fpgaAndDigitalDesign',
+  'neuromorphicComputing',
   'quantumComputing',
   'backendAndDistributedSystems',
   'embeddedSystems',
@@ -773,7 +810,7 @@ export default function Page() {
             <span className="section-label">Build</span>
             <h2>Projects</h2>
             <p className="section-intro">
-              Technical work across FPGA-based AI acceleration, quantum computing, software systems, and class projects.
+              Technical work across FPGA-based AI acceleration, neuromorphic computing, quantum computing, software systems, and class projects.
             </p>
             <div className="projects-sections">
               {projectDisplayOrder.map((key) => {
