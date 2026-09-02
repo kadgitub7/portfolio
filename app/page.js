@@ -9,57 +9,19 @@ const profile = {
   nativeName: 'கதிர்',
   subtitleLines: [
     'B.Eng (Co-op) Computer Engineering @ McMaster University (2025-2029)',
-    'Hardware Research Intern | FPGA Design | Computer Architecture | AI Acceleration',
+    'Hardware Research Intern | FPGA Design | Neuromorphic Computing | Machine Learning',
   ],
   aboutLines: [
-  'I am a McMaster University engineering student with research experience **improving and accelerating AI algorithms** using **custom hardware**.',
+  'I am a McMaster University engineering student with research experience in **neuromorphic computing**, **machine learning**, and **neuroscience**, building custom hardware that accelerates AI algorithms.',
   'I benchmark **performance**, **memory usage**, and **throughput**, and evaluate engineering trade-offs between **compute**, **latency**, and **accuracy** for deployment feasibility.',
-  'I have contributed to **peer-reviewed publications** in flexible temperature sensing through experimental, sensor-based work with **microcontrollers** and **electronics**.',
-  'I am seeking hands-on engineering roles where I can grow in **embedded systems**, **FPGA development**, **ASIC**, **IC design**, and applied **hardware-adjacent development**.',
+  'I have contributed to **peer-reviewed publications** in flexible temperature sensing and tardigrade electrophysiology through experimental, sensor-based work with **microcontrollers** and **electronics**.',
+  'I am seeking hands-on engineering roles where I can grow in **neuromorphic computing**, **FPGA development**, **VLSI analog circuit design**, and applied **hardware-adjacent development**.',
   ],
   pills: ['FPGA', 'Verilog', 'Computer Architecture', 'Embedded Systems', 'Python'],
   photo: '/imageAssets/Kadhir_Ponnambalam_Sketch.png',
 };
 
 const projects = {
-  embeddedSystems: [
-    {
-      title: 'Electronically Controlled Mountable Storage System (AccessoBox)',
-      meta: 'Embedded Systems • Accessibility Engineering • 4 months',
-      tags: ['Arduino', 'Embedded Systems', 'CAD', 'C Programming'],
-      summary:
-        'An Arduino-controlled storage box mounted to a wheelchair armrest, designed for a client who needed low-force, independent access to personal items.',
-      github: 'https://github.com/kadgitub7/AccessoBox-Source-Code-Capstone-project-Year-1',
-      demoVideo: 'https://youtube.com/shorts/jYOuo-QSWQE',
-      images: [
-        { src: '/imageAssets/accessobox-final-prototype.png', alt: 'AccessoBox final mounted prototype' },
-        { src: '/imageAssets/accessobox-circuit-prototype.png', alt: 'AccessoBox circuit prototype wiring' },
-        { src: '/imageAssets/accessobox-cad-prototype.png', alt: 'AccessoBox CAD prototype render' },
-      ],
-      narrative: {
-        motivation:
-          'This capstone project started from a real client need: a wheelchair user had limited access to personal belongings while moving. Existing storage options were hard to operate, unstable, and not designed for low-force interaction. Our goal was a lightweight, armrest-mounted device the client could open and close independently at any time.',
-        process: [
-          'Interviewed the client and translated accessibility requirements into mechanical constraints: low button force, ~90° lid opening, sub-second response, and stable mounting on a wheelchair armrest.',
-          'Built cardboard concept models and early CAD enclosures to validate internal clearance for electronics, servo travel, and button reach before committing to printed parts.',
-          'Designed and simulated the control circuit first, using an LED as a stand-in for the servo while hardware was still being sourced, which let us validate button-driven state logic before full integration.',
-          'Iterated 3D-printed housings through multiple revisions to resolve motor clearance, linkage alignment, and button-cap geometry for accessibility.',
-          'Integrated the final assembly: Arduino firmware for open/close state control, servo linkage, custom enlarged button cap, and client-ready mounting demo.',
-        ],
-        struggles: [
-          'Parts delays forced us to validate firmware and wiring logic with LED stand-ins long before the servo arrived, which was workable but compressed the integration timeline.',
-          'Early printed housings failed on motor clearance and linkage alignment; each revision exposed a new mechanical constraint we had not modeled in CAD.',
-          'Balancing lid opening range, enclosure rigidity, and armrest fit required several prototype cycles rather than a single clean design pass.',
-        ],
-        outcomes: [
-          'Delivered a working prototype with a low-force button, ~90° lid opening, and response under one second in demo conditions.',
-          'Contributed across circuit design, Arduino C firmware, CAD/3D printing, and mechanical integration under real client and timeline constraints.',
-          'Source code and build notes are on GitHub; demo video shows the mounted device in use.',
-        ],
-      },
-    },
-  ],
-
   fpgaAndDigitalDesign: [
     {
       title: 'FPGA + Computer Vision Accelerated Traffic Light Controller',
@@ -199,41 +161,6 @@ const projects = {
           'Working full-stack pipeline from browser log submission through HDFS storage, SQL persistence, and frontend-triggered anomaly detection.',
           'Modular bash scripts for each pipeline stage, documented setup requiring MySQL, Docker Desktop, and Python.',
           'Tableau visualization of log data published for exploratory review; demo video walks through the full setup and run sequence.',
-        ],
-      },
-    },
-  ],
-
-  quantumComputing: [
-    {
-      title: 'Quantum Circuit Simulator',
-      meta: 'Quantum Computing • Python • 2026',
-      tags: ['Python', 'NumPy', 'Quantum Computing', 'Linear Algebra'],
-      summary:
-        'A from-scratch quantum circuit simulator in Python that implements qubit state vectors, single-qubit gates (Identity, Pauli-X, Pauli-Y, Pauli-Z, Hadamard), the two-qubit CNOT gate for entanglement, Born rule measurement collapse, and a depolarizing noise model simulating real hardware imperfections.',
-      github: 'https://github.com/kadgitub7/Quantum-Circuit-Simulator',
-      images: [
-        { src: '/imageAssets/Quantum_Circuit_Sim_Thumbnail.png', alt: 'Quantum circuit diagram with Hadamard, CNOT, and measurement gates' },
-      ],
-      narrative: {
-        motivation:
-          'I wanted to understand quantum computing from the ground up by building a simulator rather than just using an existing framework. The goal was to implement the core mathematical primitives (state vectors, unitary gates, tensor products, measurement) myself so I could see exactly how quantum algorithms work at the linear algebra level.',
-        process: [
-          'Represented qubits as two-dimensional state vectors of probability amplitudes, where the squared magnitude of each amplitude determines measurement probability and amplitudes sum to 1.',
-          'Implemented all fundamental single-qubit gates as matrix operations: Identity, Pauli-X (quantum NOT), Pauli-Y (NOT with phase shift), Pauli-Z (phase flip), and Hadamard (equal superposition).',
-          'Built the CNOT (Controlled-NOT) two-qubit gate using tensor product operations, enabling entanglement between qubit pairs where the target qubit flips conditionally on the control qubit state.',
-          'Implemented measurement following the Born rule, collapsing qubit states into the computational basis with probabilities determined by squared amplitudes.',
-          'Added a depolarizing noise model that applies random X, Y, or Z errors with a probability threshold of 0.001 after each gate operation, simulating the imperfections of real quantum hardware.',
-        ],
-        struggles: [
-          'Getting the tensor product calculations right for multi-qubit systems required careful attention to matrix dimensions and ordering, since Kronecker products do not commute.',
-          'Implementing the noise model required understanding how depolarizing channels affect quantum states probabilistically without violating unitarity constraints on the noiseless operations.',
-          'Ensuring numerical stability across chained gate operations was tricky, as floating-point rounding errors can accumulate and cause state vectors to drift from normalization.',
-        ],
-        outcomes: [
-          'Working simulator that correctly models qubit superposition, entanglement via CNOT, and probabilistic measurement collapse following the Born rule.',
-          'Depolarizing noise model provides realistic simulation of hardware imperfections, applying random Pauli errors at configurable probability thresholds.',
-          'Clean, minimal codebase with only NumPy as a dependency, designed to be readable and educational for anyone learning quantum computing fundamentals.',
         ],
       },
     },
@@ -452,6 +379,18 @@ const research = {
       blurb: 'This study analyzes the influence of housing conditions and neighborhood characteristics on life satisfaction. It employs statistical modeling to reveal key factors that improve community well-being and policy implications.',
     },
   ],
+
+  neuroscienceAndElectrophysiology: [
+    {
+      title: 'Electrotaxis Induced Neuromuscular Response of the Tardigrade Species Hypsibius exemplaris in a Microfluidic Environment',
+      authors: 'Ponnambalam, K.',
+      journal: 'Zenodo (Preprint)',
+      year: 2026,
+      link: 'https://doi.org/10.5281/zenodo.22257050',
+      citation: 'Ponnambalam, K. (2026). Electrotaxis Induced Neuromuscular Response of the Tardigrade Species Hypsibius exemplaris in a Microfluidic Environment. Zenodo. https://doi.org/10.5281/zenodo.22257050',
+      blurb: 'This research shows that tardigrades respond to low-voltage electric fields in a microfluidic environment without long-lasting side effects. The organisms were attracted to the negative electrode at field intensities between 3 and 8 V/cm, with movement speeds averaging 154.90 to 259.00 um/s. The neuromuscular response to electrical stimulation serves as a baseline for measuring drug effects, offering an alternative to the ethical challenges of vertebrate testing in pharmaceutical research.',
+    },
+  ],
 };
 
 const honours = [
@@ -584,17 +523,13 @@ const blogPosts = [
 const projectCategoryLabels = {
   fpgaAndDigitalDesign: 'FPGA-Based AI Acceleration',
   neuromorphicComputing: 'Neuromorphic Computing Hardware',
-  quantumComputing: 'Quantum Computing',
   backendAndDistributedSystems: 'Software Projects',
-  embeddedSystems: 'Class Projects',
 };
 
 const projectDisplayOrder = [
   'fpgaAndDigitalDesign',
   'neuromorphicComputing',
-  'quantumComputing',
   'backendAndDistributedSystems',
-  'embeddedSystems',
 ];
 
 const skillCategories = [
@@ -616,11 +551,12 @@ const skillCategories = [
   },
   {
     name: 'Research Focus',
-    items: ['Sensor Systems', 'Digital Logic', 'Prototyping', 'Publications'],
+    items: ['Neuromorphic Computing', 'Machine Learning', 'Neuroscience', 'VLSI Analog Circuits'],
   },
 ];
 
 const researchGroups = [
+  { title: 'Neuroscience & Electrophysiology', papers: research.neuroscienceAndElectrophysiology },
   { title: 'Flexible Electronics & Sensors', papers: research.flexibleElectronicsAndSensors },
   { title: 'Data Analytics & Spatial Analysis', papers: research.dataAnalyticsAndSpatialAnalysis },
   { title: 'Socioeconomic Data Analysis', papers: research.socioeconomicDataAnalysis },
@@ -810,7 +746,7 @@ export default function Page() {
             <span className="section-label">Build</span>
             <h2>Projects</h2>
             <p className="section-intro">
-              Technical work across FPGA-based AI acceleration, neuromorphic computing, quantum computing, software systems, and class projects.
+              Technical work across FPGA-based AI acceleration, neuromorphic computing, and software systems.
             </p>
             <div className="projects-sections">
               {projectDisplayOrder.map((key) => {
@@ -893,7 +829,7 @@ export default function Page() {
             <span className="section-label">Publications</span>
             <h2>Research</h2>
             <p className="section-intro">
-              Peer-reviewed publications and data-driven research across flexible electronics, spatial analysis, and socioeconomic modeling.
+              Peer-reviewed publications and data-driven research across neuroscience, flexible electronics, spatial analysis, and socioeconomic modeling.
             </p>
             <div className="research-grid">
               {researchGroups.map((group) => (
