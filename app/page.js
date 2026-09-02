@@ -243,6 +243,16 @@ const experience = [
       'Supported sensor fabrication and characterization workflows focused on low-temperature processing and flexible device stability.',
     ],
   },
+  {
+    title: 'Volunteer Researcher: Microfluidics Lab, CAMEF (Dr. Selvaganapathy & Dr. Nidhi Jain), McMaster University',
+    date: 'Jul 2021 - Mar 2023',
+    icon: '/imageAssets/McMaster_Logo.jpg',
+    descriptionLines: [
+      'Investigated the effect of electric fields on tardigrades (Hypsibius exemplaris) in a microfluidic environment, discovering field intensities where the organisms displayed a measurable neuromuscular response.',
+      'Presented research findings at the Bay Area Science and Engineering Fair and the Canada Wide Science Fair for two consecutive years, earning Silver Medals at CWSF in both 2022 and 2023.',
+      'Published a preprint paper on Zenodo documenting the electrotaxis-induced neuromuscular response, providing a baseline for pharmaceutical testing as an alternative to vertebrate organisms.',
+    ],
+  },
 ];
 
 
