@@ -386,7 +386,8 @@ const research = {
       authors: 'Ponnambalam, K.',
       journal: 'Zenodo (Preprint)',
       year: 2026,
-      link: 'https://doi.org/10.5281/zenodo.22257050',
+      link: '/papers/Ponnambalam_Electrotaxis_Tardigrade_2026.pdf',
+      doi: 'https://doi.org/10.5281/zenodo.22257050',
       citation: 'Ponnambalam, K. (2026). Electrotaxis Induced Neuromuscular Response of the Tardigrade Species Hypsibius exemplaris in a Microfluidic Environment. Zenodo. https://doi.org/10.5281/zenodo.22257050',
       blurb: 'This research shows that tardigrades respond to low-voltage electric fields in a microfluidic environment without long-lasting side effects. The organisms were attracted to the negative electrode at field intensities between 3 and 8 V/cm, with movement speeds averaging 154.90 to 259.00 um/s. The neuromuscular response to electrical stimulation serves as a baseline for measuring drug effects, offering an alternative to the ethical challenges of vertebrate testing in pharmaceutical research.',
     },
@@ -835,20 +836,28 @@ export default function Page() {
               {researchGroups.map((group) => (
                 <div key={group.title} className="research-group">
                   <h3>{group.title}</h3>
-                  {group.papers.map((paper) => (
-                    <div
-                      key={paper.title}
-                      className="research-item"
-                      onClick={() => window.open(paper.link, '_blank')}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => { if (e.key === 'Enter') window.open(paper.link, '_blank'); }}
-                    >
-                      <h4>{paper.title}</h4>
-                      <p className="citation">{paper.citation}</p>
-                      <p>{paper.blurb}</p>
-                    </div>
-                  ))}
+                  {group.papers.map((paper) => {
+                    const href = paper.link.startsWith('/') ? asset(paper.link) : paper.link;
+                    return (
+                      <div
+                        key={paper.title}
+                        className="research-item"
+                        onClick={() => window.open(href, '_blank')}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => { if (e.key === 'Enter') window.open(href, '_blank'); }}
+                      >
+                        <h4>{paper.title}</h4>
+                        <p className="citation">{paper.citation}</p>
+                        <p>{paper.blurb}</p>
+                        {paper.doi && (
+                          <p className="paper-doi">
+                            DOI: <a href={paper.doi} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>{paper.doi}</a>
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               ))}
             </div>

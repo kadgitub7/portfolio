@@ -755,6 +755,20 @@ body {
   line-height: 1.7;
 }
 
+.paper-doi {
+  font-size: 0.74rem;
+  margin-top: 0.4rem;
+}
+
+.paper-doi a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.paper-doi a:hover {
+  text-decoration: underline;
+}
+
 /* HONOURS / CERTS */
 .cert-grid {
   display: grid;
