@@ -214,7 +214,16 @@ const education = {
 
 const experience = [
   {
-    title: 'Summer Research Intern: Nano & Optoelectronics Lab | McMaster: Dr. Jamal Deen & Dr. Shiva Kumar, McMaster University',
+    title: 'Research Intern: MAC Analog Lab | McMaster University | Dr. Mohamed B. Elamien',
+    date: 'Sep 2026 - Present',
+    icon: '/imageAssets/mac_analog_logo.png',
+    descriptionLines: [
+      'Conducting research in low-power, fully analog CMOS circuits for arrythmia detection',
+      'Investigating the use of spiking neural networks for low-power, high-accuracy arrhythmia detection in resource-constrained environments',
+    ],
+  },
+  {
+    title: 'Summer Research Intern: Nano & Optoelectronics Lab | McMaster University | Dr. Jamal Deen & Dr. Shiva Kumar, McMaster University',
     date: 'May 2026 - Present',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
@@ -224,18 +233,8 @@ const experience = [
     ],
   },
   {
-    title: 'Research Assistant: Computer Engineering Lab (Dr. Abdelhadi), McMaster University',
-    date: 'Oct 2025 - Present',
-    icon: '/imageAssets/HADI_Labs_Logo.png',
-    descriptionLines: [
-      'Volunteer research assistant evaluating open-source data processing software on constrained Linux systems for lab deployment feasibility.',
-      'Benchmarked CaImAn across performance, memory usage, and throughput to characterize engineering trade-offs between compute cost, latency, and output accuracy.',
-      'Documented benchmark workflows and system-study findings for collaborators assessing which tooling profiles are practical on resource-limited hardware.',
-    ],
-  },
-  {
-    title: 'Research Assistant: Electrical & Computer Engineering Lab (Dr. Jamal Deen), McMaster University',
-    date: 'Jun 2023 - Sep 2023',
+    title: 'Research Assistant: Micro and Nano System Lab (MNSL) | McMaster University | Dr. Jamal Deen',
+    date: 'Jun 2023 - Sep 2025',
     icon: '/imageAssets/McMaster_Logo.jpg',
     descriptionLines: [
       'Conducted experimental and sensor-based research using microcontrollers and electronic test equipment in a flexible electronics lab environment.',
