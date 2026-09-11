@@ -393,12 +393,12 @@ const research = {
     {
       title: 'Electrotaxis Induced Neuromuscular Response of the Tardigrade Species Hypsibius exemplaris in a Microfluidic Environment',
       authors: 'Ponnambalam, K.',
-      journal: 'Zenodo (Preprint)',
+      journal: 'Zenodo (Preprint) & Preprint.org',
       year: 2026,
       link: '/papers/Ponnambalam_Electrotaxis_Tardigrade_2026.pdf',
-      doi: 'https://doi.org/10.5281/zenodo.22257050',
+      doi: 'https://doi.org/10.20944/preprints202609.0882.v1',
       citation: 'Ponnambalam, K. (2026). Electrotaxis Induced Neuromuscular Response of the Tardigrade Species Hypsibius exemplaris in a Microfluidic Environment. Zenodo. https://doi.org/10.5281/zenodo.22257050',
-      blurb: 'This research shows that tardigrades respond to low-voltage electric fields in a microfluidic environment without long-lasting side effects. The organisms were attracted to the negative electrode at field intensities between 3 and 8 V/cm, with movement speeds averaging 154.90 to 259.00 um/s. The neuromuscular response to electrical stimulation serves as a baseline for measuring drug effects, offering an alternative to the ethical challenges of vertebrate testing in pharmaceutical research.',
+      blurb: 'This research shows that tardigrades respond to low-voltage electric fields in a microfluidic environment without long-lasting side effects. The organisms were attracted to the negative electrode at field intensities between 3 and 8 V/cm, with movement speeds averaging 154.90 to 259.00 um/s. The neuromuscular response to electrical stimulation serves as a baseline for measuring drug effects, offering an alternative to the ethical challenges of vertebrate testing in pharmaceutical research. Two DOI: https://doi.org/10.20944/preprints202609.0882.v1, https://doi.org/10.5281/zenodo.22257050',
     },
   ],
 };
