@@ -469,6 +469,13 @@ const certifications = [
     date: 'Jul 2026',
     verifyUrl: 'https://coursera.org/verify/3ZNLT809WRHO',
   },
+  {
+    name: 'Supervised Machine Learning: Regression and Classification',
+    issuer: 'Stanford University & DeepLearning.AI (Andrew Ng)',
+    platform: 'Coursera',
+    date: 'Sep 2026',
+    verifyUrl: 'https://coursera.org/verify/0IZH1H9UMAUD',
+  },
 ];
 
 const blogPosts = [
