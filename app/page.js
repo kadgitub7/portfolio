@@ -476,6 +476,14 @@ const certifications = [
     date: 'Sep 2026',
     verifyUrl: 'https://coursera.org/verify/0IZH1H9UMAUD',
   },
+  {
+    name: 'Advanced Learning Algorithms (Neural Networks, Random Forest)',
+    issuer: 'Stanford University & DeepLearning.AI (Andrew Ng)',
+    platform: 'Coursera',
+    date: 'Sep 2026',
+    verifyUrl: 'https://coursera.org/verify/1P81B4TYHE9N',
+    
+  },
 ];
 
 const blogPosts = [
