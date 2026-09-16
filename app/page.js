@@ -463,11 +463,12 @@ const honours = [
 
 const certifications = [
   {
-    name: 'VLSI CAD Part I: Logic',
-    issuer: 'University of Illinois Urbana-Champaign',
+    name: 'Advanced Learning Algorithms (Neural Networks, Random Forest)',
+    issuer: 'Stanford University & DeepLearning.AI (Andrew Ng)',
     platform: 'Coursera',
-    date: 'Jul 2026',
-    verifyUrl: 'https://coursera.org/verify/3ZNLT809WRHO',
+    date: 'Sep 2026',
+    verifyUrl: 'https://coursera.org/verify/1P81B4TYHE9N',
+    
   },
   {
     name: 'Supervised Machine Learning: Regression and Classification',
@@ -477,13 +478,12 @@ const certifications = [
     verifyUrl: 'https://coursera.org/verify/0IZH1H9UMAUD',
   },
   {
-    name: 'Advanced Learning Algorithms (Neural Networks, Random Forest)',
-    issuer: 'Stanford University & DeepLearning.AI (Andrew Ng)',
+    name: 'VLSI CAD Part I: Logic',
+    issuer: 'University of Illinois Urbana-Champaign',
     platform: 'Coursera',
-    date: 'Sep 2026',
-    verifyUrl: 'https://coursera.org/verify/1P81B4TYHE9N',
-    
-  },
+    date: 'Jul 2026',
+    verifyUrl: 'https://coursera.org/verify/3ZNLT809WRHO',
+  },  
 ];
 
 const blogPosts = [
