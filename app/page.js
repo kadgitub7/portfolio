@@ -952,6 +952,23 @@ export default function Page() {
               {education.areasOfStudy}
             </div>
 
+            <span className="section-label" style={{ marginTop: '4rem', display: 'block' }}>Courses</span>
+            <h2 style={{ marginTop: '0.4rem' }}>Certifications</h2>
+            <div className="cert-grid">
+              {certifications.map((cert, index) => (
+                <div key={cert.name} className="cert-card">
+                  <div className="cert-left">
+                    <div className="cert-n">{String(index + 1).padStart(2, '0')}</div>
+                    <div>
+                      <div className="cert-name">{cert.name}</div>
+                      <div className="cert-issuer">{cert.issuer} · {cert.platform} · {cert.date}</div>
+                    </div>
+                  </div>
+                  <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="cert-view">Verify ↗</a>
+                </div>
+              ))}
+            </div>
+
             <span className="section-label" style={{ marginTop: '4rem', display: 'block' }}>Recognition</span>
             <h2 style={{ marginTop: '0.4rem' }}>Honours &amp; Awards</h2>
             <div className="cert-grid">
@@ -969,23 +986,6 @@ export default function Page() {
                   ) : (
                     <span className="cert-view" style={{ opacity: 0.4, pointerEvents: 'none' }}>-</span>
                   )}
-                </div>
-              ))}
-            </div>
-
-            <span className="section-label" style={{ marginTop: '4rem', display: 'block' }}>Courses</span>
-            <h2 style={{ marginTop: '0.4rem' }}>Certifications</h2>
-            <div className="cert-grid">
-              {certifications.map((cert, index) => (
-                <div key={cert.name} className="cert-card">
-                  <div className="cert-left">
-                    <div className="cert-n">{String(index + 1).padStart(2, '0')}</div>
-                    <div>
-                      <div className="cert-name">{cert.name}</div>
-                      <div className="cert-issuer">{cert.issuer} · {cert.platform} · {cert.date}</div>
-                    </div>
-                  </div>
-                  <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="cert-view">Verify ↗</a>
                 </div>
               ))}
             </div>
