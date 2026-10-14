@@ -24,6 +24,41 @@ const profile = {
 const projects = {
   fpgaAndDigitalDesign: [
     {
+      title: 'From Scratch LIF SNN on FPGA',
+      meta: 'Neuromorphic Computing / FPGA Design / Verilog • 2026',
+      tags: ['Verilog', 'Vivado', 'Jupyter Notebook', 'FPGA', 'NumPy', 'Python', 'Basys 3', 'Spiking Neural Networks'],
+      summary:
+        'A hardware-oriented LIF-based spiking neural network implemented from scratch in software and RTL. The project includes Python notebooks for model development, a parameter file for neuron weights and thresholds, and FPGA design sources for a Basys 3 implementation that captures the core behavior of membrane accumulation, leak, spike generation, and reset in digital logic.',
+      github: 'https://github.com/kadgitub7/LIF-based-SNN-on-FPGA',
+      images: [{ src: '/imageAssets/LIF_neuron.jpg', alt: 'LIF-based SNN FPGA implementation' },],
+      narrative: {
+        motivation:
+          'I wanted to understand how a spiking neural network can be represented directly in hardware rather than only simulated in software. The goal of this project was to implement a Leaky Integrate-and-Fire model from scratch, including the neuron dynamics, parameter mapping, and FPGA-ready logic, without relying on high-level ML frameworks.',
+        process: [
+          'Developed the software-side model in Jupyter notebooks to define the SNN architecture, training workflow, and the parameters that must match the hardware implementation.',
+          'Used the neuron parameter file to encode the model weights and decay/threshold values in a format suitable for the FPGA memory interface and RTL logic.',
+          'Mapped the LIF update rule into a digital hardware design in Verilog, with weighted synaptic accumulation, membrane potential decay, threshold comparison, and reset behavior.',
+          'Organized the project around the repository structure used by the FPGA workflow: software notebooks, neuron parameter data, training data, and HDL sources under the fpga_files directory.',
+          'Validated the implementation by checking that the design matches the discrete-time LIF behavior expected from the software model and the RTL state machine.',
+        ],
+        struggles: [
+          'Aligning the software model and the FPGA implementation was the hardest part, because small differences in fixed-point scaling, signed interpretation, or update ordering can change the neuron behavior significantly.',
+          'Deriving the bit-shift decay approximation from the continuous LIF equation required careful discretization so the digital implementation stayed faithful to the underlying model without needing multipliers or dividers.',
+          'The refractory timing and threshold reset logic had to be precise; a single off-by-one error in the finite-state logic would alter spike timing or suppress valid firings.',
+          'Balancing membrane potential bit-width against overflow risk was critical, since weighted input accumulation needs enough headroom while still staying resource-efficient on the Basys 3.',
+          'Developing the FSM was difficuly because we now need to keep in mind that processes happen in parallel and therefore the # of states needs to correspond to how long the forward prop takes',
+          'Timing issues arose becasue the clock was faster than one of the decay values computed potential loss. This was alleviated by reducing clock to 50MHz. We could have also registered the intermediate value and alleviated the problem that way, but it would require changin the FSM',
+        ],
+        outcomes: [
+          'A complete repository for an LIF-based SNN on FPGA, including software notebooks, parameter files, training data, and FPGA design sources.',
+          'Hardware-oriented implementation of the core LIF neuron behavior: input accumulation, membrane leakage, threshold-triggered spikes, reset, and refractory handling.',
+          'Design is built around a digital implementation that is easy to reason about, resource-conscious, and suitable as a foundation for scaling toward larger spiking neural arrays.',
+          'The project demonstrates a from-scratch pipeline from neuron modeling to FPGA-ready hardware logic, with the repository structured for reproducible experimentation and RTL development.',
+          '80% accuracy on FPGA inference, 0.189W of power, Passes Timing',
+        ],
+      },
+    },
+    {
       title: 'FPGA + Computer Vision Accelerated Traffic Light Controller',
       meta: 'Digital Design / Computer Vision / Embedded Systems / Electronics • 2026',
       tags: ['Verilog', 'Vivado', 'Arduino UNO', 'FPGA', 'YOLOv8n', 'Python', 'C++'],
