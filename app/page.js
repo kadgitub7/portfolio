@@ -30,6 +30,7 @@ const projects = {
       summary:
         'A hardware-oriented LIF-based spiking neural network implemented from scratch in software and RTL. The project includes Python notebooks for model development, a parameter file for neuron weights and thresholds, and FPGA design sources for a Basys 3 implementation that captures the core behavior of membrane accumulation, leak, spike generation, and reset in digital logic.',
       github: 'https://github.com/kadgitub7/LIF-based-SNN-on-FPGA',
+      demoVideo: 'https://www.youtube.com/watch?v=P6Z8AxZ7rmU',
       images: [{ src: '/imageAssets/LIF_neuron.jpg', alt: 'LIF-based SNN FPGA implementation' },],
       narrative: {
         motivation:
